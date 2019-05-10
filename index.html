@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/06/NodeJs-1/" itemprop="url">NodeJs</a></h1>
+                <a class="post-title-link" href="/2019/05/06/NodeJs-1/" itemprop="url">node基础</a></h1>
         
 
         <div class="post-meta">
@@ -300,26 +300,42 @@
       
         
           
-            <h1 id="代码组织和部署"><a href="#代码组织和部署" class="headerlink" title="代码组织和部署"></a>代码组织和部署</h1><h2 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h2><ul>
+            <h1 id="node基础"><a href="#node基础" class="headerlink" title="node基础"></a>node基础</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>基于require模块化的JavaScript代码执行器  </li>
+</ul>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>事件机制和异步IO</li>
+</ul>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><ul>
+<li><p>exports<br>  输出某个模块中的方法，变量  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var b=4;</span><br><span class="line">function count()&#123;</span><br><span class="line">    b++;</span><br><span class="line">&#125;</span><br><span class="line">exports.b=b</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>module<br>  重写整个输出的对象  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">moduel.exports=&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>require<br>  引入模块，可以是路径，内置模块   </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;./a&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主模块<br>  node命令行执行的函数  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node main.js</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="代码组织和部署"><a href="#代码组织和部署" class="headerlink" title="代码组织和部署"></a>代码组织和部署</h1><h2 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h2><ul>
 <li><p>内置模块  </p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;fs&apos;)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>node_modules目录<br>  如果文件的绝对路径为/a/b/c </p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;foo/bar&apos;)</span><br></pre></td></tr></table></figure>
 <p>  会逐级向上搜索node_modules，即  </p>
-<ol>
-<li>‘a/b/c/node_modules/foo/bar’  </li>
-<li>‘a/b/node_modules/foo/bar’</li>
-<li>‘a/node_modules/foo/bar’</li>
-<li>‘node_modules/foo/bar’</li>
-</ol>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos;a/b/c/node_modules/foo/bar&apos;  </span><br><span class="line">&apos;a/b/node_modules/foo/bar&apos;    </span><br><span class="line">&apos;a/node_modules/foo/bar&apos;   </span><br><span class="line">&apos;node_modules/foo/bar&apos;</span><br></pre></td></tr></table></figure>
 </li>
-<li>自定义模块搜索路径<br>  在环境变量中配置node_path，加载模块时就会去该目录</li>
+<li><p>自定义模块搜索路径<br>  在环境变量中配置node_path，加载模块时就会去该目录</p>
+</li>
 </ul>
 <h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><ul>
 <li>有多个依赖模块，将这些模块放在一个文件夹下，定义入口模块和输出模块，就形成了一个包  </li>
 <li>包的入口模块默认时index.js,因此命名时如果为index.js就可以避免将输入模块写进路径中</li>
-<li>可以通过在包的根目录下创建package.json配置输入模块      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    name:xxx,</span><br><span class="line">    main:&apos;lib/main.jsx&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>可以通过在包的根目录下创建package.json配置输入模块      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;   </span><br><span class="line">    name:xxx,</span><br><span class="line">    main:&apos;lib/main.jsx&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="命令行程序"><a href="#命令行程序" class="headerlink" title="命令行程序"></a>命令行程序</h2><ul>
@@ -368,20 +384,20 @@
 </tbody>
 </table>
 <h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><ul>
-<li>安装第三方包<ul>
-<li>npm i </li>
-</ul>
+<li><p>安装第三方包  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
 </li>
-<li>安装命令行工具<ul>
-<li>npm i <package> -g</package></li>
-</ul>
+<li><p>安装命令行工具  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i &lt;package&gt; -g</span><br></pre></td></tr></table></figure>
 </li>
-<li>发布第三方包和命令行程序<ul>
-<li>npm addUser 注册npm用户</li>
-<li>编写包<ul>
-<li>package.json中配置必要的选项  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    name:&apos;xxxx&apos;,    </span><br><span class="line">    version:1.0.0,  </span><br><span class="line">    bin:&apos;命令行程序的路径&apos;,  </span><br><span class="line">    dependance:&#123;  </span><br><span class="line">        argv:&apos;0.0.2&apos;  </span><br><span class="line">        //配置依赖  </span><br><span class="line">    &#125;,</span><br><span class="line">    main:&apos;入口模块&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<li><p>发布第三方包和命令行程序</p>
+<ul>
+<li><p>注册用户  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm addUser 注册用户</span><br></pre></td></tr></table></figure>
+<p>+编写包</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//package.json</span><br><span class="line">&#123;</span><br><span class="line">    name:&apos;xxxx&apos;,    </span><br><span class="line">    version:1.0.0,  </span><br><span class="line">    bin:&apos;命令行程序的路径&apos;,  </span><br><span class="line">    dependance:&#123;  </span><br><span class="line">        argv:&apos;0.0.2&apos;  </span><br><span class="line">        //配置依赖  </span><br><span class="line">    &#125;,</span><br><span class="line">    main:&apos;入口模块&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>+发布</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
