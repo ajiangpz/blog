@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="属性父元素属性 flex-direction 规定主轴方向，子元素的流动方向 column 规定y轴为主轴，子元素自上而下流动 row 规定x轴为主轴，子元素从左到右流 column-reverse 规定y轴为主轴，子元素自下而上流动 row-reverse 规定x轴为主轴，子元素从右到左流动   flex-wrap 规定子元素换不换行 wrap 换行  nowrap 不换行,元素按比例缩小 wr">
+<meta name="description" content="层叠上下文层叠上下文的概念 抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。层叠上下文的产生 根元素 定位元素且z-index为数值 css3，如transform,子元素的z-index不为auto的flex布局层叠上下文的特点 后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列。 根据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="flex布局">
-<meta property="og:url" content="https://ajiangpz.github.io/2019/06/02/flex布局/index.html">
+<meta property="og:title" content="层叠上下文">
+<meta property="og:url" content="https://ajiangpz.github.io/2019/06/07/层叠上下文/index.html">
 <meta property="og:site_name" content="Pzzz&#39;s FE Blog">
-<meta property="og:description" content="属性父元素属性 flex-direction 规定主轴方向，子元素的流动方向 column 规定y轴为主轴，子元素自上而下流动 row 规定x轴为主轴，子元素从左到右流 column-reverse 规定y轴为主轴，子元素自下而上流动 row-reverse 规定x轴为主轴，子元素从右到左流动   flex-wrap 规定子元素换不换行 wrap 换行  nowrap 不换行,元素按比例缩小 wr">
+<meta property="og:description" content="层叠上下文层叠上下文的概念 抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。层叠上下文的产生 根元素 定位元素且z-index为数值 css3，如transform,子元素的z-index不为auto的flex布局层叠上下文的特点 后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列。 根据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-07T15:02:52.338Z">
+<meta property="og:updated_time" content="2019-06-07T16:08:10.632Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="flex布局">
-<meta name="twitter:description" content="属性父元素属性 flex-direction 规定主轴方向，子元素的流动方向 column 规定y轴为主轴，子元素自上而下流动 row 规定x轴为主轴，子元素从左到右流 column-reverse 规定y轴为主轴，子元素自下而上流动 row-reverse 规定x轴为主轴，子元素从右到左流动   flex-wrap 规定子元素换不换行 wrap 换行  nowrap 不换行,元素按比例缩小 wr">
+<meta name="twitter:title" content="层叠上下文">
+<meta name="twitter:description" content="层叠上下文层叠上下文的概念 抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。层叠上下文的产生 根元素 定位元素且z-index为数值 css3，如transform,子元素的z-index不为auto的flex布局层叠上下文的特点 后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列。 根据">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://ajiangpz.github.io/2019/06/02/flex布局/">
+  <link rel="canonical" href="https://ajiangpz.github.io/2019/06/07/层叠上下文/">
 
 
 
 
 
-  <title>flex布局 | Pzzz's FE Blog</title>
+  <title>层叠上下文 | Pzzz's FE Blog</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/06/02/flex布局/">
+    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/06/07/层叠上下文/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pzzz">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">flex布局</h1>
+          <h1 class="post-title" itemprop="name headline">层叠上下文</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-02T15:26:33+08:00">
-                2019-06-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:08:22+08:00">
+                2019-06-07
               </time>
             
 
@@ -299,60 +299,22 @@
       
 
       
-        <h1 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h1><h3 id="父元素属性"><a href="#父元素属性" class="headerlink" title="父元素属性"></a>父元素属性</h3><ul>
-<li>flex-direction 规定主轴方向，子元素的流动方向<ul>
-<li>column 规定y轴为主轴，子元素自上而下流动</li>
-<li>row 规定x轴为主轴，子元素从左到右流</li>
-<li>column-reverse 规定y轴为主轴，子元素自下而上流动</li>
-<li>row-reverse 规定x轴为主轴，子元素从右到左流动</li>
-</ul>
-</li>
-<li>flex-wrap 规定子元素换不换行<ul>
-<li>wrap 换行 </li>
-<li>nowrap 不换行,元素按比例缩小</li>
-<li>wrap-reverse 向上换行</li>
-</ul>
-</li>
-<li>flex-flow flex-direction和flex-wrap的简写</li>
-<li>justify-content 规定主轴上元素的排列方式<ul>
-<li>center  </li>
-<li>flex-end </li>
-<li>flex-start</li>
-<li>space-around</li>
-<li>space-between</li>
-</ul>
-</li>
-<li>align-items 规定子元素的对齐方式<ul>
-<li>center 居中</li>
-<li>flex-end 下对齐</li>
-<li>flex-start 上对齐</li>
-<li>strech 拉伸</li>
-</ul>
-</li>
-<li>align-content 规定交叉轴的多行元素排列<h3 id="子元素属性"><a href="#子元素属性" class="headerlink" title="子元素属性"></a>子元素属性</h3></li>
-<li>flex-grow 拉伸倍数</li>
-<li>flex-shrink 缩小倍数</li>
-<li>flex-basic 拉伸或缩小的基值,会覆盖width的值<ul>
-<li>设置为0，宽度也是元素内容，input有最小宽度值，在火狐下141px，不管有没有内容</li>
-<li>设置为auto时，即为元素的width值</li>
-<li>设置为百分比时会根据父元素的宽度计算宽度</li>
-</ul>
-</li>
-<li>flex 上述三个值的按顺序简写<ul>
-<li>auto=&gt; 1 1 auto</li>
-<li>1=&gt;1 1 0%</li>
-<li>10px=&gt;1 1 10px</li>
-<li>40% =&gt;1 1 40%</li>
-<li>1 10px =&gt;1 1 10px</li>
-<li>none =&gt; 0 0 auto</li>
-<li>默认=&gt;0 1 auto</li>
-</ul>
-</li>
-<li>缩放计算 所有子元素的flex-basic相加,剩余部分按flex-grow或者flex-shrink分配<h3 id="flex应用"><a href="#flex应用" class="headerlink" title="flex应用"></a>flex应用</h3></li>
-<li>九宫格布局<br><a href="https://ajiangpz.github.io/css/%E5%B8%83%E5%B1%80/flex%E6%A3%8B%E7%9B%98.html">棋盘演示</a></li>
-<li>百分比布局<br><a href="https://ajiangpz.github.io/css/%E5%B8%83%E5%B1%80/flex%E7%99%BE%E5%88%86%E6%AF%94%E5%B8%83%E5%B1%80.html">百分比演示</a></li>
-<li>圣杯布局<br><a href="https://ajiangpz.github.io/css/%E5%B8%83%E5%B1%80/flex%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80.html">圣杯布局</a></li>
-<li>表单布局</li>
+        <h1 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h1><h3 id="层叠上下文的概念"><a href="#层叠上下文的概念" class="headerlink" title="层叠上下文的概念"></a>层叠上下文的概念</h3><ul>
+<li>抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。<h3 id="层叠上下文的产生"><a href="#层叠上下文的产生" class="headerlink" title="层叠上下文的产生"></a>层叠上下文的产生</h3></li>
+<li>根元素</li>
+<li>定位元素且z-index为数值</li>
+<li>css3，如transform,子元素的z-index不为auto的flex布局<h3 id="层叠上下文的特点"><a href="#层叠上下文的特点" class="headerlink" title="层叠上下文的特点"></a>层叠上下文的特点</h3></li>
+<li>后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列。</li>
+<li>根据z-index或层叠顺序排列<h1 id="层叠顺序"><a href="#层叠顺序" class="headerlink" title="层叠顺序"></a>层叠顺序</h1><h3 id="层叠顺序表"><a href="#层叠顺序表" class="headerlink" title="层叠顺序表"></a>层叠顺序表</h3></li>
+<li>background/border</li>
+<li>负z-index</li>
+<li>block块状元素</li>
+<li>float浮动盒子</li>
+<li>inline/inline-block盒子</li>
+<li>z-index为0或者auto，不依赖z-index的层叠上下文</li>
+<li>正z-index</li>
+<li><a href="https://ajiangpz.github.io/css/%E5%B1%82%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87/z-index.html">层叠顺序演示</a><h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h3></li>
+<li>元素一旦定位，其z-index自动生效默认值为auto，等价于0<br>与不依赖z-index的层叠上下文（如css3）层叠等级相同，遵循后来居上的原则。</li>
 </ul>
 
       
@@ -378,8 +340,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/ajiangpz.github.io/2019/05/26/CSS选择器-0/" rel="next" title="CSS选择器">
-                <i class="fa fa-chevron-left"></i> CSS选择器
+              <a href="/ajiangpz.github.io/2019/06/02/flex布局/" rel="next" title="flex布局">
+                <i class="fa fa-chevron-left"></i> flex布局
               </a>
             
           </div>
@@ -387,10 +349,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/ajiangpz.github.io/2019/06/07/层叠上下文/" rel="prev" title="层叠上下文">
-                层叠上下文 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -504,7 +462,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#属性"><span class="nav-number">1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#父元素属性"><span class="nav-number">1.0.1.</span> <span class="nav-text">父元素属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子元素属性"><span class="nav-number">1.0.2.</span> <span class="nav-text">子元素属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex应用"><span class="nav-number">1.0.3.</span> <span class="nav-text">flex应用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#层叠上下文"><span class="nav-number">1.</span> <span class="nav-text">层叠上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#层叠上下文的概念"><span class="nav-number">1.0.1.</span> <span class="nav-text">层叠上下文的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层叠上下文的产生"><span class="nav-number">1.0.2.</span> <span class="nav-text">层叠上下文的产生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层叠上下文的特点"><span class="nav-number">1.0.3.</span> <span class="nav-text">层叠上下文的特点</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#层叠顺序"><span class="nav-number">2.</span> <span class="nav-text">层叠顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#层叠顺序表"><span class="nav-number">2.0.1.</span> <span class="nav-text">层叠顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊情况"><span class="nav-number">2.0.2.</span> <span class="nav-text">特殊情况</span></a></li></ol></li></div>
             
 
           </div>
