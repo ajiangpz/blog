@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="层叠上下文层叠上下文的概念 抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。  层叠上下文的产生 根元素 定位元素且z-index为数值 css3，如transform,子元素的z-index不为auto的flex布局  层叠上下文的特点 后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列">
+<meta name="description" content="rem是什么1rem=根元素fontsize的值,因此设置rem的值时，可以考虑两种情况，一种是将根元素的fontsize设置成整数，比如100px，50px，一般不推荐设置的值小于12px,因为chrome浏览器会将有最小字体的限制。另一种方案是将rem设置成设计稿的整数倍，比如1rem=64px,总之，设置rem应尽量让数值取整。 如何通过js设置rem的值 获取body的宽度 1920，13">
 <meta property="og:type" content="article">
-<meta property="og:title" content="层叠上下文">
-<meta property="og:url" content="https://ajiangpz.github.io/2019/06/07/层叠上下文/index.html">
+<meta property="og:title" content="rem实现自适应布局">
+<meta property="og:url" content="https://ajiangpz.github.io/2019/06/24/rem实现自适应布局/index.html">
 <meta property="og:site_name" content="Pzzz&#39;s FE Blog">
-<meta property="og:description" content="层叠上下文层叠上下文的概念 抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。  层叠上下文的产生 根元素 定位元素且z-index为数值 css3，如transform,子元素的z-index不为auto的flex布局  层叠上下文的特点 后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列">
+<meta property="og:description" content="rem是什么1rem=根元素fontsize的值,因此设置rem的值时，可以考虑两种情况，一种是将根元素的fontsize设置成整数，比如100px，50px，一般不推荐设置的值小于12px,因为chrome浏览器会将有最小字体的限制。另一种方案是将rem设置成设计稿的整数倍，比如1rem=64px,总之，设置rem应尽量让数值取整。 如何通过js设置rem的值 获取body的宽度 1920，13">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-07T16:32:41.374Z">
+<meta property="og:updated_time" content="2019-06-23T17:09:49.655Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="层叠上下文">
-<meta name="twitter:description" content="层叠上下文层叠上下文的概念 抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。  层叠上下文的产生 根元素 定位元素且z-index为数值 css3，如transform,子元素的z-index不为auto的flex布局  层叠上下文的特点 后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列">
+<meta name="twitter:title" content="rem实现自适应布局">
+<meta name="twitter:description" content="rem是什么1rem=根元素fontsize的值,因此设置rem的值时，可以考虑两种情况，一种是将根元素的fontsize设置成整数，比如100px，50px，一般不推荐设置的值小于12px,因为chrome浏览器会将有最小字体的限制。另一种方案是将rem设置成设计稿的整数倍，比如1rem=64px,总之，设置rem应尽量让数值取整。 如何通过js设置rem的值 获取body的宽度 1920，13">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://ajiangpz.github.io/2019/06/07/层叠上下文/">
+  <link rel="canonical" href="https://ajiangpz.github.io/2019/06/24/rem实现自适应布局/">
 
 
 
 
 
-  <title>层叠上下文 | Pzzz's FE Blog</title>
+  <title>rem实现自适应布局 | Pzzz's FE Blog</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/06/07/层叠上下文/">
+    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/06/24/rem实现自适应布局/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pzzz">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">层叠上下文</h1>
+          <h1 class="post-title" itemprop="name headline">rem实现自适应布局</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:08:22+08:00">
-                2019-06-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T00:56:37+08:00">
+                2019-06-24
               </time>
             
 
@@ -299,24 +299,10 @@
       
 
       
-        <h1 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h1><h3 id="层叠上下文的概念"><a href="#层叠上下文的概念" class="headerlink" title="层叠上下文的概念"></a>层叠上下文的概念</h3><ul>
-<li>抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。  <h3 id="层叠上下文的产生"><a href="#层叠上下文的产生" class="headerlink" title="层叠上下文的产生"></a>层叠上下文的产生</h3></li>
-<li>根元素</li>
-<li>定位元素且z-index为数值</li>
-<li>css3，如transform,子元素的z-index不为auto的flex布局  <h3 id="层叠上下文的特点"><a href="#层叠上下文的特点" class="headerlink" title="层叠上下文的特点"></a>层叠上下文的特点</h3></li>
-<li>后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列。</li>
-<li>根据z-index或层叠顺序排列</li>
-</ul>
-<h1 id="层叠顺序"><a href="#层叠顺序" class="headerlink" title="层叠顺序"></a>层叠顺序</h1><h3 id="层叠顺序表"><a href="#层叠顺序表" class="headerlink" title="层叠顺序表"></a>层叠顺序表</h3><ul>
-<li>background/border</li>
-<li>负z-index</li>
-<li>block块状元素</li>
-<li>float浮动盒子</li>
-<li>inline/inline-block盒子</li>
-<li>z-index为0或者auto，不依赖z-index的层叠上下文</li>
-<li>正z-index</li>
-<li><a href="https://ajiangpz.github.io/css/%E5%B1%82%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87/z-index.html">层叠顺序演示</a><h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h3></li>
-<li>元素一旦定位，其z-index自动生效默认值为auto，等价于0<br>与不依赖z-index的层叠上下文（如css3）层叠等级相同，遵循后来居上的原则。</li>
+        <h1 id="rem是什么"><a href="#rem是什么" class="headerlink" title="rem是什么"></a>rem是什么</h1><p>1rem=根元素fontsize的值,因此设置rem的值时，可以考虑两种情况，一种是将根元素的fontsize设置成整数，比如100px，50px，一般不推荐设置的值小于12px,因为chrome浏览器会将有最小字体的限制。另一种方案是将rem设置成设计稿的整数倍，比如1rem=64px,总之，设置rem应尽量让数值取整。</p>
+<h1 id="如何通过js设置rem的值"><a href="#如何通过js设置rem的值" class="headerlink" title="如何通过js设置rem的值"></a>如何通过js设置rem的值</h1><ul>
+<li>获取body的宽度 1920，1366，1080，760等</li>
+<li></li>
 </ul>
 
       
@@ -342,8 +328,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/ajiangpz.github.io/2019/06/02/flex布局/" rel="next" title="flex布局">
-                <i class="fa fa-chevron-left"></i> flex布局
+              <a href="/ajiangpz.github.io/2019/06/07/层叠上下文/" rel="next" title="层叠上下文">
+                <i class="fa fa-chevron-left"></i> 层叠上下文
               </a>
             
           </div>
@@ -352,8 +338,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/ajiangpz.github.io/2019/06/24/rem实现自适应布局/" rel="prev" title="rem实现自适应布局">
-                rem实现自适应布局 <i class="fa fa-chevron-right"></i>
+              <a href="/ajiangpz.github.io/2019/07/02/http协议/" rel="prev" title="http协议">
+                http协议 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -468,7 +454,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#层叠上下文"><span class="nav-number">1.</span> <span class="nav-text">层叠上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#层叠上下文的概念"><span class="nav-number">1.0.1.</span> <span class="nav-text">层叠上下文的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层叠上下文的产生"><span class="nav-number">1.0.2.</span> <span class="nav-text">层叠上下文的产生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层叠上下文的特点"><span class="nav-number">1.0.3.</span> <span class="nav-text">层叠上下文的特点</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#层叠顺序"><span class="nav-number">2.</span> <span class="nav-text">层叠顺序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#层叠顺序表"><span class="nav-number">2.0.1.</span> <span class="nav-text">层叠顺序表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊情况"><span class="nav-number">2.0.2.</span> <span class="nav-text">特殊情况</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rem是什么"><span class="nav-number">1.</span> <span class="nav-text">rem是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何通过js设置rem的值"><span class="nav-number">2.</span> <span class="nav-text">如何通过js设置rem的值</span></a></li></ol></div>
             
 
           </div>

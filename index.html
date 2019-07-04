@@ -229,6 +229,398 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/07/02/http协议/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/ajiangpz.github.io/2019/07/02/http协议/" itemprop="url">http协议</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T19:27:57+08:00">
+                2019-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="http头部"><a href="#http头部" class="headerlink" title="http头部"></a>http头部</h1><ul>
+<li><p>通用头部</p>
+<ul>
+<li>cache-control<ul>
+<li>no-cache <ul>
+<li>请求端包含该字段表明客户端不会接收缓存过的资源，缓存服务器必须把客户端的请求发送给源服务器(p87)</li>
+<li>响应端包含该指令表明缓存服务器不能对资源进行缓存，源服务器不再对缓存服务器中提出的资源有效性进行确认，且禁止其对响应进行缓存操作</li>
+</ul>
+</li>
+<li>no-store<ul>
+<li>缓存不能再本地存储响应或者请求的任一部分</li>
+</ul>
+</li>
+<li>s-maxage=xxxx(单位:秒)<ul>
+<li>只适用于供多个用户使用的公共缓存服务器（代理）,使用s-maxage后，maxage,expires无效</li>
+</ul>
+</li>
+<li>max-age=xxxx(单位:秒)<ul>
+<li>客户端请求中包含该指令，如果判定缓存的时间比指定时间短，则接收缓存的资源，否则，缓存服务器需要将请求发送给源服务器</li>
+</ul>
+</li>
+<li>min-fresh=xxxx(单位:秒)<ul>
+<li>返回缓存服务器中还未过指定时间的缓存资源</li>
+</ul>
+</li>
+<li>max-stale=xxxx(单位：秒)<ul>
+<li>在指定的时间内都可以接收缓存资源，即使缓存资源已经过期</li>
+</ul>
+</li>
+<li>only-if-cached <ul>
+<li>客户端只在缓存服务器本地缓存目标资源的情况下才会要求其返回，如过缓存中没有该资源，返回504状态码</li>
+</ul>
+</li>
+<li>must-revalidate<ul>
+<li>代理必须向服务器再次验证该资源的有效性，如果代理无法连通服务器再次获取有效资源，缓存必须向客户端返回504状态码</li>
+</ul>
+</li>
+<li>proxy-revalidate<ul>
+<li>所有的缓存服务器在接收到客户端带有该指令的请求返回响应之前，再次验证缓存的有效性。</li>
+</ul>
+</li>
+<li>no-transform<ul>
+<li>无论是在请求还是在响应中，缓存都不能改变实体主体的媒体类型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>connection<ul>
+<li>close</li>
+<li>Keep-Alive 持久化连接</li>
+<li>不在转发给代理的首部字段</li>
+</ul>
+</li>
+<li>Date<ul>
+<li>Date: Tue, 03 Jul 2012 04:40:59 GMT</li>
+</ul>
+</li>
+<li>transfer-encoding<br>规定了传输报文主体时采用的编码方式，HTTP/1.1 的传输编码方式仅对分块传输编码有效。<ul>
+<li>chunked 分块传输</li>
+</ul>
+</li>
+<li>upgrade<ul>
+<li>首部字段 Upgrade 用于检测 HTTP 协议及其他协议是否可使用更高的版本进行通信，其参数值可以用来指定一个完全不同的通信协议。</li>
+</ul>
+</li>
+<li>Via<ul>
+<li>使用首部字段 Via 是为了追踪客户端与服务器之间的请求和响应报文的传输路径。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>请求首部字段</p>
+<ul>
+<li>accept : 通知服务器客户端可以处理的媒体类型及媒体相对优先级<ul>
+<li>文本文件 text/html,text/plain,text/css</li>
+<li>图片文件 image/jpeg,image/gif,image/png</li>
+<li>视频文件 video/mpeg,video/quicktime</li>
+<li>二进制文件 application/octet-stream</li>
+</ul>
+</li>
+<li>accept-charset ：客户端支持的字符集及字符集的相对优先顺序</li>
+<li>accept-encoding ：客户端支持的内容编码及内容编码的优先级顺序。<ul>
+<li>gzip：由文件压缩程序gzip生成的编码格式</li>
+<li>compress：由UNIX文件压缩程序compress生成的编码格式</li>
+<li>deflate：组合使用zlib格式及由deflate算法生成的编码格式</li>
+<li>identity：不执行压缩或不会变化的默认编码格式</li>
+</ul>
+</li>
+<li>accept-language:zh-cn,zh;q=0.7</li>
+<li>authorization：告知服务器用户代理的认证信息</li>
+<li>expect： 告知服务器，期望出现的某种特定行为，目前只规定了100,continue</li>
+<li>from： 告知服务器使用用户代理的用户的电子邮箱</li>
+<li>Host：首部字段 Host 会告知服务器，请求的资源所处的互联网主机名和端口号。Host 首部字段在 HTTP/1.1 规范内是唯一一个必须被包含在请求内的首部字段。</li>
+<li>If-Match:”123456” ：告知服务器匹配资源所用的实体标记（ETag）值</li>
+<li>If-Modified-Since：If-Modified-Since 字段指定的日期时间后，资源发生了更新，服务器会接受请求，否则返回304</li>
+<li>If-None-Match：字段值与Etag值不一致，可处理该请求，可用于获取最新的资源。</li>
+<li>If-Range：告知服务器若指定的 If-Range 字段值（ETag 值或者时间）和请求资源的 ETag 值或时间相一致时，则作为范围请求处理。反之，则返回全体资源。</li>
+<li>If-Unmodified-Since：如果在指定的时间之后服务器的资源未发生更新，则处理请求，否则，以状态码412作为响应返回。</li>
+<li>Max-forwards：指定转发的最多次数，每转发一次，该值减1。为0时服务器直接返回响应。</li>
+<li>Range：bytes=5001-10000，告知服务器资源的范围，服务器接收到该字段的请求会返回206响应，无法处理范围请求时，返回200 OK</li>
+<li>Referer：告知服务器请求的原始资源的 URI</li>
+<li>User-Agent：User-Agent 会将创建请求的浏览器和用户代理名称等信息传达给服务器。</li>
+</ul>
+</li>
+<li>响应首部字段<ul>
+<li>Age：服务器创建响应到现在的市场，如果是缓存服务器，则返回缓存服务器再次验证资源的有效性到现在的时间</li>
+<li>Accept-Ranges<ul>
+<li>none：不能处理范围请求</li>
+<li>bytes：可以处理范围请求</li>
+</ul>
+</li>
+<li>ETag：将资源以字符串形式做唯一性标识的方式，服务器会为每一份资源分配对应的ETag，有强ETag和弱ETag之分</li>
+<li>Location：配合3xx;edirection的响应，提供重定向的URI</li>
+<li>Server：告知客户端当前服务器上安装的Http服务器应用程序的信息</li>
+<li>Vary：源服务器控制缓存服务器只返回和该字段的值一致的缓存，否则，须先从源服务器获取资源后才能作为响应返回。</li>
+</ul>
+</li>
+<li>实体首部字段<ul>
+<li>Allow：告知客户端服务器支持的Http方法，服务器接收到不支持的Http方法时，返回405及支持的Http方法</li>
+<li>Content-Encoding：告知客户端实体的内容编码方式，即压缩方式<ul>
+<li>gzip</li>
+<li>compress</li>
+<li>deflate</li>
+<li>identify</li>
+</ul>
+</li>
+<li>Content-Language：告知客户端实体主体使用的自然语言（中文或者英文）</li>
+<li>Content-Length：表明了实体主体部分的大小</li>
+<li>Content-Location：Content-Location 表示的是报文主体返回资源对应的 URI。</li>
+<li>Content-Range: bytes 5001-10000/10000，表示当前发送部分和整个实体大小</li>
+<li>Content-Type: text/html; charset=UTF-8，实体主体内对象的媒体类型。</li>
+<li>Expires：将资源失效的日期告诉的客户端。当超过指定时间后，缓存在请求发送过来时会向服务器请求资源，否则，返回缓存。</li>
+<li>Last-Modified：资源最终修改的时间。</li>
+</ul>
+</li>
+<li>为Cookie服务的首部字段<ul>
+<li>Set-Cookie<ul>
+<li>NAME=VALUE</li>
+<li>expires=DATE，省略时浏览器会话结束cookie失效。一旦Cookie被发送至客户端，服务器不存在显示删除Cookie的方法。可以通过覆盖以过期的Cookie，实现实质的删除操作</li>
+<li>path=PATH，限制Cookie的发送范围的文件目录</li>
+<li>domain=域名，以domain指定的域名结尾的域名都可以发送Cookie，不指定默认为创建Cookie的服务器的域名</li>
+<li>Secure，只在Https发送Cookie</li>
+<li>HttpOnly，不允许JavaScript操作Cookie</li>
+</ul>
+</li>
+<li>Cookie：status=enable</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/06/24/rem实现自适应布局/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/ajiangpz.github.io/2019/06/24/rem实现自适应布局/" itemprop="url">rem实现自适应布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T00:56:37+08:00">
+                2019-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="rem是什么"><a href="#rem是什么" class="headerlink" title="rem是什么"></a>rem是什么</h1><p>1rem=根元素fontsize的值,因此设置rem的值时，可以考虑两种情况，一种是将根元素的fontsize设置成整数，比如100px，50px，一般不推荐设置的值小于12px,因为chrome浏览器会将有最小字体的限制。另一种方案是将rem设置成设计稿的整数倍，比如1rem=64px,总之，设置rem应尽量让数值取整。</p>
+<h1 id="如何通过js设置rem的值"><a href="#如何通过js设置rem的值" class="headerlink" title="如何通过js设置rem的值"></a>如何通过js设置rem的值</h1><ul>
+<li>获取body的宽度 1920，1366，1080，760等</li>
+<li></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/06/07/层叠上下文/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -301,12 +693,14 @@
         
           
             <h1 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h1><h3 id="层叠上下文的概念"><a href="#层叠上下文的概念" class="headerlink" title="层叠上下文的概念"></a>层叠上下文的概念</h3><ul>
-<li>抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。<h3 id="层叠上下文的产生"><a href="#层叠上下文的产生" class="headerlink" title="层叠上下文的产生"></a>层叠上下文的产生</h3></li>
+<li>抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。  <h3 id="层叠上下文的产生"><a href="#层叠上下文的产生" class="headerlink" title="层叠上下文的产生"></a>层叠上下文的产生</h3></li>
 <li>根元素</li>
 <li>定位元素且z-index为数值</li>
-<li>css3，如transform,子元素的z-index不为auto的flex布局<h3 id="层叠上下文的特点"><a href="#层叠上下文的特点" class="headerlink" title="层叠上下文的特点"></a>层叠上下文的特点</h3></li>
+<li>css3，如transform,子元素的z-index不为auto的flex布局  <h3 id="层叠上下文的特点"><a href="#层叠上下文的特点" class="headerlink" title="层叠上下文的特点"></a>层叠上下文的特点</h3></li>
 <li>后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列。</li>
-<li>根据z-index或层叠顺序排列<h1 id="层叠顺序"><a href="#层叠顺序" class="headerlink" title="层叠顺序"></a>层叠顺序</h1><h3 id="层叠顺序表"><a href="#层叠顺序表" class="headerlink" title="层叠顺序表"></a>层叠顺序表</h3></li>
+<li>根据z-index或层叠顺序排列</li>
+</ul>
+<h1 id="层叠顺序"><a href="#层叠顺序" class="headerlink" title="层叠顺序"></a>层叠顺序</h1><h3 id="层叠顺序表"><a href="#层叠顺序表" class="headerlink" title="层叠顺序表"></a>层叠顺序表</h3><ul>
 <li>background/border</li>
 <li>负z-index</li>
 <li>block块状元素</li>
@@ -993,7 +1387,7 @@
               
                 <a href="/ajiangpz.github.io/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
