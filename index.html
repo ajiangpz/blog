@@ -445,7 +445,29 @@
 <li>HttpOnly，不允许JavaScript操作Cookie</li>
 </ul>
 </li>
-<li>Cookie：status=enable</li>
+<li>Cookie：status=enable<h1 id="HTTPS-HTTP-Secure"><a href="#HTTPS-HTTP-Secure" class="headerlink" title="HTTPS(HTTP Secure)"></a>HTTPS(HTTP Secure)</h1></li>
+</ul>
+</li>
+<li>SSL(Secure Socket Layer) 安全套接层</li>
+<li>TLS(Transport Layer Security) 安全层传输协议</li>
+<li>Http协议的缺点<ul>
+<li>明文可能被窃听（加密）</li>
+<li>通信双方可能被伪装（认证）</li>
+<li>中间人攻击，明文内容被篡改（完整性保护）</li>
+</ul>
+</li>
+<li>Https=HTTP+加密+认证+完整性<ul>
+<li>加密：Https采用非对称加密和对称加密混合加密机制。因为公开密钥加密处理比共享密钥处理复杂，如果都使用公开密钥加密通信，效率会很低。使用公开密钥加密方式安全地交换稍后共享密钥加密要使用的密钥，确保交换的密钥是安全的前提下，采用共享密钥加密方式进行通信。</li>
+<li>认证：由服务器向第三方认证机构申请数字证书，客户端请求时，服务器发送带有公钥的证书到客户端，客户端认证成功后，使用公钥进行公开密钥加密方式传输，服务器使用私钥对报文解密</li>
+<li>完整性：应用层发送数据时会附加一种叫做 MAC（MessageAuthentication Code）的报文摘要。MAC 能够查知报文是否遭到篡<br>改，从而保护报文的完整性。<h1 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h1><h1 id="HTTP用户身份认证"><a href="#HTTP用户身份认证" class="headerlink" title="HTTP用户身份认证"></a>HTTP用户身份认证</h1></li>
+</ul>
+</li>
+<li>BASIC认证</li>
+<li>DIGETS认证</li>
+<li>SSL认证</li>
+<li>表单认证  <ul>
+<li>cookie和session<br>用户通过ID和密码登录后，服务器通过ID和密码生成sessionID，通过设置cookie的方式将sessionID返回给用户，为了防止跨站攻击，一般设置为httpOnly。一般也会设置过期时间。用户再次访问服务器时，会带上sessionID，服务器根据sessionID判断用户的身份和状态。</li>
+<li>用户信息保存<br>通常，一种安全的保存方法是，先利用给密码加盐的方式增加额外信息，再使用散列（hash）函数计算出散列值后保存。<h1 id="web攻击技术"><a href="#web攻击技术" class="headerlink" title="web攻击技术"></a>web攻击技术</h1></li>
 </ul>
 </li>
 </ul>
