@@ -6,10 +6,10 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
 
 
@@ -20,8 +20,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/ajiangpz.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/ajiangpz.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link href="/ajiangpz.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/ajiangpz.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/ajiangpz.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/ajiangpz.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/ajiangpz.github.io/images/apple-touch-icon-next.png?v=5.1.4">
@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -115,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="https://ajiangpz.github.io/"/>
+  <link rel="canonical" href="https://ajiangpz.github.io/">
 
 
 
@@ -150,7 +150,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/ajiangpz.github.io/"  class="brand" rel="start">
+      <a href="/ajiangpz.github.io/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Pzzz's FE Blog</span>
         <span class="logo-line-after"><i></i></span>
@@ -180,7 +180,7 @@
         <li class="menu-item menu-item-home">
           <a href="/ajiangpz.github.io/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -190,7 +190,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/ajiangpz.github.io/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -229,11 +229,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/07/24/eventListener/">
+    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/08/04/web安全/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
     </span>
 
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/ajiangpz.github.io/2019/07/24/eventListener/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/ajiangpz.github.io/2019/08/04/web安全/" itemprop="url">webeb安全</a></h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T23:34:11+08:00">
-                2019-07-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-04T22:03:59+08:00">
+                2019-08-04
               </time>
             
 
@@ -300,518 +300,291 @@
       
         
           
-            <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title> 
-</head>
-<body>
-    <div class="container"></div>
-    <script>
-        var container=document.querySelector('.container');
-        var counter=0;
-        var createHtml=function(n,counter){
-            var template=`${(new Array(n)).join(`<div>${counter}:this is a new data <input type="button" value="remove"></div>`)}`
-            container.innerHTML=template
-        }
-        var clickCallback=function(event){
-            var target=event.target;
-            if(target.tagName==='INPUT'){
-                container.removeChild(target.parentElement)
-            }
-        }
-        var resizeCallbak=function(init){
-            console.log('resize')
-            createHtml(10,++counter)
-            container.addEventListener('click',clickCallback,false)
-        }
-        window.addEventListener('resize',resizeCallbak,false)
-        resizeCallbak(true)
-        //上述代码会出现重复绑定事件的问题，解决方式是将事件处理函数改为命名函数
-    </script>
-</body>
-</html>
-          
-        
-      
-    </div>
-    
-    
-    
+            <h1 id="web-前端安全"><a href="#web-前端安全" class="headerlink" title="web 前端安全"></a>web 前端安全</h1><h2 id="XSS-攻击"><a href="#XSS-攻击" class="headerlink" title="XSS 攻击"></a>XSS 攻击</h2><p>XSS 攻击通常是指黑客通过“HTML 注入”篡改了页面，插入了恶意的脚本，从而在用户浏览网页时，控制用户浏览器的一种攻击。</p>
+<h3 id="XSS-分类"><a href="#XSS-分类" class="headerlink" title="XSS 分类"></a>XSS 分类</h3><h4 id="反射型-XSS"><a href="#反射型-XSS" class="headerlink" title="反射型 XSS"></a>反射型 XSS</h4><p>反射型 XSS 又称为非持久型 XSS，只是简单地将用户的输入数据“反射”给浏览器。</p>
+<ul>
+<li><p>攻击过程</p>
+<p>诱骗用户点击提交后，客户端会将带有恶意代码的请求发送到服务端，服务器将恶意代码渲染到页面上，发送给客户端。客户端渲染页面时执行其中的恶意代码，xss 攻击成功。</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li>即时性，不会存储在服务端。</li>
+<li>攻击者需要诱骗用户点击。</li>
+<li>需要服务端参与。</li>
+</ul>
+</li>
+<li><p>示例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//html代码</span><br><span class="line">&lt;form id=&quot;form1&quot; action=&quot;http://localhost:3000/user&quot; method=&quot;GET&quot;&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;span&gt;用户名&lt;/span&gt;&lt;input type=&quot;text&quot; placeholder=&quot;用户名&quot; name=&quot;user&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//在页面中输入&lt;script&gt;alert(/xss/)&lt;/script&gt;，则请求的url变为</span><br><span class="line">http://localhost:3000/user?user=&lt;script&gt;alert(/xss/)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//获取get请求参数中的user字段</span><br><span class="line">var user=url.query.user;</span><br><span class="line">//将user字段注入HTML标签给浏览器渲染</span><br><span class="line">ctx.response.body=</span><br><span class="line">`</span><br><span class="line">&lt;h1&gt;你好，$&#123;user&#125;&lt;/h1&gt;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="存储型-XSS"><a href="#存储型-XSS" class="headerlink" title="存储型 XSS"></a>存储型 XSS</h4><p>存储型 XSS 会把用户输入的数据“存储”在服务器端。</p>
+<ul>
+<li><p>攻击过程</p>
+<p>攻击者将恶意代码存储在服务端，客户端获取到服务端带有恶意代码的资源时，就会被植入并执行恶意代码。</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li>持久性，植入在数据库中。</li>
+<li>危害面广，甚至可以让用户机器变成 DDoS 攻击的肉鸡。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<p>黑客写下一篇带有恶意 JavaScript 代码的博客文章，文章发表后，所有访问该文章的用户都会在他们对的浏览器中执行这段恶意的 JavaScript 代码。黑客把恶意脚本保存到服务器端，因而叫做存储型 XSS。</p>
+</li>
+</ul>
+<h4 id="DOM-Based-XSS"><a href="#DOM-Based-XSS" class="headerlink" title="DOM Based XSS"></a>DOM Based XSS</h4><p>通过修改页面的 DOM 节点形成的 XSS。</p>
+<ul>
+<li><p>攻击过程</p>
+<p>攻击者中通过 dom 编程改变页面的 dom 节点，并将恶意代码植入这些节点中，可以是已存在节点的属性，内容，事件等，也可以是新增一个节点。不需要发送请求到服务端，通过浏览器渲染节点直接执行恶意代码。</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li>效果上属于反射型 XSS。</li>
+<li>不需要服务器解析响应的直接参与</li>
+<li>依靠浏览器端的 DOM 解析</li>
+</ul>
+</li>
+<li><p>示例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;t&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; id=&quot;text&quot; value=&quot;&quot;/&gt;</span><br><span class="line">&lt;input type=&quot;button&quot; id=&quot;s&quot; value=&quot;write&quot; onclick=&quot;test()&quot;/&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function test()&#123;</span><br><span class="line">    var str=document.getElementById(&quot;text&quot;)</span><br><span class="line">    document.getElementById(&quot;t&quot;).innerHTML=&quot;&lt;a href=&apos;&quot;+str+&quot;&apos;&gt;testLink&lt;/a&gt;&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">//当输入的数据为 &apos;&gt;&lt;img src=# onerror=alert(/xss/) /&gt;&lt;&apos;</span><br><span class="line">//页面就会弹出xss的警告框</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="XSS-Payload"><a href="#XSS-Payload" class="headerlink" title="XSS Payload"></a>XSS Payload</h3><p>XSS 攻击成功后，攻击者对用户当前页面植入恶意脚本。用以完成各种功能的恶意脚本，成为 XSS Payload，以下是几种常见的恶意脚本功能：</p>
+<ul>
+<li>Cookie 劫持</li>
+<li>构造 GET 和 POST 请求</li>
+<li>XSS 钓鱼</li>
+<li>识别用户浏览器</li>
+<li>识别用户安装的软件</li>
+<li>获取用户的真实 IP 地址</li>
+</ul>
+<h3 id="XSS-防御"><a href="#XSS-防御" class="headerlink" title="XSS 防御"></a>XSS 防御</h3><ul>
+<li><p>HttpOnly</p>
+<p>在服务端给浏览器设置 cookie，如果 cookie 中存在关键信息，应该给 cookie 设置 httpOnly 属性，使攻击者无法通过 JavaScript 获取 cookie 信息,如以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.set(&apos;Set-Cookie&apos;,cookie.serialize(&apos;name&apos;,String(user),&#123; httpOnly:true, maxAge:60*60*24*7 &#125;))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入检查</p>
+<ul>
+<li><p>检查方式</p>
+<ul>
+<li><p>格式检查</p>
+<p>如用户名只能是数字、字母的组合，手机，身份证等输入格式进行规范，可以让一些基于特殊字符的 XSS 攻击生效。</p>
+</li>
+<li><p>特殊字符检查</p>
+<p>一般是检查用户输入的数据中是否包含一些特殊字符。如&lt;，&gt;，’，”等。如果存在，则将这些字符进行过滤或者编码。</p>
+</li>
+</ul>
+</li>
+<li><p>注意事项</p>
+<p>输入检查逻辑必须放在服务端实现，客户端的输入检查可以阻挡大部分用户的误操作，节约服务器资源，但是很容易被攻击者绕过。</p>
+</li>
+<li><p>缺陷</p>
+<ul>
+<li><p>在输入的地方对数据做了统一的改变，输出在 html 和 JavaScript 可能会存在差异。</p>
+</li>
+<li><p>可能会改变用户的语义，如 1+1&lt;3。</p>
+</li>
+<li><p>输入检查时没有结合渲染页面的 html 代码，对语境的理解并不完整，可能漏报。如 url 一般是合法的用户数据，但是如果这个 url 是恶意脚本所在的 url 地址，就可以实施 xss 攻击了。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>输出检查</p>
+<ul>
+<li><p>在 HTML 标签或者属性中输出</p>
+<ul>
+<li><p>示例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;$&lt;script&gt;alert(/xss/)&lt;/script&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>防御方法</p>
+<p>XSS 在这种情况下一般是构造一个 script 标签，或者任何能产生脚本的方式，防御时应该对对变量进行 htmlencode。</p>
+</li>
+</ul>
+</li>
+<li><p>在 script 标签或者事件中输出</p>
+<ul>
+<li><p>示例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;var x=$var&lt;/script&gt;</span><br><span class="line">&lt;script&gt;var x=&quot;&quot;;alert(/xss/);//&quot;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>防御方法</p>
+<p>防御时应该确保变量在引号中，攻击者需要先闭合引号才能实 施 XSS 攻击。同时应该使用 JavaScriptEncode 对变量编码。</p>
+</li>
+</ul>
+</li>
+<li><p>在 CSS 中输出</p>
+<ul>
+<li><p>示例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;@import&apos;http://hack.xss.css&apos;&lt;/style&gt;</span><br><span class="line">&lt;div style=&quot;background:url(javascript:alert(&apos;XSS&apos;))&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>防御方法</p>
+<p>尽可能禁止用户可控制的变量在”style 标签”，“HTML 标签中的 sylte 属性”以及“CSS 文件”中输出。如果有需要，应该对变量进行 cssEncode。</p>
+</li>
+</ul>
+</li>
+<li><p>在地址中输出</p>
+<ul>
+<li><p>示例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;http://www.evil.com/?test=$var&quot;&gt;test&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;http://www.evil.com/?test&quot; onclick=&quot;(alert(1))&quot;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>防御方法</p>
+<p>如果变量是在 URL 的 path 或者 search 中输出，可以使用 URLEncode 进行编码。如果变量是整个 URL，URL 中的 protocal 和 Host 是不能进行 URLEncode 的，因为其中有//，会改变语义，用户数据也有可能是伪协议。一般来说，是检查变量是否以 http 开头，如果不是则手动添加，以保证不会出现伪协议类的 XSS 攻击</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>防御 DOM Based XSS</p>
+<ul>
+<li><p>示例代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  var x=&quot;$var&quot;;</span><br><span class="line">  document.write(&quot;&lt;a href=&apos;&quot;+x+&quot;&apos;&gt;test&lt;/a&gt;&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>防御方法</p>
+<p>如果按照前面的方法对变量进 javascriptEncode，浏览器执行 script 代码时，首先会将\$var 解码，然后再通过 document.write 写入 a 标签属性，造成 XSS 攻击。因而在 document.write 输出到 HTML 标签时，应该再次 encode，如果是输出到 script 标签或者事件，则进行 JavaScriptEncode，如果是 html 标签，则进行 HtmlEncode。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="CSRF-攻击"><a href="#CSRF-攻击" class="headerlink" title="CSRF 攻击"></a>CSRF 攻击</h2><p>跨站点请求伪造是指攻击者诱使用户访问恶意脚本所在页面，以用户的身份在该页面执行相关的操作，如向服务器发送请求。</p>
+<ul>
+<li><p>特点</p>
+<ul>
+<li>获取用户 cookie</li>
+<li>伪造 GET 或者 POST 请求</li>
+</ul>
+</li>
+<li><p>防御方法</p>
+<ul>
+<li><p>验证码</p>
+<p>验证码是对抗 CSRF 攻击最简洁有效的防御方法，但是网站不能给所有操作都加上验证码，验证码只能作为辅助手段，而不是最主要的解决方案。</p>
+</li>
+<li><p>Referer Check</p>
+<p>检测用户请求是否来自合法的源，但是该方法的缺陷在于，服务器并非什么是否都能取到 Referer，客户端为了保护用户隐私，有可能会限制 Referer 的发送。可以用 Referer 来监控 CSRF 攻击的发生，但不是主要手段。</p>
+</li>
+<li><p>Token</p>
+<p>CSRF 能攻击成功的主要原因是攻击者可以猜测到请求的重要参数，只有预测出了所有的参数和参数值攻击者才能攻击成功。新增一个 token 参数，这个 token 参数必须由足够安全的随机数生成算法生成。在实际应用中，token 由服务器生成，放在用户的 cookie 或者用户的 session 中。在提交请求时服务器只需验证表单中的 token 与用户 session（或者 cookies）中的 token 是否一致，就可以判断请求是否合法。使用 Token 应该注意以下几点：</p>
+<ul>
+<li>如果用户已经提交了表单，应该重新生成一个新的 token</li>
+<li>可以考虑生成多个 token 以解决多页面共存的场景</li>
+<li>使用 token 应该注意 token 的保密性，把 token 放在表单的隐藏域中，敏感操作使用 POST 请求，可以避免 token 泄漏。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="点击劫持"><a href="#点击劫持" class="headerlink" title="点击劫持"></a>点击劫持</h2><p>点击劫持是一种视觉上的欺骗手段。</p>
+<ul>
+<li><p>攻击过程</p>
+<p>攻击者使用一个透明的、不可见的 iframe，覆盖在一个页面上，然后诱使诱使用户在该页面进行操作，此时用户在不知情的情况下点击透明的 iframe 页面，通过调整 iframe 页面的位置，可以诱使用户恰好点击在 iframe 页面上的一些功能性按钮上。</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li>需要诱使用户与页面产生交互行为</li>
+<li>使用隐藏 frame 覆盖原网页</li>
+</ul>
+</li>
+<li><p>防御方法</p>
+<ul>
+<li><p>frame busting</p>
+<p>通过 JavaScript 代码，禁止 iframe 的嵌套<br>缺陷是 iframe 中的 sandbox 属性，security 属性，都可以限制 iframe 页面中 JavaScript 脚本的执行。</p>
+</li>
+<li><p>X-Frame-Options</p>
+<p>使用 HTTP 头部字段 X-Frame-Options 字段设置值为 DENY 可以拒绝当前页面加载任何 frame 页面，设置 SAMEORIGIN 可以加载同源的 frame 页面，设置 ALLOW-FROM 可以定义允许 frame 加载的地址。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="HTML5-安全问题"><a href="#HTML5-安全问题" class="headerlink" title="HTML5 安全问题"></a>HTML5 安全问题</h2><h3 id="HTML5-新标签"><a href="#HTML5-新标签" class="headerlink" title="HTML5 新标签"></a>HTML5 新标签</h3><ul>
+<li><p>新标签的 XSS</p>
+<p>HTML5 新增了一些标签和属性，这很可能带来新的 XSS 攻击，如 video,autio 等标签。</p>
+</li>
+<li><p>iframe 的 sandbox</p>
+<p>iframe 时常会出现挂马，XSS，点击劫持等安全问题，在 HTML5 中增添了 sandbox 属性，使用该属性后，iframe 将被视为一个独立的源，其中的脚本将被禁止执行，表单禁止提交，插件禁止加载，指向其他浏览器的对象也会被禁止。大大地增强了使用 iframe 的安全性。</p>
+</li>
+<li><p>a 标签的 noreferer</p>
+<p>通过使用该属性，浏览器在请求该标签指定的地址将不再发送 referer，保护了用户了隐私和敏感信息。</p>
+</li>
+</ul>
+<h3 id="其他安全问题"><a href="#其他安全问题" class="headerlink" title="其他安全问题"></a>其他安全问题</h3><ul>
+<li><p>Cross-Origin-Resourse-Sharing（跨域资源共享）</p>
+<p>通过设置响应 HTTP 头部的 Accese-Control-Allow-Origin，服务器通过识别浏览器自动带上的 Origin Header，可以判断浏览器的请求是否来自合法的源，可以用来防范 CSRF 攻击。</p>
+</li>
+<li><p>postMessage（跨窗口传递信息）</p>
+<p>postMessage 不受浏览器同源策略的限制，可以使一个 window（窗口，弹窗，iframe）向其他窗口传递文本信息，使用时应该注意以下两个问题：</p>
+<ul>
+<li>在接收窗口验证 URL，以防止来自非法页面的消息。</li>
+<li>在接收窗口不应该信息任何接收到的信息，需要对信息做安全检查。</li>
+</ul>
+</li>
+<li><p>web Storage</p>
+<p>web Storage 是 HTML5 中新增的相比 cookie 更加方便和强大的本地存储功能。分为 sessionStorage 和 localStorage，就像一个非关系型的数据库。web Storage 可能会带来以下安全问题：</p>
+<ul>
+<li>攻击者有可能将恶意代码保存在 web Storage 中，从而实现跨页面攻击。</li>
+<li>当 web Storage 中保存敏感信息时，也可能会成为攻击的目标，而 XSS 攻击可以完成这一过程。</li>
+</ul>
+</li>
+</ul>
+<h2 id="SQL-注入"><a href="#SQL-注入" class="headerlink" title="SQL 注入"></a>SQL 注入</h2><p>XSS 是针对 HTML 的注入攻击，而 SQL 注入则是针对数据库的注入攻击。</p>
+<ul>
+<li><p>攻击过程</p>
+<p>攻击者将 SQL 命令插入到 Web 表单或输入域名或页面请求的字符串，导致服务器执行恶意的 SQL 命令。</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li>针对数据库的注入攻击</li>
+</ul>
+</li>
+<li><p>防御方法</p>
+<ul>
+<li><p>使用预编译语句</p>
+<p>在第一次执行 SQL 前数据库会进行分析、编译和优化，同时执行计划同样会被缓存起来，它允许数据库做参数化查询。在使用参数化查询的情况下，数据库不会将参数的内容视为 SQL 执行的一部分，而是作为一个字段的属性值来处理，这样就算参数中包含破环性语句（or ‘1=1’）也不会被执行。</p>
+</li>
+<li><p>使用存储过程</p>
+<p>使用安全的存储过程的效果预编译语句类似，区别在于需要先将 SQL 语句定义在数据库中，存储过程中也可以存在注入问题，因此应该避免在存储过程中使用动态的 SQL 语句。</p>
+</li>
+<li><p>检查数据类型</p>
+<p>检查输入数据的数据类型，在很大程度上可以对抗 SQL 注入。或者对输入进行数据格式检查也可以防范 SQL 注入。</p>
+</li>
+<li><p>使用安全函数</p>
+<p>使用足够安全的编码函数，对用户的输入数据进行编码，可以帮助对抗 SQL 注入。</p>
+</li>
+<li><p>最小权限原则</p>
+<p>避免 web 应用直接使用 root 这种高权限账户直接连接数据库，web 应用使用的数据库账户，不应该有创建自定义函数、操作本地文件的权限。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="文件上传问题"><a href="#文件上传问题" class="headerlink" title="文件上传问题"></a>文件上传问题</h2><p>文件上传是指用户上传了一个可执行的脚本文件，并通过此脚本文件获得执行服务器端命令的能力。</p>
+<ul>
+<li><p>攻击条件</p>
+<ul>
+<li>上传的文件能够被 web 容器执行，因而目录需要是 web 容器需要覆盖到的路径</li>
+<li>用户能够从 web 上访问这个文件，如果用户无法访问或者无法使得 web 容器解释这个脚本，那么也不能称之为漏洞。</li>
+<li>用户上传的文件内容不能因为压缩，格式化，检查等被改变，否则也有可能攻击不成功。</li>
+</ul>
+</li>
+<li><p>攻击过程</p>
+<p>用户上传 web 脚本文件，服务端的 web 容器解释并执行了上传的脚本，导致代码执行，或者上传木马，病毒诱使用户或者管理员下载。</p>
+</li>
+<li><p>防御方法</p>
+<ul>
+<li><p>文件上传的目录设置为不可执行</p>
+<p>文件上传目录应该是独立的存储，一方面方便缓存加速，降低性能损耗。另一方面也杜绝了脚本执行的可能。</p>
+</li>
+<li><p>判断文件类型</p>
+<p>使用白名单的方式进行文件类型的检查，对于图片可以进行压缩已破环其中的可能存在的恶意代码。</p>
+</li>
+<li><p>使用随机数改写文件名和文件路径</p>
+<p>文件上传要执行代码，需要用户能够访问到这个文件。如果使用随机数改写文件名和路径，攻击者在寻找文件上将会增加极大的成本。与此同时，某些文件会因为文件名的改变而无法执行。</p>
+</li>
+<li><p>单独设置文件服务器的域名</p>
+<p>利用同源策略，可以使得包含 JavaScript 的 xss 利用这种问题得到解决。</p>
+</li>
+</ul>
+</li>
+</ul>
 
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/07/24/timer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/ajiangpz.github.io/2019/07/24/timer/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T22:37:47+08:00">
-                2019-07-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <input type="button" value="start" class="start">
-    <input type="button" value="stop" class="stop">
-    <script>
-        var counter=0;
-        var clock={
-            timer:null,
-            start:function(){
-                //第一个问题,设置一个对象属性控制定时器，每次开启一个定时器都把上一个删掉
-                if(this.timer){
-                    clearInterval(this.timer)
-                }
-                this.timer=setInterval(this.step.bind(null,++counter),1000)
-            },
-            //第二个问题
-            destroy:function(){
-                console.log('---->stop<-----')
-                clearInterval(this.timer)
-                clock=null
-                counter=void(0)
-            },
-            step:function(flag){
-                var date=new Date();
-                var h=date.getHours();
-                var m=date.getMinutes();
-                var s=date.getSeconds();
-                console.log("%d----->%d:%d:%d",flag,h,m,s)
-            }
-        }
-        document.querySelector('.start').addEventListener('click',clock.start.bind(clock),false)
-        document.querySelector('.stop').addEventListener('click',clock.destroy.bind(clock),false)
-    //上述代码有两个问题
-    //1.每一次点击start都会新增加一个定时器
-    //2.点击stop不能停止clock
-    </script>
-</body>
-</html>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/07/24/dom_practice/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/ajiangpz.github.io/2019/07/24/dom_practice/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-24T22:24:51+08:00">
-                2019-07-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <div id="refA">
-        <ul>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#" id="refB"></a></li>
-        </ul>
-    </div>
-    <div></div>
-    <div></div>
-    <script>
-        var refA=document.querySelector('#refA')
-        var refB=document.querySelector('#refB')
-        document.body.removeChild(refA)
-        refA=null;
-        //通过dom方法删除#ref，浏览器不能回收该节点所占的内存，因为变量refA引用了#refA
-        //但是将refA设置为null，也不能回收#refA，因为ref引用了#refA中的#ref元素
-        //因此需要将refB也设置为空，才能回收#refA
-        refB=null;
-    </script>
-</body>
-</html>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/07/23/dom_link/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/ajiangpz.github.io/2019/07/23/dom_link/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-23T23:42:44+08:00">
-                2019-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <!DOCTYPE html>
-<html lang="en">
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <input type="button" value="remove" class="remove" style="display: none">
-    <input type="button" value="add" class="add">
-    <div class="container">
-        <pre class="wrapper"></pre>
-    </div>
-    <script>
-        var wrapper=document.querySelector('.wrapper');
-        var container=document.querySelector('.container');
-        var removeBtn=document.querySelector('.remove');
-        var addBtn=document.querySelector('.add');
-        var counter=0;
-        var once=true;
-        var hide=function(target){
-            target.style.display='none'
-        }
-        var show=function(target){
-            target.style.display='inline-block'
-        }
-        var removeCallback=function(){
-            removeBtn.removeEventListener('click',removeCallback,false)
-            addBtn.removeEventListener('click',addCallback,false)
-            hide(addBtn)
-            hide(removeBtn)
-            container.removeChild(wrapper)
-            //该操作并不能使浏览器回收wrapper元素，因为wrapper变量引用了wrapper元素，因此要将wrapper设置为null才能完全回收wrapper元素
-            wrapper=null
-        }
-        var addCallback=function(){
-            wrapper.appendChild(document.createTextNode('\t'+ ++counter + ': a new line text\n'))
-            if(once){
-                show(removeBtn);
-                once=false;
-            }
-        }
-        removeBtn.addEventListener('click',removeCallback,false);
-        addBtn.addEventListener('click',addCallback,false)
-    </script>
-
-</body>
-</html>
           
         
       
@@ -863,7 +636,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
     </span>
 
@@ -941,6 +714,8 @@
 <li>console.log<br>console.log打印的对象是不会被垃圾回收器回收的，在生产环境中不要console.log任何大对象。</li>
 <li>闭包<br>闭包是将函数内部和外部连接起来的桥梁，在相同作用域内创建的多个内部函数对象是共享同一个变量对象，只要有一个内部函数被外部的对象引用，则这个内部函数的作用域中就包含了所有内部函数引用的变量。使用闭包时，如果作用域内存在其他内部函数的变量对象，那么就造成了内存泄漏。</li>
 <li>dom泄漏<br>当出现大量操作dom元素的情况时，常常需要用一个变量缓存dom元素，但是这样就使得dom元素有了引用，当删除dom元素时，浏览器就无法回收该dom元素，因为存在变量引用dom元素。</li>
+<li>没有及时清除定时器</li>
+<li>使用匿名函数绑定事件，这样每一次需要重新绑定事件时，会使元素绑定多个事件</li>
 </ol>
 <ul>
 <li>如何解决内存泄漏</li>
@@ -949,6 +724,8 @@
 <li>使用严格模式，出现意外的全局变量时会报错</li>
 <li>生产环境删除所有console.log代码</li>
 <li>当不需要要及时将引用对象或者dom元素的变量设置为null，以便浏览器会回收</li>
+<li>绑定事件时使用命名函数</li>
+<li>及时清除定时器<br>t</li>
 </ol>
 
           
@@ -1002,7 +779,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
     </span>
 
@@ -1292,7 +1069,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
     </span>
 
@@ -1416,7 +1193,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
     </span>
 
@@ -1554,7 +1331,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
     </span>
 
@@ -1728,7 +1505,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
     </span>
 
@@ -1909,13 +1686,232 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/05/06/NodeJs-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/ajiangpz.github.io/2019/05/06/NodeJs-1/" itemprop="url">node基础</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-06T10:48:58+08:00">
+                2019-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="node基础"><a href="#node基础" class="headerlink" title="node基础"></a>node基础</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>基于require模块化的JavaScript代码执行器  </li>
+</ul>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>事件机制和异步IO</li>
+</ul>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><ul>
+<li><p>exports<br>  输出某个模块中的方法，变量  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var b=4;</span><br><span class="line">function count()&#123;</span><br><span class="line">    b++;</span><br><span class="line">&#125;</span><br><span class="line">exports.b=b</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>module<br>  重写整个输出的对象  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">moduel.exports=&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>require<br>  引入模块，可以是路径，内置模块   </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;./a&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主模块<br>  node命令行执行的函数  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node main.js</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="代码组织和部署"><a href="#代码组织和部署" class="headerlink" title="代码组织和部署"></a>代码组织和部署</h1><h2 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h2><ul>
+<li><p>内置模块  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;fs&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>node_modules目录<br>  如果文件的绝对路径为/a/b/c </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;foo/bar&apos;)</span><br></pre></td></tr></table></figure>
+<p>  会逐级向上搜索node_modules，即  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos;a/b/c/node_modules/foo/bar&apos;  </span><br><span class="line">&apos;a/b/node_modules/foo/bar&apos;    </span><br><span class="line">&apos;a/node_modules/foo/bar&apos;   </span><br><span class="line">&apos;node_modules/foo/bar&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义模块搜索路径<br>  在环境变量中配置node_path，加载模块时就会去该目录</p>
+</li>
+</ul>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><ul>
+<li>有多个依赖模块，将这些模块放在一个文件夹下，定义入口模块和输出模块，就形成了一个包  </li>
+<li>包的入口模块默认时index.js,因此命名时如果为index.js就可以避免将输入模块写进路径中</li>
+<li>可以通过在包的根目录下创建package.json配置输入模块      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;   </span><br><span class="line">    name:xxx,</span><br><span class="line">    main:&apos;lib/main.jsx&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="命令行程序"><a href="#命令行程序" class="headerlink" title="命令行程序"></a>命令行程序</h2><ul>
+<li><p>window下配置命令行的路径，这样在任何地方都可以调用该程序     </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G:\nodeJs\sevendaylearnnode\base\node-echo</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在同一目录创建node-echo.cmd文件，在文件中加入以下代码，表示要执行的脚本  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@node &quot;G:\nodeJs\sevendaylearnnode\base\cmd\node-echo.js&quot; %*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在cmd规定的位置创建node-echo.js文件，编写要执行的内容  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node-echo.js</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="工程目录"><a href="#工程目录" class="headerlink" title="工程目录"></a>工程目录</h2><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>作用  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bin</td>
+<td>命令行代码</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>APIP       </td>
+</tr>
+<tr>
+<td>doc</td>
+<td>文档</td>
+</tr>
+<tr>
+<td>test</td>
+<td>测试</td>
+</tr>
+<tr>
+<td>readme.md</td>
+<td>项目简单介绍</td>
+</tr>
+<tr>
+<td>package.josn</td>
+<td>项目包配置 </td>
+</tr>
+</tbody>
+</table>
+<h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><ul>
+<li><p>安装第三方包  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装命令行工具  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i &lt;package&gt; -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发布第三方包和命令行程序</p>
+<ul>
+<li><p>注册用户  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm addUser 注册用户</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写包</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//package.json</span><br><span class="line">&#123;</span><br><span class="line">    name:&apos;xxxx&apos;,    </span><br><span class="line">    version:1.0.0,  </span><br><span class="line">    bin:&apos;命令行程序的路径&apos;,  </span><br><span class="line">    dependance:&#123;  </span><br><span class="line">        argv:&apos;0.0.2&apos;  </span><br><span class="line">        //配置依赖  </span><br><span class="line">    &#125;,</span><br><span class="line">    main:&apos;入口模块&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发布</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/ajiangpz.github.io/page/2/">2</a><a class="extend next" rel="next" href="/ajiangpz.github.io/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 
 
           </div>
@@ -1959,7 +1955,7 @@
               
                 <a href="/ajiangpz.github.io/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

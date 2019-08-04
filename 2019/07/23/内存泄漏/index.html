@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Pzzz&#39;s FE Blog">
 <meta property="og:description" content="内存泄漏 什么是内存泄漏JavaScript具有垃圾回收机制，当程序中出现了无法回收的内存，则说明产生了内存泄漏  为什么为产生内存泄漏      意外的全局变量未声明的全局变量缓存大量的数据，会导致这些数据只有在窗口关闭或者重新刷新页面才能释放，这样就造成了内存泄漏。 console.logconsole.log打印的对象是不会被垃圾回收器回收的，在生产环境中不要console.log任何大对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-25T14:12:48.004Z">
+<meta property="og:updated_time" content="2019-07-26T14:33:19.169Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内存泄漏">
 <meta name="twitter:description" content="内存泄漏 什么是内存泄漏JavaScript具有垃圾回收机制，当程序中出现了无法回收的内存，则说明产生了内存泄漏  为什么为产生内存泄漏      意外的全局变量未声明的全局变量缓存大量的数据，会导致这些数据只有在窗口关闭或者重新刷新页面才能释放，这样就造成了内存泄漏。 console.logconsole.log打印的对象是不会被垃圾回收器回收的，在生产环境中不要console.log任何大对象">
@@ -310,6 +310,8 @@
 <li>console.log<br>console.log打印的对象是不会被垃圾回收器回收的，在生产环境中不要console.log任何大对象。</li>
 <li>闭包<br>闭包是将函数内部和外部连接起来的桥梁，在相同作用域内创建的多个内部函数对象是共享同一个变量对象，只要有一个内部函数被外部的对象引用，则这个内部函数的作用域中就包含了所有内部函数引用的变量。使用闭包时，如果作用域内存在其他内部函数的变量对象，那么就造成了内存泄漏。</li>
 <li>dom泄漏<br>当出现大量操作dom元素的情况时，常常需要用一个变量缓存dom元素，但是这样就使得dom元素有了引用，当删除dom元素时，浏览器就无法回收该dom元素，因为存在变量引用dom元素。</li>
+<li>没有及时清除定时器</li>
+<li>使用匿名函数绑定事件，这样每一次需要重新绑定事件时，会使元素绑定多个事件</li>
 </ol>
 <ul>
 <li>如何解决内存泄漏</li>
@@ -318,6 +320,8 @@
 <li>使用严格模式，出现意外的全局变量时会报错</li>
 <li>生产环境删除所有console.log代码</li>
 <li>当不需要要及时将引用对象或者dom元素的变量设置为null，以便浏览器会回收</li>
+<li>绑定事件时使用命名函数</li>
+<li>及时清除定时器<br>t</li>
 </ol>
 
       
@@ -353,8 +357,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/ajiangpz.github.io/2019/07/23/dom_link/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/ajiangpz.github.io/2019/08/04/web安全/" rel="prev" title="webeb安全">
+                webeb安全 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -432,7 +436,7 @@
               
                 <a href="/ajiangpz.github.io/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
