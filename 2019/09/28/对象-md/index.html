@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/ajiangpz.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/ajiangpz.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/ajiangpz.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ajiangpz.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/ajiangpz.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/ajiangpz.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/ajiangpz.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="类型 基本数据类型string,number,boolean,null,undefined 内置对象String，Number，Boolean，Object，Array，Function，Date，RegExp，Error这些内置对象是 JavaScript 内部的构造函数，用于创建对应子类型的新对象。其中除了Date，Error其他子类型都可以通过字面量创建，对于String，Number，Bo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对象">
+<meta property="og:url" content="https://ajiangpz.github.io/2019/09/28/对象-md/index.html">
+<meta property="og:site_name" content="Pzzz&#39;s FE Blog">
+<meta property="og:description" content="类型 基本数据类型string,number,boolean,null,undefined 内置对象String，Number，Boolean，Object，Array，Function，Date，RegExp，Error这些内置对象是 JavaScript 内部的构造函数，用于创建对应子类型的新对象。其中除了Date，Error其他子类型都可以通过字面量创建，对于String，Number，Bo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-28T02:26:40.559Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对象">
+<meta name="twitter:description" content="类型 基本数据类型string,number,boolean,null,undefined 内置对象String，Number，Boolean，Object，Array，Function，Date，RegExp，Error这些内置对象是 JavaScript 内部的构造函数，用于创建对应子类型的新对象。其中除了Date，Error其他子类型都可以通过字面量创建，对于String，Number，Bo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/ajiangpz.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ajiangpz.github.io/2019/09/28/对象-md/">
+
+
+
+
+
+  <title>对象 | Pzzz's FE Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/ajiangpz.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pzzz's FE Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/ajiangpz.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/ajiangpz.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/09/28/对象-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">对象</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T10:10:39+08:00">
+                2019-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ul>
+<li>基本数据类型<br><code>string</code>,<code>number</code>,<code>boolean</code>,<code>null</code>,<code>undefined</code></li>
+<li><p>内置对象<br><code>String</code>，<code>Number</code>，<code>Boolean</code>，<code>Object</code>，<code>Array</code>，<code>Function</code>，<code>Date</code>，<code>RegExp</code>，<code>Error</code><br>这些内置对象是 JavaScript 内部的构造函数，用于创建对应子类型的新对象。其中除了<code>Date</code>，<code>Error</code>其他子类型都可以通过字面量创建，对于<code>String</code>，<code>Number</code>，<code>Boolean</code>，它们的字面量是基本类型，对于<code>Object</code>，<code>Array</code>，<code>Function</code>，<code>RegExp</code>，它们的字面量也是对象。<code>String</code>，<code>Number</code>在调用对象对象的方法时，JavaScript 引擎会自动将其字面量转化为对象。如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'123'</span>.length;</span><br><span class="line"><span class="number">123.123</span>.toFixed(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>null 为什么不是对象？<br>在底层对象都已二进制表示，如果是对象类型那么前三位都是 0，而 null 所有的位都是 0，因而被检测为对象。</p>
+</li>
+</ul>
+<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><ul>
+<li><p>可计算属性名<br>在 ES6 中可以使用<code>[&#39;表达式&#39;]</code>定义属性名。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1=&#123;</span><br><span class="line">    [+<span class="keyword">new</span> <span class="built_in">Date</span>()]:<span class="string">'aaaa'</span>,</span><br><span class="line">    [<span class="number">1</span>+<span class="number">2</span>]:<span class="string">'bbbb'</span>,</span><br><span class="line">    [<span class="built_in">Symbol</span>()]:<span class="string">'cccc'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj1)</span><br><span class="line"><span class="comment">//&#123; '3': 'bbbb', '1569484632274': 'aaaa', [Symbol()]: 'cccc' &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组属性<br>数组也是对象，也可以以对象的方式添加属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr=[<span class="string">'foo'</span>,<span class="string">'bar'</span>,<span class="string">'baz'</span>];</span><br><span class="line">arr[<span class="string">'name'</span>]=<span class="string">'array'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr.length);<span class="comment">//3</span></span><br><span class="line">arr[<span class="string">'3'</span>]=<span class="string">'array'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr.length)<span class="comment">//4</span></span><br></pre></td></tr></table></figure>
+<p>当对象的属性可以转化为数字时，js 会将直接将其作为数组下标的值，从而有可能改变数组的长度。</p>
+</li>
+<li><p>复制对象<br><code>Object.assign({},obj)</code>可以实现浅拷贝，<code>JSON.Parse(JSON.stringify(obj))</code>可以实现安全的 JSON 对象的深拷贝。</p>
+</li>
+<li><p>属性描述符</p>
+<ul>
+<li><p>获取属性描述</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">    a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(obj,<span class="string">'a'</span>))</span><br><span class="line"><span class="comment">//&#123; value: 2, writable: true, enumerable: true, configurable: true &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">3</span>,</span><br><span class="line">    writable:<span class="literal">false</span>,</span><br><span class="line">    configurable:<span class="literal">true</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line">obj.a=<span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.a)<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>writable<br>定义属性是否可写，如果定义为 false，在非严格模式下不会报错也不会修改属性值</li>
+<li><p>configurable<br>定义属性是否可以配置，如果为 true，那么属性不能再用 defineProperty 配置<code>enumerable</code>,<code>configurable</code>。<code>writable</code>可以有 true 配置为 false，但是不可以从 false 配置为 true，删除对象属性也会静默无效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">3</span>,</span><br><span class="line">    writable:<span class="literal">true</span>,</span><br><span class="line">    configurable:<span class="literal">false</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;<span class="attr">value</span>:<span class="number">2</span>&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;<span class="attr">writable</span>:<span class="literal">false</span>&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;<span class="attr">enumerable</span>:<span class="literal">false</span>&#125;)</span><br><span class="line"><span class="comment">//Cannot redefine property: a</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">3</span>,</span><br><span class="line">    writable:<span class="literal">true</span>,</span><br><span class="line">    configurable:<span class="literal">false</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">delete</span> obj.a;</span><br><span class="line"><span class="built_in">console</span>.log(obj.a);</span><br></pre></td></tr></table></figure>
+<p>tip:delete 删除的属性如果是对象的引用，那么被引用的对象如果没有其他引用就会被垃圾回收。</p>
+</li>
+<li><p>enumerable<br>描述属性是否可以被类似于<code>Object.keys()</code>（对象自身）,<code>for...in...</code>（对象自身和原型）枚举。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不变性</p>
+<ul>
+<li><p>对象常量<br>通过将<code>configurable</code>和<code>writable</code>属性设置为 false，可以为对象创建一个常量属性。</p>
+</li>
+<li><p>禁止扩展<br>禁止一个对象添加新属性并且保留已有属性，可以使用<code>Object.</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">    a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.preventExtensions(obj)</span><br><span class="line">obj.b=<span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.b);<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>密封<br><code>Object.seal()</code>方法先禁止对象扩展，并把对象所有属性标记为<code>configurable</code>为<code>false</code>，添加后对象不仅不能添加新的属性，也不能重新配置和删除已有的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.seal(obj);</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">5</span>,</span><br><span class="line">    writable:<span class="literal">false</span></span><br><span class="line">&#125;)<span class="comment">//不会报错</span></span><br><span class="line"><span class="keyword">delete</span> obj.a</span><br><span class="line"><span class="built_in">console</span>.log(obj.a)<span class="comment">//5,没有被删除</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    configurable:<span class="literal">true</span></span><br><span class="line">&#125;)<span class="comment">//报错！不能重新配置。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>冻结<br><code>Object.freeze()</code>,创建一个冻结对象，所有属性的<code>writable</code>都被设置被<code>false</code>,这个方法是可以应用在对象上最高级别的不变性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.freeze(obj);</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">5</span>,<span class="comment">//连属性值也不能修改</span></span><br><span class="line">    writable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(obj.a)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><em>Getter</em>和<em>Setter</em><br>当一个对象定义<code>getter</code>或者<code>setter</code>属性，JavaScript 会忽略对象的<code>value</code>和<code>writable</code>特性，而通过<code>set</code>和<code>get</code>特性去获取或者设置对象的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">    <span class="keyword">get</span> a()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._a_||<span class="number">0</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span> a(val)&#123;</span><br><span class="line">        <span class="keyword">this</span>._a_=val*val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.a=<span class="number">4</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.a);<span class="comment">//16</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存在性<br>判断对象是否存在某一个属性，可以用<code>in</code>，<code>hasOwnProperty</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> <span class="built_in">Object</span>(&#123;</span><br><span class="line">    a:<span class="string">'aaaa'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.prototype.b=<span class="string">'bbbb'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'b'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'a'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'b'</span>));<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p><code>in</code>会查找整个对象自身及其原型链的属性，<code>hasOwnProperty</code>只会查找对象本身的属性，这两个判断的是属性的<code>可访问性</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> <span class="built_in">Object</span>(&#123;</span><br><span class="line">a:<span class="string">'aaaa'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'c'</span>,&#123;</span><br><span class="line">    value:<span class="string">'cccc'</span>,</span><br><span class="line">    enumerable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'a'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'c'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'c'</span>));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>可枚举性意味着可以被遍历，遍历指的是<code>for...in</code>和<code>Object.keys()</code>等具有循环的方法，<code>Object.keys()</code>可以获取对象本身所有可枚举属性，但是没有内置函数可以得到对象及其原型链上所有可枚举属性的列表。判断对象本身属性是否可以枚举可以使用 <code>propertyIsEnumerable()</code>，<code>getOwnPropertyNames()</code>可以获取对象自身所有可访问属性，它不是一个遍历方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'b'</span>,&#123;</span><br><span class="line">    enumerable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(obj));<span class="comment">//[a,b]</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.propertyIsEnumerable(<span class="string">'a'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.propertyIsEnumerable(<span class="string">'b'</span>));<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><ul>
+<li>遍历对象属性<br><code>for...in...</code>，<code>object.keys()</code></li>
+<li><p>遍历对象的属性值</p>
+<ul>
+<li><code>ES5</code>数组中遍历对象的属性值<br><code>foreach(callback))</code>遍历所有数组的值并忽略回调函数的返回值，<code>some(callback)</code>回调函数返回<code>true</code>即停止遍历，<code>every(callback)</code>回调函数返回<code>false</code>即停止遍历。</li>
+<li><p><code>ES6</code>数组中遍历对象的属性值<br><code>for...of...</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> v <span class="keyword">of</span> arr)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(v)<span class="comment">//a,b,c</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>for...of...</code>会调用数组内部的迭代器对象，执行对象的<code>next()</code>方法，每个<code>next()</code>都会返回<code>{value:value|undefined,done:false|true}</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">var</span> it=arr[<span class="built_in">Symbol</span>.iterator]();<span class="comment">//获取数组内部的迭代器对象</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: 'a', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: 'b', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: 'c', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象中迭代属性值<br>对象中没有自带的迭代器，需要自己定义一个。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span>,</span><br><span class="line">b:<span class="number">3</span>,</span><br><span class="line">c:<span class="number">4</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="built_in">Symbol</span>.iterator,&#123;</span><br><span class="line">    enumerable:<span class="literal">false</span>,</span><br><span class="line">    writable:<span class="literal">false</span>,</span><br><span class="line">    value:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> o=<span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> idx=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> ks=<span class="built_in">Object</span>.keys(o);</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            next:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span>&#123;</span><br><span class="line">                    value:o[ks[idx++]],</span><br><span class="line">                    done:(idx&gt;ks.length)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> v <span class="keyword">of</span> obj)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只要 next 方法返回了<code>{value:value,done:boolean}</code>，那么迭代就会继续，不管对象还有没有属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> randoms=&#123;</span><br><span class="line">    [<span class="built_in">Symbol</span>.iterator]:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            next:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span>&#123;<span class="attr">value</span>:<span class="built_in">Math</span>.random()*<span class="number">10</span>&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> random_pool=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> v <span class="keyword">of</span> randoms)&#123;</span><br><span class="line">    <span class="keyword">if</span>(random_pool.length&lt;<span class="number">10</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(v)</span><br><span class="line">        random_pool.push(v)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码自定义了一个产生随机数的迭代器，next 一直返回有效的值，因而迭代不会停止。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ajiangpz.github.io/2019/09/22/作用域/" rel="next" title="作用域">
+                <i class="fa fa-chevron-left"></i> 作用域
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ajiangpz.github.io/2019/10/04/let-and-const/" rel="prev" title="let-and-const">
+                let-and-const <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Pzzz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/ajiangpz.github.io/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型"><span class="nav-number">1.</span> <span class="nav-text">类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历"><span class="nav-number">3.</span> <span class="nav-text">遍历</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pzzz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/ajiangpz.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/ajiangpz.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/ajiangpz.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/ajiangpz.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/ajiangpz.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
