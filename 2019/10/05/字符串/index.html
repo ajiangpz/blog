@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/ajiangpz.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/ajiangpz.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/ajiangpz.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ajiangpz.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/ajiangpz.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/ajiangpz.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/ajiangpz.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="字符串的 Unicode 表示法在 ES6 之前，用 unicode 表示字符只能从’\u0000’到’\uffff’，因此表示一个双字节的字符需要 1&apos;\uD842\uDFB7&apos;。//&quot;𠮷&quot; 而在 ES6 中只需将 Unicode 编码放在大括号中，就可以解析了。 1&quot;\u&amp;#123;20BB7&amp;#125;&quot;; //&quot;𠮷&quot; 表示字符的六种方法 123456&quot;z&quot;;&quot;\z&quot;;&quot;\172&quot;; /">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串">
+<meta property="og:url" content="https://ajiangpz.github.io/2019/10/05/字符串/index.html">
+<meta property="og:site_name" content="Pzzz&#39;s FE Blog">
+<meta property="og:description" content="字符串的 Unicode 表示法在 ES6 之前，用 unicode 表示字符只能从’\u0000’到’\uffff’，因此表示一个双字节的字符需要 1&apos;\uD842\uDFB7&apos;。//&quot;𠮷&quot; 而在 ES6 中只需将 Unicode 编码放在大括号中，就可以解析了。 1&quot;\u&amp;#123;20BB7&amp;#125;&quot;; //&quot;𠮷&quot; 表示字符的六种方法 123456&quot;z&quot;;&quot;\z&quot;;&quot;\172&quot;; /">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-05T07:15:59.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="字符串">
+<meta name="twitter:description" content="字符串的 Unicode 表示法在 ES6 之前，用 unicode 表示字符只能从’\u0000’到’\uffff’，因此表示一个双字节的字符需要 1&apos;\uD842\uDFB7&apos;。//&quot;𠮷&quot; 而在 ES6 中只需将 Unicode 编码放在大括号中，就可以解析了。 1&quot;\u&amp;#123;20BB7&amp;#125;&quot;; //&quot;𠮷&quot; 表示字符的六种方法 123456&quot;z&quot;;&quot;\z&quot;;&quot;\172&quot;; /">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/ajiangpz.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ajiangpz.github.io/2019/10/05/字符串/">
+
+
+
+
+
+  <title>字符串 | Pzzz's FE Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/ajiangpz.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pzzz's FE Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/ajiangpz.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/ajiangpz.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/ajiangpz.github.io/2019/10/05/字符串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/ajiangpz.github.io/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">字符串</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-05T10:20:39+08:00">
+                2019-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="字符串的-Unicode-表示法"><a href="#字符串的-Unicode-表示法" class="headerlink" title="字符串的 Unicode 表示法"></a>字符串的 Unicode 表示法</h3><p>在 ES6 之前，用 unicode 表示字符只能从’\u0000’到’\uffff’，因此表示一个双字节的字符需要</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'\uD842\uDFB7'</span>。<span class="comment">//"𠮷"</span></span><br></pre></td></tr></table></figure>
+<p>而在 ES6 中只需将 Unicode 编码放在大括号中，就可以解析了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"\u&#123;20BB7&#125;"</span>; <span class="comment">//"𠮷"</span></span><br></pre></td></tr></table></figure>
+<p>表示字符的六种方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"z"</span>;</span><br><span class="line"><span class="string">"\z"</span>;</span><br><span class="line"><span class="string">"\172"</span>; <span class="comment">//八进制</span></span><br><span class="line"><span class="string">"\x7a"</span>;</span><br><span class="line"><span class="string">"\u007a"</span>;</span><br><span class="line"><span class="string">"\u&#123;7a&#125;"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="字符串遍历器接口"><a href="#字符串遍历器接口" class="headerlink" title="字符串遍历器接口"></a>字符串遍历器接口</h3><p>字符串的遍历器接口使其可以使用 for…of…遍历每个字符，同时还可以识别 Unicode 编码大于’\uffff’的码点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="built_in">String</span>.fromCodePoint(<span class="string">"0x10bb5"</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> text) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">//𠮷</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h3><p>模板字符串会保留换行和空格，可以用<code>trim</code>函数消除头尾的空格和换行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;ul&gt;</span></span><br><span class="line"><span class="string">  &lt;li&gt;aaa&lt;/li&gt;</span></span><br><span class="line"><span class="string">  &lt;li&gt;bbb&lt;/li&gt;</span></span><br><span class="line"><span class="string">&lt;/ul&gt;</span></span><br><span class="line"><span class="string">`</span>.trim();</span><br></pre></td></tr></table></figure>
+<p>模板字符串中可以放入任意的 JavaScript 表达式，对象属性，函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"hello"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> x = <span class="number">2</span>,</span><br><span class="line">  y = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">let</span> str = <span class="string">`<span class="subst">$&#123;fn()&#125;</span>,x+y=<span class="subst">$&#123;x + y&#125;</span>`</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str); <span class="comment">//hello,x+y=5</span></span><br></pre></td></tr></table></figure>
+<p>模板字符串的嵌套</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tmpl = <span class="function"><span class="params">addrs</span> =&gt;</span> <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;table&gt;</span></span><br><span class="line"><span class="string">  <span class="subst">$&#123;addrs</span></span></span><br><span class="line"><span class="string"><span class="subst">    .map(</span></span></span><br><span class="line"><span class="string"><span class="subst">      addr =&gt; <span class="string">`</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">    &lt;tr&gt;&lt;td&gt;<span class="subst">$&#123;addr.first&#125;</span>&lt;/td&gt;&lt;/tr&gt;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">    &lt;tr&gt;&lt;td&gt;<span class="subst">$&#123;addr.last&#125;</span>&lt;/td&gt;&lt;/tr&gt;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">  `</span></span></span></span><br><span class="line"><span class="string"><span class="subst">    )</span></span></span><br><span class="line"><span class="string"><span class="subst">    .join(<span class="string">""</span>)&#125;</span></span></span><br><span class="line"><span class="string">  &lt;/table&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"><span class="keyword">const</span> data = [</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">"&lt;Jane&gt;"</span>,</span><br><span class="line">    last: <span class="string">"Bond"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">"Lars"</span>,</span><br><span class="line">    last: <span class="string">"&lt;Croft&gt;"</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="built_in">console</span>.log(tmpl(data));</span><br><span class="line"><span class="comment">// &lt;table&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//   &lt;tr&gt;&lt;td&gt;&lt;Jane&gt;&lt;/td&gt;&lt;/tr&gt;</span></span><br><span class="line"><span class="comment">//   &lt;tr&gt;&lt;td&gt;Bond&lt;/td&gt;&lt;/tr&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//   &lt;tr&gt;&lt;td&gt;Lars&lt;/td&gt;&lt;/tr&gt;</span></span><br><span class="line"><span class="comment">//   &lt;tr&gt;&lt;td&gt;&lt;Croft&gt;&lt;/td&gt;&lt;/tr&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;/table&gt;</span></span><br></pre></td></tr></table></figure>
+<p>字符串模板编译<br>思路是利用正则表达式将模板中的变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> template = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;ul&gt;</span></span><br><span class="line"><span class="string">  &lt;% for(let i=0; i &lt; data.supplies.length; i++) &#123; %&gt;</span></span><br><span class="line"><span class="string">    &lt;li&gt;&lt;%= data.supplies[i] %&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">  &lt;% &#125; %&gt;</span></span><br><span class="line"><span class="string">&lt;/ul&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compile</span>(<span class="params">template</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> evalExpr = <span class="regexp">/&lt;%=(.+?)%&gt;/g</span>;</span><br><span class="line">  <span class="keyword">const</span> expr = <span class="regexp">/&lt;%([\s\S]+?)%&gt;/g</span>;</span><br><span class="line"></span><br><span class="line">  template = template</span><br><span class="line">    .replace(evalExpr, <span class="string">"`); \n  echo( $1 ); \n  echo(`"</span>)</span><br><span class="line">    .replace(expr, <span class="string">"`); \n $1 \n  echo(`"</span>);</span><br><span class="line"></span><br><span class="line">  template = <span class="string">"echo(`"</span> + template + <span class="string">"`);"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> script = <span class="string">`(function parse(data)&#123;</span></span><br><span class="line"><span class="string">    let output = "";</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    function echo(html)&#123;</span></span><br><span class="line"><span class="string">      output += html;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    <span class="subst">$&#123;template&#125;</span></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    return output;</span></span><br><span class="line"><span class="string">  &#125;)`</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> script;</span><br><span class="line">&#125; <span class="comment">//返回一个解析函数</span></span><br><span class="line"><span class="keyword">var</span> parse = <span class="built_in">eval</span>(compile(template)); <span class="comment">//返回解析函数</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">  parse(&#123;</span><br><span class="line">    supplies: [<span class="string">"broom"</span>, <span class="string">"mop"</span>, <span class="string">"cleaner"</span>]</span><br><span class="line">  &#125;)</span><br><span class="line">); <span class="comment">//解析函数的参数就是数据，最后生成：</span></span><br><span class="line"><span class="comment">// &lt;ul&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     &lt;li&gt;broom&lt;/li&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     &lt;li&gt;mop&lt;/li&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     &lt;li&gt;cleaner&lt;/li&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;/ul&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="标签模板"><a href="#标签模板" class="headerlink" title="标签模板"></a>标签模板</h3><p>模板字符串它可以紧跟在一个函数名后面，该函数将被调用来处理这个模板字符串。这被称为“标签模板”功能（tagged template）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert<span class="string">`123`</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">alert(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+<p>标签模板其实不是模板，而是函数调用的一种特殊形式。“标签”指的就是函数，紧跟在后面的模板字符串就是它的参数。</p>
+<p>当模板字符串中有变量时，会将模板字符串先处理为多个参数，再调用函数。<br>第一个参数是一个数组，该数组的成员是模板字符串中那些没有变量替换的部分，其他参数，都是模板字符串各个变量被替换后的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">tag<span class="string">`Hello <span class="subst">$&#123;a + b&#125;</span> world <span class="subst">$&#123;a * b&#125;</span>`</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">tag([<span class="string">"Hello "</span>, <span class="string">" world "</span>, <span class="string">""</span>], <span class="number">15</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>利用标签模板计算生成税前税后价格</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> total = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">let</span> msg = passthru<span class="string">`The total is <span class="subst">$&#123;total&#125;</span> (<span class="subst">$&#123;total * <span class="number">1.05</span>&#125;</span> with tax)`</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">passthru</span>(<span class="params">literals, ...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> output = <span class="string">""</span>;</span><br><span class="line">  <span class="keyword">let</span> index;</span><br><span class="line">  <span class="keyword">for</span> (index = <span class="number">0</span>; index &lt; values.length; index++) &#123;</span><br><span class="line">    output += literals[index] + values[index];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  output += literals[index];</span><br><span class="line">  <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(msg);</span><br><span class="line"><span class="comment">//The total is 30 (31.5 with tax)</span></span><br></pre></td></tr></table></figure>
+<p>“标签模板”的一个重要应用，就是过滤 HTML 字符串，防止用户输入恶意内容。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> message = SaferHTML<span class="string">`&lt;p&gt;<span class="subst">$&#123;sender&#125;</span> has sent you a message.&lt;/p&gt;`</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SaferHTML</span>(<span class="params">templateData</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> s = templateData[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> arg = <span class="built_in">String</span>(<span class="built_in">arguments</span>[i]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Escape special characters in the substitution.</span></span><br><span class="line">    s += arg</span><br><span class="line">      .replace(<span class="regexp">/&amp;/g</span>, <span class="string">"&amp;amp;"</span>)</span><br><span class="line">      .replace(<span class="regexp">/&lt;/g</span>, <span class="string">"&amp;lt;"</span>)</span><br><span class="line">      .replace(<span class="regexp">/&gt;/g</span>, <span class="string">"&amp;gt;"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Don't escape special characters in the template.</span></span><br><span class="line">    s += templateData[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sender = <span class="string">'&lt;script&gt;alert("abc")&lt;/script&gt;'</span>; <span class="comment">// 恶意代码</span></span><br><span class="line"><span class="keyword">let</span> message = SaferHTML<span class="string">`&lt;p&gt;<span class="subst">$&#123;sender&#125;</span> has sent you a message.&lt;/p&gt;`</span>;</span><br></pre></td></tr></table></figure>
+<p>标签模板的另一个应用，就是多语言转换（国际化处理）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i18n<span class="string">`Welcome to <span class="subst">$&#123;siteName&#125;</span>, you are visitor number <span class="subst">$&#123;visitorNumber&#125;</span>!`</span>;</span><br></pre></td></tr></table></figure>
+<p>通过标签函数，我们可以在字符串前自定义模板解析函数，通过解析语句和获取变量实现模板解析。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> libraryHtml = hashTemplate<span class="string">`</span></span><br><span class="line"><span class="string">  &lt;ul&gt;</span></span><br><span class="line"><span class="string">    #for book in <span class="subst">$&#123;myBooks&#125;</span></span></span><br><span class="line"><span class="string">      &lt;li&gt;&lt;i&gt;#&#123;book.title&#125;&lt;/i&gt; by #&#123;book.author&#125;&lt;/li&gt;</span></span><br><span class="line"><span class="string">    #end</span></span><br><span class="line"><span class="string">  &lt;/ul&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
+<p>字符串的新增方法<br><a href="http://es6.ruanyifeng.com/#docs/string-methods" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/string-methods</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ajiangpz.github.io/2019/10/04/解构赋值/" rel="next" title="解构赋值">
+                <i class="fa fa-chevron-left"></i> 解构赋值
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ajiangpz.github.io/2019/10/06/symbol/" rel="prev" title="symbol">
+                symbol <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Pzzz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/ajiangpz.github.io/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串的-Unicode-表示法"><span class="nav-number">1.</span> <span class="nav-text">字符串的 Unicode 表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串遍历器接口"><span class="nav-number">2.</span> <span class="nav-text">字符串遍历器接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板字符串"><span class="nav-number">3.</span> <span class="nav-text">模板字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签模板"><span class="nav-number">4.</span> <span class="nav-text">标签模板</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pzzz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/ajiangpz.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/ajiangpz.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/ajiangpz.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/ajiangpz.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/ajiangpz.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
