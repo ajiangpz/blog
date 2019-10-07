@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/ajiangpz.github.io/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/ajiangpz.github.io/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/ajiangpz.github.io/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/ajiangpz.github.io/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/ajiangpz.github.io/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/ajiangpz.github.io/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/ajiangpz.github.io/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参数默认值ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。 123456function sayHi(name = &quot;xiaoming&quot;) &amp;#123;  this.name = name;  console.log(`hello,$&amp;#123;this.name&amp;#125;`);&amp;#125;sayHi();sayHi(&quot;xiaohong&quot;); 参数变量是默认声明的，所以不能用 le">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数">
+<meta property="og:url" content="https://ajiangpz.github.io/blog/2019/10/06/函数/index.html">
+<meta property="og:site_name" content="Pzzz&#39;s FE Blog">
+<meta property="og:description" content="参数默认值ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。 123456function sayHi(name = &quot;xiaoming&quot;) &amp;#123;  this.name = name;  console.log(`hello,$&amp;#123;this.name&amp;#125;`);&amp;#125;sayHi();sayHi(&quot;xiaohong&quot;); 参数变量是默认声明的，所以不能用 le">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-06T08:39:55.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数">
+<meta name="twitter:description" content="参数默认值ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。 123456function sayHi(name = &quot;xiaoming&quot;) &amp;#123;  this.name = name;  console.log(`hello,$&amp;#123;this.name&amp;#125;`);&amp;#125;sayHi();sayHi(&quot;xiaohong&quot;); 参数变量是默认声明的，所以不能用 le">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/ajiangpz.github.io/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ajiangpz.github.io/blog/2019/10/06/函数/">
+
+
+
+
+
+  <title>函数 | Pzzz's FE Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/ajiangpz.github.io/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pzzz's FE Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/ajiangpz.github.io/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/ajiangpz.github.io/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ajiangpz.github.io/blog/ajiangpz.github.io/blog/2019/10/06/函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/ajiangpz.github.io/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-06T11:49:50+08:00">
+                2019-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="参数默认值"><a href="#参数默认值" class="headerlink" title="参数默认值"></a>参数默认值</h3><p>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">name = <span class="string">"xiaoming"</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`hello,<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line">sayHi();</span><br><span class="line">sayHi(<span class="string">"xiaohong"</span>);</span><br></pre></td></tr></table></figure>
+<p>参数变量是默认声明的，所以不能用 let 或 const 再次声明。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setLang</span>(<span class="params">lang = <span class="string">"en"</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> lang = <span class="string">"ch"</span>; <span class="comment">//但是可以用var再次声明</span></span><br><span class="line">  <span class="built_in">console</span>.log(lang); <span class="comment">//Identifier 'lang' has already been declared</span></span><br><span class="line">&#125;</span><br><span class="line">setLang();</span><br></pre></td></tr></table></figure>
+<p>使用参数默认值时，函数不能有同名参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">x, x, y</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, x, y);</span><br><span class="line">&#125;</span><br><span class="line">fn(<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>); <span class="comment">//12,12,13</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, x, y = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// SyntaxError: Duplicate parameter name not allowed in this context</span></span><br></pre></td></tr></table></figure>
+<p>参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i++;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> getNumber = fn();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logNum</span>(<span class="params">num = getNumber(</span>)) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(num);</span><br><span class="line">&#125;</span><br><span class="line">logNum(); <span class="comment">//0</span></span><br><span class="line">logNum(); <span class="comment">//1</span></span><br><span class="line">logNum(); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<h4 id="与解构赋值默认值结合使用"><a href="#与解构赋值默认值结合使用" class="headerlink" title="与解构赋值默认值结合使用"></a>与解构赋值默认值结合使用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123; x, y = <span class="number">2</span> &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line">foo(&#123;&#125;); <span class="comment">//undefined 2</span></span><br><span class="line">foo(&#123;</span><br><span class="line">  x: <span class="number">1</span>,</span><br><span class="line">  y: <span class="number">3</span></span><br><span class="line">&#125;); <span class="comment">//1 3</span></span><br><span class="line">foo(&#123;</span><br><span class="line">  x: <span class="number">1</span></span><br><span class="line">&#125;); <span class="comment">//1,2</span></span><br><span class="line">foo(); <span class="comment">//Cannot destructure property `x` of 'undefined' or 'null'</span></span><br></pre></td></tr></table></figure>
+<p>当没传入解构的参数时，undefined 时无法被解构的，因此会报错。<br>需要给需要的解构的函数参数提供一个默认值。即</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123; x, y = <span class="number">2</span> &#125; = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line">foo(); <span class="comment">//undefined 2</span></span><br></pre></td></tr></table></figure>
+<p>这个函数参数具有双重默认值，当没有传入参数时，默认解构的对象是空对象。当有对象传入时，如果没有对象的属性名，那么 y 的默认值就是 2。</p>
+<h4 id="参数默认值的位置"><a href="#参数默认值的位置" class="headerlink" title="参数默认值的位置"></a>参数默认值的位置</h4><p>通常情况下，定义了默认值的参数，应该是函数的尾参数。如果非尾部的参数设置默认值，实际上这个参数是没法省略的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例一</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x = <span class="number">1</span>, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f() <span class="comment">// [1, undefined]</span></span><br><span class="line">f(<span class="number">2</span>) <span class="comment">// [2, undefined])</span></span><br><span class="line">f(, <span class="number">1</span>) <span class="comment">// 报错</span></span><br><span class="line">f(<span class="literal">undefined</span>, <span class="number">1</span>) <span class="comment">// [1, 1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 例二</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x, y = <span class="number">5</span>, z</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [x, y, z];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f() <span class="comment">// [undefined, 5, undefined]</span></span><br><span class="line">f(<span class="number">1</span>) <span class="comment">// [1, 5, undefined]</span></span><br><span class="line">f(<span class="number">1</span>, ,<span class="number">2</span>) <span class="comment">// 报错</span></span><br><span class="line">f(<span class="number">1</span>, <span class="literal">undefined</span>, <span class="number">2</span>) <span class="comment">// [1, 5, 2]</span></span><br></pre></td></tr></table></figure>
+<h4 id="函数的-length-属性"><a href="#函数的-length-属性" class="headerlink" title="函数的 length 属性"></a>函数的 length 属性</h4><p>指定了默认值以后，函数的 length 属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，length 属性将失真。length 属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;&#125;</span><br><span class="line">  .length(</span><br><span class="line">    <span class="comment">// 1</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">a = <span class="number">5</span></span>) </span>&#123;&#125;</span><br><span class="line">  )</span><br><span class="line">  .length(</span><br><span class="line">    <span class="comment">// 0</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c = <span class="number">5</span></span>) </span>&#123;&#125;</span><br><span class="line">  ).length); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>如果设置了默认值的参数不是尾参数，那么 length 属性也不再计入后面的参数了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a = <span class="number">0</span>, b, c</span>) </span>&#123;&#125;.length(</span><br><span class="line">  <span class="comment">// 0</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">a, b = <span class="number">1</span>, c</span>) </span>&#123;&#125;</span><br><span class="line">).length); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x, y = x</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//形成单独的作用域</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(y);</span><br><span class="line">&#125;</span><br><span class="line">f(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>y=x 会在函数参数作用域中寻找 x 变量，找不到才会到全局作用域找。<br>如果全局不存在 x 变量，就会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">y = x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(); <span class="comment">// ReferenceError: x is not defined</span></span><br></pre></td></tr></table></figure>
+<p>由于暂时性死区的原因，以下代码也会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x = x</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// ReferenceError: x is not defined</span></span><br></pre></td></tr></table></figure>
+<p>如果函数参数的默认参数是一个参数，该函数的作用域也会形成一个单独的作用域，规则跟上述一样。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = <span class="string">"outer"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">func = (</span>) =&gt; <span class="title">foo</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> foo = <span class="string">"inner"</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(func());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar(); <span class="comment">// outer</span></span><br></pre></td></tr></table></figure>
+<p>当函数参数具有默认值时，不管函数参数是什么，他们都会在一个作用域中。如下例，变量 y 默认值是一个函数，这个函数与第一个参数 x 在同一个作用域中，默认值函数中的 x 实际上是第一个参数 x，因此 y 中改变不会影响外部的 x，也不会影响内部的 x。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  x,</span></span></span><br><span class="line"><span class="function"><span class="params">  y = function(</span>) </span>&#123;</span><br><span class="line">    x = <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">) &#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">3</span>;</span><br><span class="line">  y();</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// 3</span></span><br><span class="line">x; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h4 id="默认值的应用"><a href="#默认值的应用" class="headerlink" title="默认值的应用"></a>默认值的应用</h4><p>在参数是必须的时候，可以将参数的默认值设置为一个报错的函数，如果省略了该参数就抛出一个错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  name = (function(</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"name must provided!"</span>);</span><br><span class="line">  &#125;)()</span><br><span class="line">) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"hi,"</span> + name);</span><br><span class="line">&#125;</span><br><span class="line">sayHi(<span class="string">"peter"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="rest-参数"><a href="#rest-参数" class="headerlink" title="rest 参数"></a>rest 参数</h3><p>用于获取函数的多余参数，这样就不需要使用 arguments 对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。<br>利用 rest 参数求和</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> v <span class="keyword">of</span> value) &#123;</span><br><span class="line">    sum += v;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>));</span><br></pre></td></tr></table></figure>
+<p>相比 arguments 参数这种类数组对象，rest 参数是一个真正的数组，不需要转化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sort(<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">...numbers</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> numbers.sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sort(<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="name-属性"><a href="#name-属性" class="headerlink" title="name 属性"></a>name 属性</h3><p>ES6 的函数可以的 name 属性可以返回函数的名称。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// console.log(this.name)</span></span><br><span class="line">  <span class="built_in">console</span>.log(fn.name);</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+<p>Function 构造函数返回的函数实例，name 属性的值为 anonymous。bind 返回的函数，name 属性值会加上 bound 前缀。</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>箭头函数没有参数或者有多个参数时，需要用圆括号代替参数或者将多个参数包围起来，如果只有一个参数可以省略圆括号。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">v</span> =&gt;</span> v;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> v;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">()</span> =&gt;</span> <span class="number">5</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> num1 + num2;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果箭头函数的代码块多于一句，则需要用大括号将其括起来，并使用 return 语句返回。<br>箭头函数与变量解构结合使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> full = <span class="function">(<span class="params">&#123; first, last &#125;</span>) =&gt;</span> first + <span class="string">" "</span> + last;</span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">  full(&#123;</span><br><span class="line">    first: <span class="string">"jiang"</span>,</span><br><span class="line">    last: <span class="string">"pengzhen"</span></span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>使用箭头函数的注意</p>
+<ol>
+<li>箭头函数的 <code>this</code> 对象就是定义时所在的对象。</li>
+<li>不可以当构造函数使用，即不可以使用 <code>new</code> 命令。</li>
+<li>不能使用 <code>arguments</code> 对象，可以用 <code>rest</code> 参数代替。</li>
+<li>不可以使用 <code>yield</code> 命名，不能用作 <code>generator</code> 函数。</li>
+</ol>
+<p>箭头函数中没有 this，arguments，super，这些对象都是从词法作用域中获取的。因此用 call，bind，apply 等方法是无法改变箭头函数中的 this 指向的。<br>稳定的 this 指向，使箭头函数非常适合用来封装回调函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> handler = &#123;</span><br><span class="line">  id: <span class="string">"123456"</span>,</span><br><span class="line"></span><br><span class="line">  init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(</span><br><span class="line">      <span class="string">"click"</span>,</span><br><span class="line">      event =&gt; <span class="keyword">this</span>.doSomething(event.type),</span><br><span class="line">      <span class="literal">false</span></span><br><span class="line">    );</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  doSomething: <span class="function"><span class="keyword">function</span>(<span class="params">type</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Handling "</span> + type + <span class="string">" for "</span> + <span class="keyword">this</span>.id);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>当点击一个按钮时，普通函数回调函数的 this 一般会指向 document 对象，这样就容易出现 this 对象上没有相应的方法，箭头函数解决了这个问题。</p>
+<p>箭头函数不适合的场景</p>
+<ol>
+<li>在对象中定义方法。<br>在对象中定义方法，由于对象先没有单独的作用域，因此箭头函数中的 this 会指向全局作用域，同时也不方便对象方法的复用。</li>
+<li><p>需要动态 this 的场景使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"press"</span>);</span><br><span class="line">button.addEventListener(<span class="string">"click"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">this</span>.classList.toggle(<span class="string">"on"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>嵌套的箭头函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> insert = <span class="function"><span class="params">value</span> =&gt;</span> (&#123;</span><br><span class="line">  into: <span class="function"><span class="params">array</span> =&gt;</span> (&#123;</span><br><span class="line">    after: <span class="function"><span class="params">afterValue</span> =&gt;</span> &#123;</span><br><span class="line">      array.splice(array.indexOf(afterValue) + <span class="number">1</span>, <span class="number">0</span>, value);</span><br><span class="line">      <span class="keyword">return</span> array;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">insert(<span class="number">2</span>)</span><br><span class="line">  .into([<span class="number">1</span>, <span class="number">3</span>])</span><br><span class="line">  .after(<span class="number">1</span>); <span class="comment">//[1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ajiangpz.github.io/blog/2019/10/06/symbol/" rel="next" title="symbol">
+                <i class="fa fa-chevron-left"></i> symbol
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/ajiangpz.github.io/blog/2019/10/06/数组/" rel="prev" title="数组">
+                数组 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Pzzz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/ajiangpz.github.io/blog/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数默认值"><span class="nav-number">1.</span> <span class="nav-text">参数默认值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与解构赋值默认值结合使用"><span class="nav-number">1.1.</span> <span class="nav-text">与解构赋值默认值结合使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数默认值的位置"><span class="nav-number">1.2.</span> <span class="nav-text">参数默认值的位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数的-length-属性"><span class="nav-number">1.3.</span> <span class="nav-text">函数的 length 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域"><span class="nav-number">1.4.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认值的应用"><span class="nav-number">1.5.</span> <span class="nav-text">默认值的应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rest-参数"><span class="nav-number">2.</span> <span class="nav-text">rest 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#name-属性"><span class="nav-number">3.</span> <span class="nav-text">name 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数"><span class="nav-number">4.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尾调用优化"><span class="nav-number">5.</span> <span class="nav-text">尾调用优化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pzzz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/ajiangpz.github.io/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/ajiangpz.github.io/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/ajiangpz.github.io/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/ajiangpz.github.io/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/ajiangpz.github.io/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/ajiangpz.github.io/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
