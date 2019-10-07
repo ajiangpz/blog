@@ -229,6 +229,208 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/09/28/对象-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/09/28/对象-md/" itemprop="url">对象</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T10:10:39+08:00">
+                2019-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ul>
+<li>基本数据类型<br><code>string</code>,<code>number</code>,<code>boolean</code>,<code>null</code>,<code>undefined</code></li>
+<li><p>内置对象<br><code>String</code>，<code>Number</code>，<code>Boolean</code>，<code>Object</code>，<code>Array</code>，<code>Function</code>，<code>Date</code>，<code>RegExp</code>，<code>Error</code><br>这些内置对象是 JavaScript 内部的构造函数，用于创建对应子类型的新对象。其中除了<code>Date</code>，<code>Error</code>其他子类型都可以通过字面量创建，对于<code>String</code>，<code>Number</code>，<code>Boolean</code>，它们的字面量是基本类型，对于<code>Object</code>，<code>Array</code>，<code>Function</code>，<code>RegExp</code>，它们的字面量也是对象。<code>String</code>，<code>Number</code>在调用对象对象的方法时，JavaScript 引擎会自动将其字面量转化为对象。如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'123'</span>.length;</span><br><span class="line"><span class="number">123.123</span>.toFixed(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>null 为什么不是对象？<br>在底层对象都已二进制表示，如果是对象类型那么前三位都是 0，而 null 所有的位都是 0，因而被检测为对象。</p>
+</li>
+</ul>
+<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><ul>
+<li><p>可计算属性名<br>在 ES6 中可以使用<code>[&#39;表达式&#39;]</code>定义属性名。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1=&#123;</span><br><span class="line">    [+<span class="keyword">new</span> <span class="built_in">Date</span>()]:<span class="string">'aaaa'</span>,</span><br><span class="line">    [<span class="number">1</span>+<span class="number">2</span>]:<span class="string">'bbbb'</span>,</span><br><span class="line">    [<span class="built_in">Symbol</span>()]:<span class="string">'cccc'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj1)</span><br><span class="line"><span class="comment">//&#123; '3': 'bbbb', '1569484632274': 'aaaa', [Symbol()]: 'cccc' &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组属性<br>数组也是对象，也可以以对象的方式添加属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr=[<span class="string">'foo'</span>,<span class="string">'bar'</span>,<span class="string">'baz'</span>];</span><br><span class="line">arr[<span class="string">'name'</span>]=<span class="string">'array'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr.length);<span class="comment">//3</span></span><br><span class="line">arr[<span class="string">'3'</span>]=<span class="string">'array'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr.length)<span class="comment">//4</span></span><br></pre></td></tr></table></figure>
+<p>当对象的属性可以转化为数字时，js 会将直接将其作为数组下标的值，从而有可能改变数组的长度。</p>
+</li>
+<li><p>复制对象<br><code>Object.assign({},obj)</code>可以实现浅拷贝，<code>JSON.Parse(JSON.stringify(obj))</code>可以实现安全的 JSON 对象的深拷贝。</p>
+</li>
+<li><p>属性描述符</p>
+<ul>
+<li><p>获取属性描述</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">    a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(obj,<span class="string">'a'</span>))</span><br><span class="line"><span class="comment">//&#123; value: 2, writable: true, enumerable: true, configurable: true &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">3</span>,</span><br><span class="line">    writable:<span class="literal">false</span>,</span><br><span class="line">    configurable:<span class="literal">true</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line">obj.a=<span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.a)<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>writable<br>定义属性是否可写，如果定义为 false，在非严格模式下不会报错也不会修改属性值</li>
+<li><p>configurable<br>定义属性是否可以配置，如果为 true，那么属性不能再用 defineProperty 配置<code>enumerable</code>,<code>configurable</code>。<code>writable</code>可以有 true 配置为 false，但是不可以从 false 配置为 true，删除对象属性也会静默无效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">3</span>,</span><br><span class="line">    writable:<span class="literal">true</span>,</span><br><span class="line">    configurable:<span class="literal">false</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;<span class="attr">value</span>:<span class="number">2</span>&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;<span class="attr">writable</span>:<span class="literal">false</span>&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;<span class="attr">enumerable</span>:<span class="literal">false</span>&#125;)</span><br><span class="line"><span class="comment">//Cannot redefine property: a</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">3</span>,</span><br><span class="line">    writable:<span class="literal">true</span>,</span><br><span class="line">    configurable:<span class="literal">false</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">delete</span> obj.a;</span><br><span class="line"><span class="built_in">console</span>.log(obj.a);</span><br></pre></td></tr></table></figure>
+<p>tip:delete 删除的属性如果是对象的引用，那么被引用的对象如果没有其他引用就会被垃圾回收。</p>
+</li>
+<li><p>enumerable<br>描述属性是否可以被类似于<code>Object.keys()</code>（对象自身）,<code>for...in...</code>（对象自身和原型）枚举。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>不变性</p>
+<ul>
+<li><p>对象常量<br>通过将<code>configurable</code>和<code>writable</code>属性设置为 false，可以为对象创建一个常量属性。</p>
+</li>
+<li><p>禁止扩展<br>禁止一个对象添加新属性并且保留已有属性，可以使用<code>Object.</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">    a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.preventExtensions(obj)</span><br><span class="line">obj.b=<span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.b);<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>密封<br><code>Object.seal()</code>方法先禁止对象扩展，并把对象所有属性标记为<code>configurable</code>为<code>false</code>，添加后对象不仅不能添加新的属性，也不能重新配置和删除已有的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.seal(obj);</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">5</span>,</span><br><span class="line">    writable:<span class="literal">false</span></span><br><span class="line">&#125;)<span class="comment">//不会报错</span></span><br><span class="line"><span class="keyword">delete</span> obj.a</span><br><span class="line"><span class="built_in">console</span>.log(obj.a)<span class="comment">//5,没有被删除</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    configurable:<span class="literal">true</span></span><br><span class="line">&#125;)<span class="comment">//报错！不能重新配置。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>冻结<br><code>Object.freeze()</code>,创建一个冻结对象，所有属性的<code>writable</code>都被设置被<code>false</code>,这个方法是可以应用在对象上最高级别的不变性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.freeze(obj);</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">5</span>,<span class="comment">//连属性值也不能修改</span></span><br><span class="line">    writable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(obj.a)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><em>Getter</em>和<em>Setter</em><br>当一个对象定义<code>getter</code>或者<code>setter</code>属性，JavaScript 会忽略对象的<code>value</code>和<code>writable</code>特性，而通过<code>set</code>和<code>get</code>特性去获取或者设置对象的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">    <span class="keyword">get</span> a()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._a_||<span class="number">0</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span> a(val)&#123;</span><br><span class="line">        <span class="keyword">this</span>._a_=val*val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.a=<span class="number">4</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.a);<span class="comment">//16</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存在性<br>判断对象是否存在某一个属性，可以用<code>in</code>，<code>hasOwnProperty</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> <span class="built_in">Object</span>(&#123;</span><br><span class="line">    a:<span class="string">'aaaa'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.prototype.b=<span class="string">'bbbb'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'b'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'a'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'b'</span>));<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p><code>in</code>会查找整个对象自身及其原型链的属性，<code>hasOwnProperty</code>只会查找对象本身的属性，这两个判断的是属性的<code>可访问性</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> <span class="built_in">Object</span>(&#123;</span><br><span class="line">a:<span class="string">'aaaa'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'c'</span>,&#123;</span><br><span class="line">    value:<span class="string">'cccc'</span>,</span><br><span class="line">    enumerable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'a'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'c'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'c'</span>));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>可枚举性意味着可以被遍历，遍历指的是<code>for...in</code>和<code>Object.keys()</code>等具有循环的方法，<code>Object.keys()</code>可以获取对象本身所有可枚举属性，但是没有内置函数可以得到对象及其原型链上所有可枚举属性的列表。判断对象本身属性是否可以枚举可以使用 <code>propertyIsEnumerable()</code>，<code>getOwnPropertyNames()</code>可以获取对象自身所有可访问属性，它不是一个遍历方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'b'</span>,&#123;</span><br><span class="line">    enumerable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(obj));<span class="comment">//[a,b]</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.propertyIsEnumerable(<span class="string">'a'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.propertyIsEnumerable(<span class="string">'b'</span>));<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><ul>
+<li>遍历对象属性<br><code>for...in...</code>，<code>object.keys()</code></li>
+<li><p>遍历对象的属性值</p>
+<ul>
+<li><code>ES5</code>数组中遍历对象的属性值<br><code>foreach(callback))</code>遍历所有数组的值并忽略回调函数的返回值，<code>some(callback)</code>回调函数返回<code>true</code>即停止遍历，<code>every(callback)</code>回调函数返回<code>false</code>即停止遍历。</li>
+<li><p><code>ES6</code>数组中遍历对象的属性值<br><code>for...of...</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> v <span class="keyword">of</span> arr)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(v)<span class="comment">//a,b,c</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>for...of...</code>会调用数组内部的迭代器对象，执行对象的<code>next()</code>方法，每个<code>next()</code>都会返回<code>{value:value|undefined,done:false|true}</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">var</span> it=arr[<span class="built_in">Symbol</span>.iterator]();<span class="comment">//获取数组内部的迭代器对象</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: 'a', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: 'b', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: 'c', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象中迭代属性值<br>对象中没有自带的迭代器，需要自己定义一个。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span>,</span><br><span class="line">b:<span class="number">3</span>,</span><br><span class="line">c:<span class="number">4</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="built_in">Symbol</span>.iterator,&#123;</span><br><span class="line">    enumerable:<span class="literal">false</span>,</span><br><span class="line">    writable:<span class="literal">false</span>,</span><br><span class="line">    value:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> o=<span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> idx=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> ks=<span class="built_in">Object</span>.keys(o);</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            next:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span>&#123;</span><br><span class="line">                    value:o[ks[idx++]],</span><br><span class="line">                    done:(idx&gt;ks.length)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> v <span class="keyword">of</span> obj)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只要 next 方法返回了<code>{value:value,done:boolean}</code>，那么迭代就会继续，不管对象还有没有属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> randoms=&#123;</span><br><span class="line">    [<span class="built_in">Symbol</span>.iterator]:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            next:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span>&#123;<span class="attr">value</span>:<span class="built_in">Math</span>.random()*<span class="number">10</span>&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> random_pool=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> v <span class="keyword">of</span> randoms)&#123;</span><br><span class="line">    <span class="keyword">if</span>(random_pool.length&lt;<span class="number">10</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(v)</span><br><span class="line">        random_pool.push(v)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码自定义了一个产生随机数的迭代器，next 一直返回有效的值，因而迭代不会停止。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/09/22/作用域/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2075,234 +2277,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/05/06/NodeJs-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2019/05/06/NodeJs-1/" itemprop="url">node基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-06T10:48:58+08:00">
-                2019-05-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="node基础"><a href="#node基础" class="headerlink" title="node基础"></a>node基础</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
-<li>基于require模块化的JavaScript代码执行器  </li>
-</ul>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>事件机制和异步IO</li>
-</ul>
-<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><ul>
-<li><p>exports<br>  输出某个模块中的方法，变量  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var b=4;</span><br><span class="line">function count()&#123;</span><br><span class="line">    b++;</span><br><span class="line">&#125;</span><br><span class="line">exports.b=b</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>module<br>  重写整个输出的对象  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">moduel.exports=&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>require<br>  引入模块，可以是路径，内置模块   </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;./a&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>主模块<br>  node命令行执行的函数  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node main.js</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="代码组织和部署"><a href="#代码组织和部署" class="headerlink" title="代码组织和部署"></a>代码组织和部署</h1><h2 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h2><ul>
-<li><p>内置模块  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;fs&apos;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>node_modules目录<br>  如果文件的绝对路径为/a/b/c </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;foo/bar&apos;)</span><br></pre></td></tr></table></figure>
-<p>  会逐级向上搜索node_modules，即  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&apos;a/b/c/node_modules/foo/bar&apos;  </span><br><span class="line">&apos;a/b/node_modules/foo/bar&apos;    </span><br><span class="line">&apos;a/node_modules/foo/bar&apos;   </span><br><span class="line">&apos;node_modules/foo/bar&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自定义模块搜索路径<br>  在环境变量中配置node_path，加载模块时就会去该目录</p>
-</li>
-</ul>
-<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><ul>
-<li>有多个依赖模块，将这些模块放在一个文件夹下，定义入口模块和输出模块，就形成了一个包  </li>
-<li>包的入口模块默认时index.js,因此命名时如果为index.js就可以避免将输入模块写进路径中</li>
-<li>可以通过在包的根目录下创建package.json配置输入模块      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;   </span><br><span class="line">    name:xxx,</span><br><span class="line">    main:&apos;lib/main.jsx&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="命令行程序"><a href="#命令行程序" class="headerlink" title="命令行程序"></a>命令行程序</h2><ul>
-<li><p>window下配置命令行的路径，这样在任何地方都可以调用该程序     </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G:\nodeJs\sevendaylearnnode\base\node-echo</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在同一目录创建node-echo.cmd文件，在文件中加入以下代码，表示要执行的脚本  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@node &quot;G:\nodeJs\sevendaylearnnode\base\cmd\node-echo.js&quot; %*</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在cmd规定的位置创建node-echo.js文件，编写要执行的内容  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node-echo.js</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="工程目录"><a href="#工程目录" class="headerlink" title="工程目录"></a>工程目录</h2><table>
-<thead>
-<tr>
-<th>目录</th>
-<th>作用  </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>bin</td>
-<td>命令行代码</td>
-</tr>
-<tr>
-<td>lib</td>
-<td>APIP       </td>
-</tr>
-<tr>
-<td>doc</td>
-<td>文档</td>
-</tr>
-<tr>
-<td>test</td>
-<td>测试</td>
-</tr>
-<tr>
-<td>readme.md</td>
-<td>项目简单介绍</td>
-</tr>
-<tr>
-<td>package.josn</td>
-<td>项目包配置 </td>
-</tr>
-</tbody>
-</table>
-<h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><ul>
-<li><p>安装第三方包  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装命令行工具  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i &lt;package&gt; -g</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发布第三方包和命令行程序</p>
-<ul>
-<li><p>注册用户  </p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm addUser 注册用户</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写包</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//package.json</span><br><span class="line">&#123;</span><br><span class="line">    name:&apos;xxxx&apos;,    </span><br><span class="line">    version:1.0.0,  </span><br><span class="line">    bin:&apos;命令行程序的路径&apos;,  </span><br><span class="line">    dependance:&#123;  </span><br><span class="line">        argv:&apos;0.0.2&apos;  </span><br><span class="line">        //配置依赖  </span><br><span class="line">    &#125;,</span><br><span class="line">    main:&apos;入口模块&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发布</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2348,7 +2327,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

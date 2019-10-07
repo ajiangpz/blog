@@ -229,6 +229,180 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/07/es6对象新增方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/10/07/es6对象新增方法/" itemprop="url">es6对象新增方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-07T17:55:14+08:00">
+                2019-10-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Object-is"><a href="#Object-is" class="headerlink" title="Object.is()"></a>Object.is()</h3><p>Object.is()可以用来判断两个值是否相等，与 ES5 的区别在于 ES5 中+0 与-0 相等，NAN 与 NAN 不等，而 Object.is()纠正了这个错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(+<span class="number">0</span> === <span class="number">-0</span>); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(+<span class="number">0</span>, <span class="number">-0</span>)); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>); <span class="comment">//false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="literal">NaN</span>, <span class="literal">NaN</span>)); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a>Object.assign()</h3><p>Object.assign()用于对象可枚举属性的合并，第一个参数是目标对象，其他参数都是源对象，出现相同属性时后面的对象会覆盖前面的对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> o2 = &#123;</span><br><span class="line">  b: <span class="number">2</span>,</span><br><span class="line">  c: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> o3 = &#123;</span><br><span class="line">  c: <span class="number">3</span>,</span><br><span class="line">  d: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.assign(o1, o2, o3); <span class="comment">//&#123; a: 1, b: 2, c: 3, d: 3 &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(o1);</span><br></pre></td></tr></table></figure>
+<p>如果参数不是对象，该方法会将其转为为对象，然后返回，但是原来的值没有变化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> o2 = <span class="built_in">Object</span>.assign(o1);</span><br><span class="line"><span class="built_in">console</span>.log(o2 <span class="keyword">instanceof</span> <span class="built_in">Number</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>如果无法转化为对象，则报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.assign(<span class="literal">undefined</span>); <span class="comment">// 报错</span></span><br><span class="line"><span class="built_in">Object</span>.assign(<span class="literal">null</span>); <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>如果非对象参数出现在源对象的位置（即非首参数），那么处理规则有所不同。首先，这些参数都会转成对象，如果无法转成对象，就会跳过。这意味着，如果 undefined 和 null 不在首参数，就不会报错。<br>其他类型的值（即数值、字符串和布尔值）不在首参数，也不会报错。但是，除了字符串会以数组形式，拷贝入目标对象，其他值都不会产生效果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> v1 = <span class="string">"abc"</span>;</span><br><span class="line"><span class="keyword">const</span> v2 = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">const</span> v3 = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = <span class="built_in">Object</span>.assign(&#123;&#125;, v1, v2, v3);</span><br><span class="line"><span class="built_in">console</span>.log(obj); <span class="comment">// &#123; "0": "a", "1": "b", "2": "c" &#125;</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，v1、v2、v3 分别是字符串、布尔值和数值，结果只有字符串合入目标对象（以字符数组的形式），数值和布尔值都会被忽略。这是因为只有字符串的包装对象，会产生可枚举属性。</p>
+<p>以 Symbol 值为属性的对象也会被拷贝到新的对象中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>(<span class="string">"foo"</span>)]: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(o1, <span class="string">"bar"</span>, &#123;</span><br><span class="line">  value: <span class="number">2</span> <span class="comment">//默认不可写，不可枚举，不可配置</span></span><br><span class="line">  <span class="comment">// writable: false,</span></span><br><span class="line">  <span class="comment">//enumerable: false,</span></span><br><span class="line">  <span class="comment">//configurable: false</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(o1, <span class="string">"bar"</span>));</span><br><span class="line"><span class="keyword">let</span> o2 = <span class="built_in">Object</span>.assign(&#123;&#125;, o1);</span><br><span class="line"><span class="built_in">console</span>.log(o2); <span class="comment">//&#123; [Symbol(foo)]: 'foo' &#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h4><p>浅拷贝</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">同名属性不管是对象还是基本数据类型都会被整个替换</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br><span class="line"><span class="keyword">const</span> target = &#123; <span class="attr">a</span>: &#123; <span class="attr">b</span>: <span class="string">"c"</span>, <span class="attr">d</span>: <span class="string">"e"</span> &#125; &#125;;</span><br><span class="line"><span class="keyword">const</span> source = &#123; <span class="attr">a</span>: &#123; <span class="attr">b</span>: <span class="string">"hello"</span> &#125; &#125;;</span><br><span class="line"><span class="built_in">Object</span>.assign(target, source);</span><br><span class="line"><span class="comment">// &#123; a: &#123; b: 'hello' &#125; &#125;</span></span><br></pre></td></tr></table></figure>
+<p>数组的处理<br>数组会被当成对象处理，下标作为属性名。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">取值函数的处理</span></span><br><span class="line"><span class="string">如果属性是一个求值函数，那么先求值在复制。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br></pre></td></tr></table></figure>
+<h4 id="常见用途"><a href="#常见用途" class="headerlink" title="常见用途"></a>常见用途</h4><p>为对象添加属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">F</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    <span class="built_in">Object</span>.assign(<span class="keyword">this</span>, &#123;</span><br><span class="line">      x,</span><br><span class="line">      y</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o1 = <span class="keyword">new</span> F(<span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(o1.x, o1.y);</span><br></pre></td></tr></table></figure>
+<p>为 F 的实例添加了 x,y 两个属性。</p>
+<p>为对象添加方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">F</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    <span class="built_in">Object</span>.assign(<span class="keyword">this</span>, &#123;</span><br><span class="line">      logX() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(x * x);</span><br><span class="line">      &#125;,</span><br><span class="line">      logY() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(y * y * y);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> o1 = <span class="keyword">new</span> F(<span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line">o1.logX(); <span class="comment">//9</span></span><br><span class="line">o1.logY(); <span class="comment">//8</span></span><br></pre></td></tr></table></figure>
+<p>克隆对象（包含原型）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(o1).c = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">let</span> o2 = <span class="built_in">Object</span>.assign(<span class="built_in">Object</span>.create(<span class="built_in">Object</span>.getPrototypeOf(o1)), o1);</span><br><span class="line"><span class="built_in">console</span>.log(o2.c); <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<p>Object.create(Object.getPrototypeOf(o1))创建了一个对象且其[prototype]属性指向 o1 的原型对象。</p>
+<p>合并对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> merge = <span class="function">(<span class="params">...sources</span>) =&gt;</span> <span class="built_in">Object</span>.assign(&#123;&#125;, ...sources);</span><br><span class="line"><span class="keyword">let</span> o = merge(</span><br><span class="line">  &#123;</span><br><span class="line">    a: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    b: <span class="number">2</span>,</span><br><span class="line">    c: <span class="number">3</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    b: <span class="number">3</span>,</span><br><span class="line">    c: <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(o);</span><br></pre></td></tr></table></figure>
+<p>为属性指定默认值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> defaultOptions = &#123;</span><br><span class="line">  a: <span class="number">0</span>,</span><br><span class="line">  b: <span class="number">0</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//如果options是undefined就会被忽略</span></span><br><span class="line">  options = <span class="built_in">Object</span>.assign(&#123;&#125;, defaultOptions, options);</span><br><span class="line">  <span class="built_in">console</span>.log(options);</span><br><span class="line">&#125;</span><br><span class="line">fn(&#123;</span><br><span class="line">  a: <span class="number">9</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注意默认值的属性值不应该是对象，因为这样会整个被覆盖。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> defaultOptions = &#123;</span><br><span class="line">  first: &#123;</span><br><span class="line">    a: <span class="number">0</span>,</span><br><span class="line">    b: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//如果options是undefined就会被忽略</span></span><br><span class="line">  options = <span class="built_in">Object</span>.assign(&#123;&#125;, defaultOptions, options);</span><br><span class="line">  <span class="built_in">console</span>.log(options); <span class="comment">//&#123; first: &#123;&#125; &#125;</span></span><br><span class="line">&#125;</span><br><span class="line">fn(&#123;</span><br><span class="line">  first: &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="Object-getOwnPropertyDescriptors-obj"><a href="#Object-getOwnPropertyDescriptors-obj" class="headerlink" title="Object.getOwnPropertyDescriptors(obj)"></a>Object.getOwnPropertyDescriptors(obj)</h3><p>获取对象自身所有属性的描述（不包括 Symbol），返回一个对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">2</span>,</span><br><span class="line">  <span class="keyword">get</span> c() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> info = <span class="built_in">Object</span>.getOwnPropertyDescriptors(o1);</span><br><span class="line"><span class="built_in">console</span>.log(info);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123; </span></span><br><span class="line"><span class="comment">  a:</span></span><br><span class="line"><span class="comment">   &#123; value: 1, writable: true, enumerable: true, configurable: true &#125;,</span></span><br><span class="line"><span class="comment">  b:</span></span><br><span class="line"><span class="comment">   &#123; value: 2, writable: true, enumerable: true, configurable: true &#125;,</span></span><br><span class="line"><span class="comment">  c:</span></span><br><span class="line"><span class="comment">   &#123; get: [Function: get c],</span></span><br><span class="line"><span class="comment">     set: undefined,</span></span><br><span class="line"><span class="comment">     enumerable: true,</span></span><br><span class="line"><span class="comment">     configurable: true </span></span><br><span class="line"><span class="comment">    &#125; </span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>由于 Object.assign()在复制访问器属性时是先求值再复制的，因此无法将访问方法也复制过来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">5</span>,</span><br><span class="line">  <span class="keyword">get</span> c() &#123;</span><br><span class="line">    <span class="comment">// console.log(this)</span></span><br><span class="line">    <span class="keyword">let</span> sum = <span class="keyword">this</span>.a + <span class="keyword">this</span>.b;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> target = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.assign(target, o1); <span class="comment">//&#123; a: 1, b: 5, c: 6 &#125;</span></span><br></pre></td></tr></table></figure>
+<p>通过 Object.getOwnPropertyDescriptors()和 Object.defineProperties()可以实现复制对象的 set 方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">5</span>,</span><br><span class="line">  <span class="keyword">get</span> c() &#123;</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="keyword">this</span>.a + <span class="keyword">this</span>.b;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> target = &#123;</span><br><span class="line">  d: <span class="number">4</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(target, <span class="built_in">Object</span>.getOwnPropertyDescriptors(o1));</span><br><span class="line"><span class="built_in">console</span>.log(target);</span><br></pre></td></tr></table></figure>
+<p>Object.getOwnPropertyDescriptors()方法的另一个用处，是配合 Object.create()方法，将对象属性克隆到一个新对象。这属于浅拷贝。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">5</span>,</span><br><span class="line">  <span class="keyword">get</span> c() &#123;</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="keyword">this</span>.a + <span class="keyword">this</span>.b;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> proto = <span class="built_in">Object</span>.getPrototypeOf(o1);</span><br><span class="line">proto.sayHi = <span class="function"><span class="params">name</span> =&gt;</span> <span class="built_in">console</span>.log(name);</span><br><span class="line"><span class="keyword">let</span> target = <span class="built_in">Object</span>.create(proto, <span class="built_in">Object</span>.getOwnPropertyDescriptors(o1));</span><br><span class="line">target.sayHi(<span class="string">"xiaoming"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="对象原型相关"><a href="#对象原型相关" class="headerlink" title="对象原型相关"></a>对象原型相关</h3><p>Object.setPrototypeOf(obj,proto)<br>如果第一个参数不是对象会被自动转化为对象，但是由于 null 和 undefined 无法转化为对象，因此会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.setPrototypeOf(<span class="literal">undefined</span>, &#123;&#125;);</span><br><span class="line"><span class="comment">// TypeError: Object.setPrototypeOf called on null or undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(<span class="literal">null</span>, &#123;&#125;);</span><br><span class="line"><span class="comment">// TypeError: Object.setPrototypeOf called on null or undefined</span></span><br></pre></td></tr></table></figure>
+<p>Object.getPrototypeOf()<br>获取对象的原型，如果参数不是对象会被自动转化为对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 等同于 Object.getPrototypeOf(Number(1))</span></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="number">1</span>);</span><br><span class="line"><span class="comment">// Number &#123;[[PrimitiveValue]]: 0&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于 Object.getPrototypeOf(String('foo'))</span></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="string">"foo"</span>);</span><br><span class="line"><span class="comment">// String &#123;length: 0, [[PrimitiveValue]]: ""&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于 Object.getPrototypeOf(Boolean(true))</span></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="literal">true</span>);</span><br><span class="line"><span class="comment">// Boolean &#123;[[PrimitiveValue]]: false&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="number">1</span>) === <span class="built_in">Number</span>.prototype; <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="string">"foo"</span>) === <span class="built_in">String</span>.prototype; <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="literal">true</span>) === <span class="built_in">Boolean</span>.prototype; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="Object-values"><a href="#Object-values" class="headerlink" title="Object.values()"></a>Object.values()</h3><p>Object.values 方法返回一个数组，成员是参数对象自身的（不含继承的）所有可遍历（enumerable）属性的键值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(o1, <span class="string">"c"</span>, &#123;</span><br><span class="line">  value: <span class="number">3</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">Object</span>.values(o1).forEach(<span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">console</span>.log(x)); <span class="comment">//1,2</span></span><br></pre></td></tr></table></figure>
+<p>如果参数是字符串，字符串会先转化为一个类似数组的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.values(<span class="string">"foo"</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  0:'f',</span></span><br><span class="line"><span class="comment">  1:'o',</span></span><br><span class="line"><span class="comment">  2:'o'</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// ['f', 'o', 'o']</span></span><br></pre></td></tr></table></figure>
+<p>如果参数不是对象，Object.values 会先将其转为对象。由于数值和布尔值的包装对象，都不会为实例添加非继承的属性。所以，Object.values 会返回空数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.values(<span class="number">42</span>); <span class="comment">// []</span></span><br><span class="line"><span class="built_in">Object</span>.values(<span class="literal">true</span>); <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<p>Object.entries()<br>遍历对象，返回键值对数组组成的数组，行为与 Object.values()一直。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [k, v] <span class="keyword">of</span> <span class="built_in">Object</span>.entries(o1)) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(k, v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将对象转化为 Map 结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o1 = &#123;</span><br><span class="line">  a: <span class="number">1</span>,</span><br><span class="line">  b: <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>(<span class="built_in">Object</span>.entries(o1));</span><br><span class="line"><span class="built_in">console</span>.log(map); <span class="comment">//Map &#123; 'a' =&gt; 1, 'b' =&gt; 2 &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Object-fromEntries"><a href="#Object-fromEntries" class="headerlink" title="Object.fromEntries()"></a>Object.fromEntries()</h3><p>将一个键值对数组转化为对象，特别适合将 Map 结构转化为对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>().set(<span class="string">"foo"</span>, <span class="literal">true</span>).set(<span class="string">"bar"</span>, <span class="literal">false</span>);</span><br><span class="line"><span class="built_in">Object</span>.fromEntries(map);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/07/es6对象扩展/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1659,213 +1833,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/09/28/对象-md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2019/09/28/对象-md/" itemprop="url">对象</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T10:10:39+08:00">
-                2019-09-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ul>
-<li>基本数据类型<br><code>string</code>,<code>number</code>,<code>boolean</code>,<code>null</code>,<code>undefined</code></li>
-<li><p>内置对象<br><code>String</code>，<code>Number</code>，<code>Boolean</code>，<code>Object</code>，<code>Array</code>，<code>Function</code>，<code>Date</code>，<code>RegExp</code>，<code>Error</code><br>这些内置对象是 JavaScript 内部的构造函数，用于创建对应子类型的新对象。其中除了<code>Date</code>，<code>Error</code>其他子类型都可以通过字面量创建，对于<code>String</code>，<code>Number</code>，<code>Boolean</code>，它们的字面量是基本类型，对于<code>Object</code>，<code>Array</code>，<code>Function</code>，<code>RegExp</code>，它们的字面量也是对象。<code>String</code>，<code>Number</code>在调用对象对象的方法时，JavaScript 引擎会自动将其字面量转化为对象。如</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'123'</span>.length;</span><br><span class="line"><span class="number">123.123</span>.toFixed(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>null 为什么不是对象？<br>在底层对象都已二进制表示，如果是对象类型那么前三位都是 0，而 null 所有的位都是 0，因而被检测为对象。</p>
-</li>
-</ul>
-<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><ul>
-<li><p>可计算属性名<br>在 ES6 中可以使用<code>[&#39;表达式&#39;]</code>定义属性名。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1=&#123;</span><br><span class="line">    [+<span class="keyword">new</span> <span class="built_in">Date</span>()]:<span class="string">'aaaa'</span>,</span><br><span class="line">    [<span class="number">1</span>+<span class="number">2</span>]:<span class="string">'bbbb'</span>,</span><br><span class="line">    [<span class="built_in">Symbol</span>()]:<span class="string">'cccc'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(obj1)</span><br><span class="line"><span class="comment">//&#123; '3': 'bbbb', '1569484632274': 'aaaa', [Symbol()]: 'cccc' &#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数组属性<br>数组也是对象，也可以以对象的方式添加属性。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr=[<span class="string">'foo'</span>,<span class="string">'bar'</span>,<span class="string">'baz'</span>];</span><br><span class="line">arr[<span class="string">'name'</span>]=<span class="string">'array'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr.length);<span class="comment">//3</span></span><br><span class="line">arr[<span class="string">'3'</span>]=<span class="string">'array'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr.length)<span class="comment">//4</span></span><br></pre></td></tr></table></figure>
-<p>当对象的属性可以转化为数字时，js 会将直接将其作为数组下标的值，从而有可能改变数组的长度。</p>
-</li>
-<li><p>复制对象<br><code>Object.assign({},obj)</code>可以实现浅拷贝，<code>JSON.Parse(JSON.stringify(obj))</code>可以实现安全的 JSON 对象的深拷贝。</p>
-</li>
-<li><p>属性描述符</p>
-<ul>
-<li><p>获取属性描述</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">    a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(obj,<span class="string">'a'</span>))</span><br><span class="line"><span class="comment">//&#123; value: 2, writable: true, enumerable: true, configurable: true &#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定义属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">3</span>,</span><br><span class="line">    writable:<span class="literal">false</span>,</span><br><span class="line">    configurable:<span class="literal">true</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line">obj.a=<span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.a)<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>writable<br>定义属性是否可写，如果定义为 false，在非严格模式下不会报错也不会修改属性值</li>
-<li><p>configurable<br>定义属性是否可以配置，如果为 true，那么属性不能再用 defineProperty 配置<code>enumerable</code>,<code>configurable</code>。<code>writable</code>可以有 true 配置为 false，但是不可以从 false 配置为 true，删除对象属性也会静默无效。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">3</span>,</span><br><span class="line">    writable:<span class="literal">true</span>,</span><br><span class="line">    configurable:<span class="literal">false</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;<span class="attr">value</span>:<span class="number">2</span>&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;<span class="attr">writable</span>:<span class="literal">false</span>&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;<span class="attr">enumerable</span>:<span class="literal">false</span>&#125;)</span><br><span class="line"><span class="comment">//Cannot redefine property: a</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">3</span>,</span><br><span class="line">    writable:<span class="literal">true</span>,</span><br><span class="line">    configurable:<span class="literal">false</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">delete</span> obj.a;</span><br><span class="line"><span class="built_in">console</span>.log(obj.a);</span><br></pre></td></tr></table></figure>
-<p>tip:delete 删除的属性如果是对象的引用，那么被引用的对象如果没有其他引用就会被垃圾回收。</p>
-</li>
-<li><p>enumerable<br>描述属性是否可以被类似于<code>Object.keys()</code>（对象自身）,<code>for...in...</code>（对象自身和原型）枚举。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>不变性</p>
-<ul>
-<li><p>对象常量<br>通过将<code>configurable</code>和<code>writable</code>属性设置为 false，可以为对象创建一个常量属性。</p>
-</li>
-<li><p>禁止扩展<br>禁止一个对象添加新属性并且保留已有属性，可以使用<code>Object.</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">    a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.preventExtensions(obj)</span><br><span class="line">obj.b=<span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.b);<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>密封<br><code>Object.seal()</code>方法先禁止对象扩展，并把对象所有属性标记为<code>configurable</code>为<code>false</code>，添加后对象不仅不能添加新的属性，也不能重新配置和删除已有的属性。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.seal(obj);</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">5</span>,</span><br><span class="line">    writable:<span class="literal">false</span></span><br><span class="line">&#125;)<span class="comment">//不会报错</span></span><br><span class="line"><span class="keyword">delete</span> obj.a</span><br><span class="line"><span class="built_in">console</span>.log(obj.a)<span class="comment">//5,没有被删除</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    configurable:<span class="literal">true</span></span><br><span class="line">&#125;)<span class="comment">//报错！不能重新配置。</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>冻结<br><code>Object.freeze()</code>,创建一个冻结对象，所有属性的<code>writable</code>都被设置被<code>false</code>,这个方法是可以应用在对象上最高级别的不变性。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.freeze(obj);</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'a'</span>,&#123;</span><br><span class="line">    value:<span class="number">5</span>,<span class="comment">//连属性值也不能修改</span></span><br><span class="line">    writable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(obj.a)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p><em>Getter</em>和<em>Setter</em><br>当一个对象定义<code>getter</code>或者<code>setter</code>属性，JavaScript 会忽略对象的<code>value</code>和<code>writable</code>特性，而通过<code>set</code>和<code>get</code>特性去获取或者设置对象的值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">    <span class="keyword">get</span> a()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._a_||<span class="number">0</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span> a(val)&#123;</span><br><span class="line">        <span class="keyword">this</span>._a_=val*val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.a=<span class="number">4</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj.a);<span class="comment">//16</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>存在性<br>判断对象是否存在某一个属性，可以用<code>in</code>，<code>hasOwnProperty</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> <span class="built_in">Object</span>(&#123;</span><br><span class="line">    a:<span class="string">'aaaa'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.prototype.b=<span class="string">'bbbb'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'b'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'a'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'b'</span>));<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-<p><code>in</code>会查找整个对象自身及其原型链的属性，<code>hasOwnProperty</code>只会查找对象本身的属性，这两个判断的是属性的<code>可访问性</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=<span class="keyword">new</span> <span class="built_in">Object</span>(&#123;</span><br><span class="line">a:<span class="string">'aaaa'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'c'</span>,&#123;</span><br><span class="line">    value:<span class="string">'cccc'</span>,</span><br><span class="line">    enumerable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'a'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'a'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'c'</span> <span class="keyword">in</span> obj);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.hasOwnProperty(<span class="string">'c'</span>));<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>可枚举性意味着可以被遍历，遍历指的是<code>for...in</code>和<code>Object.keys()</code>等具有循环的方法，<code>Object.keys()</code>可以获取对象本身所有可枚举属性，但是没有内置函数可以得到对象及其原型链上所有可枚举属性的列表。判断对象本身属性是否可以枚举可以使用 <code>propertyIsEnumerable()</code>，<code>getOwnPropertyNames()</code>可以获取对象自身所有可访问属性，它不是一个遍历方法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="string">'b'</span>,&#123;</span><br><span class="line">    enumerable:<span class="literal">false</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(obj));<span class="comment">//[a,b]</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.propertyIsEnumerable(<span class="string">'a'</span>));<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.propertyIsEnumerable(<span class="string">'b'</span>));<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><ul>
-<li>遍历对象属性<br><code>for...in...</code>，<code>object.keys()</code></li>
-<li><p>遍历对象的属性值</p>
-<ul>
-<li><code>ES5</code>数组中遍历对象的属性值<br><code>foreach(callback))</code>遍历所有数组的值并忽略回调函数的返回值，<code>some(callback)</code>回调函数返回<code>true</code>即停止遍历，<code>every(callback)</code>回调函数返回<code>false</code>即停止遍历。</li>
-<li><p><code>ES6</code>数组中遍历对象的属性值<br><code>for...of...</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> v <span class="keyword">of</span> arr)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(v)<span class="comment">//a,b,c</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>for...of...</code>会调用数组内部的迭代器对象，执行对象的<code>next()</code>方法，每个<code>next()</code>都会返回<code>{value:value|undefined,done:false|true}</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">var</span> it=arr[<span class="built_in">Symbol</span>.iterator]();<span class="comment">//获取数组内部的迭代器对象</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: 'a', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: 'b', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: 'c', done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(it.next())<span class="comment">//&#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>对象中迭代属性值<br>对象中没有自带的迭代器，需要自己定义一个。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">a:<span class="number">2</span>,</span><br><span class="line">b:<span class="number">3</span>,</span><br><span class="line">c:<span class="number">4</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj,<span class="built_in">Symbol</span>.iterator,&#123;</span><br><span class="line">    enumerable:<span class="literal">false</span>,</span><br><span class="line">    writable:<span class="literal">false</span>,</span><br><span class="line">    value:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> o=<span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">var</span> idx=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">var</span> ks=<span class="built_in">Object</span>.keys(o);</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            next:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span>&#123;</span><br><span class="line">                    value:o[ks[idx++]],</span><br><span class="line">                    done:(idx&gt;ks.length)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> v <span class="keyword">of</span> obj)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>只要 next 方法返回了<code>{value:value,done:boolean}</code>，那么迭代就会继续，不管对象还有没有属性。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> randoms=&#123;</span><br><span class="line">    [<span class="built_in">Symbol</span>.iterator]:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;</span><br><span class="line">            next:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span>&#123;<span class="attr">value</span>:<span class="built_in">Math</span>.random()*<span class="number">10</span>&#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> random_pool=[];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> v <span class="keyword">of</span> randoms)&#123;</span><br><span class="line">    <span class="keyword">if</span>(random_pool.length&lt;<span class="number">10</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(v)</span><br><span class="line">        random_pool.push(v)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述代码自定义了一个产生随机数的迭代器，next 一直返回有效的值，因而迭代不会停止。</p>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1911,7 +1883,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
