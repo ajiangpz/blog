@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Set 是什么？Set 是一种 js 一种新的数据结构，类似于数组，属于对象，特点是成员的值都是唯一的，没有重复的值。 123456789let set = new Set([1, 2, 3, 4, 4]);console.log(typeof set); //objectconsole.log(set.toString()); //[Object Set]console.log(set); //">
+<meta property="og:type" content="article">
+<meta property="og:title" content="set-and-map">
+<meta property="og:url" content="https://github.com/ajiangpz/blog/2019/10/08/set-and-map/index.html">
+<meta property="og:site_name" content="Pzzz&#39;s FE Blog">
+<meta property="og:description" content="Set 是什么？Set 是一种 js 一种新的数据结构，类似于数组，属于对象，特点是成员的值都是唯一的，没有重复的值。 123456789let set = new Set([1, 2, 3, 4, 4]);console.log(typeof set); //objectconsole.log(set.toString()); //[Object Set]console.log(set); //">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-08T15:37:51.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="set-and-map">
+<meta name="twitter:description" content="Set 是什么？Set 是一种 js 一种新的数据结构，类似于数组，属于对象，特点是成员的值都是唯一的，没有重复的值。 123456789let set = new Set([1, 2, 3, 4, 4]);console.log(typeof set); //objectconsole.log(set.toString()); //[Object Set]console.log(set); //">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/ajiangpz/blog/2019/10/08/set-and-map/">
+
+
+
+
+
+  <title>set-and-map | Pzzz's FE Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pzzz's FE Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/08/set-and-map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">set-and-map</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-08T21:05:51+08:00">
+                2019-10-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Set-是什么？"><a href="#Set-是什么？" class="headerlink" title="Set 是什么？"></a>Set 是什么？</h3><p>Set 是一种 js 一种新的数据结构，类似于数组，属于对象，特点是成员的值都是唯一的，没有重复的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1, 2, 3, 4, 4]);</span><br><span class="line">console.log(typeof <span class="keyword">set</span>); //object</span><br><span class="line">console.log(<span class="keyword">set</span>.toString()); //[Object Set]</span><br><span class="line">console.log(<span class="keyword">set</span>); //1,2,3,4</span><br><span class="line">let <span class="keyword">set</span> = new Set();</span><br><span class="line">[1, 2, 3, 4, 5, 5].forEach(v =&gt; &#123;</span><br><span class="line">  <span class="keyword">set</span>.add(v);</span><br><span class="line">&#125;);</span><br><span class="line">//Set Set &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>可以用扩展运算符实现数组去重</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> uniqueArr = [...new <span class="built_in">Set</span>(arr)];</span><br><span class="line"><span class="built_in">console</span>.log(uniqueArr); <span class="comment">//[1,2,3]</span></span><br></pre></td></tr></table></figure>
+<p>也可以实现字符串的去重</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...new <span class="built_in">Set</span>(<span class="string">"aaabbbcc"</span>)].join(<span class="string">""</span>); <span class="comment">//abc</span></span><br></pre></td></tr></table></figure>
+<p>Set 中判断值相等的方式于“===”类似，但是 NaN 与 NaN 是相等的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...new <span class="built_in">Set</span>([<span class="literal">NaN</span>, <span class="literal">NaN</span>, , ]<span class="comment">//[ NaN, undefined ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="Set-实例的方法"><a href="#Set-实例的方法" class="headerlink" title="Set 实例的方法"></a>Set 实例的方法</h3><p>操作数据的方法<br>增加<code>Set.prototype.add(v)</code>返回 set 本身，删除<code>Set.prototype.delete(v)</code>，判断是否有指定的值<code>Set.prototype.has(v)</code>，清空 set 结构<code>Set.prototype.clear()</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Array.from()可以将`</span><span class="built_in">Set</span><span class="string">`结构转化数组</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br></pre></td></tr></table></figure>
+<p>遍历数组的方法<br><code>Set.prototype.keys()</code>，<code>Set.prototype.values()</code>，<code>Set.prototype.entries()</code>，<code>Set.forEach()</code>前三种方法都是返回遍历器对象，即只能使用手动 next 方法或者用 for…of…调用遍历器的 next 方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">由于 Set 结构没有键名，只有键值（或者说键名和键值是同一个值），所以 keys 方法和 values 方法的行为完全一致。</span></span><br><span class="line"><span class="string">Set 结构的实例默认可遍历，它的默认遍历器生成函数就是它的 values 方法。因此可以用 for...of..直接遍历 Set 结构。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br></pre></td></tr></table></figure>
+<p>通过扩展运算符（for…of…的缩写）可以将 Set 结构转化为数组，使用数组的 filter 方法，可以实现交集，并集，差集。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> set1 = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="keyword">let</span> set2 = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]);</span><br><span class="line"><span class="keyword">let</span> set3 = <span class="keyword">new</span> <span class="built_in">Set</span>([...set1, ...set2]); <span class="comment">//并集 Set &#123; 1, 2, 3, 4 &#125;</span></span><br><span class="line"><span class="keyword">let</span> set4 = <span class="keyword">new</span> <span class="built_in">Set</span>([...set1].filter(<span class="function"><span class="params">x</span> =&gt;</span> set2.has(x))); <span class="comment">//交集 Set &#123; 2, 3 &#125;</span></span><br><span class="line"><span class="keyword">let</span> set5 = <span class="keyword">new</span> <span class="built_in">Set</span>([...set1].filter(<span class="function"><span class="params">x</span> =&gt;</span> !set2.has(x))); <span class="comment">//差集 Set &#123; 1 &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h3><p>weakSet 的性质和实例方法和 Set 结构类似，但是 WeakSet 有以下特点<br>成员只能是对象，且不能被遍历。weakSet 结构中对对象都是弱引用，也就是当 weakSet 中的对象的其他引用为 0，这些对象可以被回收。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">``</span><span class="string">`</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">WeakSet 的一个用处，是储存 DOM 节点，而不用担心这些节点从文档移除时，会引发内存泄漏。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js</span><br></pre></td></tr></table></figure>
+<h3 id="Map-结构"><a href="#Map-结构" class="headerlink" title="Map 结构"></a>Map 结构</h3><p>Js 对象本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。如将 dom 节点作为键值则 dom 节点会被转化为字符串[object HTMLDivElement]<br>Map 结构可以将任何类型的数据作为键值，因为 Map 结构不会管键值到底是什么，只会找到键值所在的内存地址。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">  .set(<span class="literal">null</span>, <span class="string">"null"</span>)</span><br><span class="line">  .set(<span class="literal">undefined</span>, <span class="string">"undefined"</span>)</span><br><span class="line">  .set(</span><br><span class="line">    &#123;&#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      a: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line"><span class="comment">//Map &#123; null =&gt; 'null', undefined =&gt; 'undefined', &#123;&#125; =&gt; &#123; a: 1 &#125; &#125;</span></span><br></pre></td></tr></table></figure>
+<p>Map 的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键。这就解决了同名属性碰撞（clash）的问题，我们扩展别人的库的时候，如果使用对象作为键名，就不用担心自己的属性与原作者的属性同名。</p>
+<p>Map 实例的方法<br>Map.prototype.set()返回 Map 实例，可以作链式操作，Map.prototype.get(k)，获取键值对应的键名，Map.prototype.has(key)，Map.prototype.delete(key)这些方法都和 Set 一致。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>().set(a, &#123;</span><br><span class="line">  a: <span class="number">1</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> item = map.get(a);</span><br><span class="line"><span class="built_in">console</span>.log(item); <span class="comment">//&#123;a:1&#125;</span></span><br></pre></td></tr></table></figure>
+<p>遍历方法包括 keys(),values(),entries(),forEach(),但是默认是可以被 for…of…遍历的，默认的遍历器对象为 entries()返回的对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>().set(<span class="number">1</span>, <span class="string">"foo"</span>).set(<span class="literal">null</span>, <span class="string">"bar"</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [k, v] <span class="keyword">of</span> map) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(k, v);</span><br><span class="line">  <span class="comment">//1 'foo'</span></span><br><span class="line">  <span class="comment">//null 'bar'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Map 可以转化为数组进行处理后再转化为 Map 结构，也就是说可以用数组的方法对象 Map 数据进行处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>()</span><br><span class="line">  .set(<span class="number">1</span>, <span class="string">"foo"</span>)</span><br><span class="line">  .set(<span class="literal">null</span>, <span class="string">"bar"</span>)</span><br><span class="line">  .set(<span class="literal">undefined</span>, <span class="string">"baz"</span>);</span><br><span class="line">map = <span class="keyword">new</span> <span class="built_in">Map</span>([...map].filter(<span class="function">(<span class="params">[k, v]</span>) =&gt;</span> k === <span class="literal">null</span>));</span><br></pre></td></tr></table></figure>
+<p>与其他结构的转换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组</span></span><br><span class="line">[...new <span class="built_in">Map</span>().set(<span class="number">1</span>, <span class="string">"a"</span>)]; <span class="comment">//=&gt;[[1,a]]</span></span><br><span class="line"><span class="comment">//对象(Map结构的键值是字符串)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strMapToObj</span>(<span class="params">strMap</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> obj = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> [k, v] <span class="keyword">of</span> strMap) &#123;</span><br><span class="line">    obj[k] = v;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> myMap = <span class="keyword">new</span> <span class="built_in">Map</span>().set(<span class="string">"yes"</span>, <span class="literal">true</span>).set(<span class="string">"no"</span>, <span class="literal">false</span>);</span><br><span class="line"><span class="comment">//=&gt;&#123;"yes":true,"no":false&#125;</span></span><br><span class="line"><span class="comment">//对象转化为Map</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">objToStrMap</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> k <span class="keyword">of</span> <span class="built_in">Object</span>.keys(obj)) &#123;</span><br><span class="line">    map.set(k, obj[k]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> map; <span class="comment">//Map &#123; 'yes' =&gt; true, 'no' =&gt; false &#125;</span></span><br><span class="line">&#125;</span><br><span class="line">objToStrMap(&#123;</span><br><span class="line">  yes: <span class="literal">true</span>,</span><br><span class="line">  no: <span class="literal">false</span></span><br><span class="line">&#125;); <span class="comment">//Map &#123; 'yes' =&gt; true, 'no' =&gt; false &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="weakMap"><a href="#weakMap" class="headerlink" title="weakMap"></a>weakMap</h3><p>weakMap 的键名只能是对象，也是弱引用，不影响垃圾回收。<br>用途可以用 DOM 节点作为键名。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myElement = <span class="built_in">document</span>.getElementById(<span class="string">"logo"</span>);</span><br><span class="line"><span class="keyword">let</span> myWeakmap = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"></span><br><span class="line">myWeakmap.set(myElement, &#123; <span class="attr">timesClicked</span>: <span class="number">0</span> &#125;);</span><br><span class="line"></span><br><span class="line">myElement.addEventListener(</span><br><span class="line">  <span class="string">"click"</span>,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> logoData = myWeakmap.get(myElement);</span><br><span class="line">    logoData.timesClicked++;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>dom 节点删除，该状态就自动消失，可以防止内存泄漏</p>
+<p>WeakMap 的另一个用处是部署私有属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _counter = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"><span class="keyword">const</span> _action = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Countdown</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(counter, action) &#123;</span><br><span class="line">    _counter.set(<span class="keyword">this</span>, counter);</span><br><span class="line">    _action.set(<span class="keyword">this</span>, action);</span><br><span class="line">  &#125;</span><br><span class="line">  dec() &#123;</span><br><span class="line">    <span class="keyword">let</span> counter = _counter.get(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">if</span> (counter &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">    counter--;</span><br><span class="line">    _counter.set(<span class="keyword">this</span>, counter);</span><br><span class="line">    <span class="keyword">if</span> (counter === <span class="number">0</span>) &#123;</span><br><span class="line">      _action.get(<span class="keyword">this</span>)();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c = <span class="keyword">new</span> Countdown(<span class="number">2</span>, () =&gt; <span class="built_in">console</span>.log(<span class="string">"DONE"</span>));</span><br><span class="line"></span><br><span class="line">c.dec();</span><br><span class="line">c.dec();</span><br><span class="line"><span class="comment">// DONE</span></span><br></pre></td></tr></table></figure>
+<p>Countdown 类的两个内部属性_counter 和_action，是实例的弱引用，所以如果删除实例，它们也就随之消失，不会造成内存泄漏。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/10/07/es6对象新增方法/" rel="next" title="es6对象新增方法">
+                <i class="fa fa-chevron-left"></i> es6对象新增方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Pzzz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-是什么？"><span class="nav-number">1.</span> <span class="nav-text">Set 是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-实例的方法"><span class="nav-number">2.</span> <span class="nav-text">Set 实例的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WeakSet"><span class="nav-number">3.</span> <span class="nav-text">WeakSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map-结构"><span class="nav-number">4.</span> <span class="nav-text">Map 结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weakMap"><span class="nav-number">5.</span> <span class="nav-text">weakMap</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pzzz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
