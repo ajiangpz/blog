@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="proxy 是什么？proxy 是一个构造函数，用来构造指定对象的代理对象。 基本用法Proxy 函数接受两个参数，第一个是要代理的对象，第二个是配置对象，其中包括要被代理的操作，比如 get 操作（获取属性），set 操作（设置属性），apply（函数被调用）等操作。这些操作执行时，就会被拦截执行另外的操作。 123456789101112let a = &amp;#123;  foo: &quot;foo&quot;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="proxy">
+<meta property="og:url" content="https://github.com/ajiangpz/blog/2019/10/10/proxy/index.html">
+<meta property="og:site_name" content="Pzzz&#39;s FE Blog">
+<meta property="og:description" content="proxy 是什么？proxy 是一个构造函数，用来构造指定对象的代理对象。 基本用法Proxy 函数接受两个参数，第一个是要代理的对象，第二个是配置对象，其中包括要被代理的操作，比如 get 操作（获取属性），set 操作（设置属性），apply（函数被调用）等操作。这些操作执行时，就会被拦截执行另外的操作。 123456789101112let a = &amp;#123;  foo: &quot;foo&quot;,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-10T16:10:17.078Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="proxy">
+<meta name="twitter:description" content="proxy 是什么？proxy 是一个构造函数，用来构造指定对象的代理对象。 基本用法Proxy 函数接受两个参数，第一个是要代理的对象，第二个是配置对象，其中包括要被代理的操作，比如 get 操作（获取属性），set 操作（设置属性），apply（函数被调用）等操作。这些操作执行时，就会被拦截执行另外的操作。 123456789101112let a = &amp;#123;  foo: &quot;foo&quot;,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/ajiangpz/blog/2019/10/10/proxy/">
+
+
+
+
+
+  <title>proxy | Pzzz's FE Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pzzz's FE Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/10/proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">proxy</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-10T21:05:59+08:00">
+                2019-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="proxy-是什么？"><a href="#proxy-是什么？" class="headerlink" title="proxy 是什么？"></a>proxy 是什么？</h3><p>proxy 是一个构造函数，用来构造指定对象的代理对象。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p><code>Proxy</code> 函数接受两个参数，第一个是要代理的对象，第二个是配置对象，其中包括要被代理的操作，比如 get 操作（获取属性），set 操作（设置属性），apply（函数被调用）等操作。这些操作执行时，就会被拦截执行另外的操作。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">  foo: <span class="string">"foo"</span>,</span><br><span class="line">  bar: <span class="string">"bar"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(a, &#123;</span><br><span class="line">  <span class="keyword">get</span>(target, property) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(target, property);</span><br><span class="line">    <span class="comment">//&#123; foo: 'foo', bar: 'bar' &#125; 'foo'</span></span><br><span class="line">    <span class="keyword">return</span> target[property] + <span class="string">" from proxy!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(proxy.foo); <span class="comment">//foo from proxy!</span></span><br></pre></td></tr></table></figure>
+<p>可以将 proxy 设置为目标对象的一个属性，这样就可以通过对象属性访问代理对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  foo: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line">obj.proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(obj, &#123;</span><br><span class="line">  <span class="keyword">get</span>(t, p) &#123;</span><br><span class="line">    <span class="keyword">return</span> t[p] + <span class="string">" from proxy"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(obj.proxy.foo); <span class="comment">//foo from proxy</span></span><br></pre></td></tr></table></figure>
+<p>proxy 也可以作为其他对象的原型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(</span><br><span class="line">  &#123;&#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">get</span>(t, p) &#123;</span><br><span class="line">      <span class="keyword">if</span> (p === <span class="string">"foo"</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"foo"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"><span class="keyword">let</span> o1 = <span class="built_in">Object</span>.create(proxy);</span><br><span class="line"><span class="built_in">console</span>.log(o1.foo); <span class="comment">//foo</span></span><br></pre></td></tr></table></figure>
+<h3 id="proxy-拦截方法"><a href="#proxy-拦截方法" class="headerlink" title="proxy 拦截方法"></a>proxy 拦截方法</h3><h4 id="get"><a href="#get" class="headerlink" title="get()"></a>get()</h4><p>接收三个参数，第一个为目标对象，第二个为属性，第三个为 proxy 实例<br>使用 get 拦截，实现数组读取负数的索引。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(arr, &#123;</span><br><span class="line">  <span class="keyword">get</span>(t, p) &#123;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="built_in">Number</span>(p);</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> t[t.length + index];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> t[index];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(proxy[<span class="number">-1</span>]);</span><br></pre></td></tr></table></figure>
+<p>利用 get 参数可以实现函数的链式调用<br>思路：先将访问的属性如 double，pow 等存放在一个数组中，且每次访问都返回 proxy 对象。当调用 get 方法时，一次性返回或者如果属性是函数则执行所有函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pipe = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> fns = [];</span><br><span class="line">    <span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(</span><br><span class="line">      &#123;&#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">get</span>(t, p) &#123;</span><br><span class="line">          <span class="keyword">if</span> (p === <span class="string">"get"</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> fns.reduce(<span class="function">(<span class="params">returnValue, fn</span>) =&gt;</span> &#123;</span><br><span class="line">              <span class="keyword">return</span> fn(returnValue);</span><br><span class="line">            &#125;, value);</span><br><span class="line">          &#125;</span><br><span class="line">          fns.push(tools[p]);</span><br><span class="line">          <span class="keyword">return</span> proxy;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">return</span> proxy;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br><span class="line">tools = &#123;</span><br><span class="line">  double: <span class="function"><span class="params">n</span> =&gt;</span> n + n,</span><br><span class="line">  pow: <span class="function"><span class="params">n</span> =&gt;</span> n * n,</span><br><span class="line">  reverseInt: <span class="function"><span class="params">n</span> =&gt;</span></span><br><span class="line">    n</span><br><span class="line">      .toString()</span><br><span class="line">      .split(<span class="string">""</span>)</span><br><span class="line">      .reverse()</span><br><span class="line">      .join(<span class="string">""</span>) | <span class="number">0</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(pipe(<span class="number">3</span>).double.pow.reverseInt.get);</span><br></pre></td></tr></table></figure>
+<h4 id="set"><a href="#set" class="headerlink" title="set()"></a>set()</h4><p>set 在代理对象设置属性时调用，接收四个参数，第一个是目标对象，第二个是属性名，第三个是属性值，第四个是 proxy 实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(</span><br><span class="line">  &#123;</span><br><span class="line">    age: <span class="number">20</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">set</span>(t, p, v) &#123;</span><br><span class="line">      <span class="keyword">if</span> (p === <span class="string">"age"</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (v &gt; <span class="number">200</span>) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"you can not live that long"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      t[p] = v;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line">proxy.age = <span class="number">210</span>;</span><br></pre></td></tr></table></figure>
+<p>对年龄的设置限制条件，超过 200 则报错。<br>set 和 get 还可以结合使用用来设置私有属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Apply"><a href="#Apply" class="headerlink" title="Apply"></a>Apply</h3><p>apply 拦截函数的调用，call，apply 等操作。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> target = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"I am target!"</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, &#123;</span><br><span class="line">  apply() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"I am proxy"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> msg = proxy(); <span class="comment">//'I am proxy'</span></span><br></pre></td></tr></table></figure>
+<h4 id="has"><a href="#has" class="headerlink" title="has"></a>has</h4><p>拦截 HasProperty，即判断对象是否有某个属性时，如 in 操作。可以利用这个方法隐藏私有属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o = &#123;</span><br><span class="line">  _foo: <span class="string">"i am private"</span>,</span><br><span class="line">  foo: <span class="string">"i am public"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(o, &#123;</span><br><span class="line">  has(t, p) &#123;</span><br><span class="line">    <span class="keyword">if</span> (p[<span class="number">0</span>] === <span class="string">"_"</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p <span class="keyword">in</span> t;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"foo"</span> <span class="keyword">in</span> p); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"_foo"</span> <span class="keyword">in</span> p); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>has 拦截只对 in 运算符生效，对 for…in 循环不生效，导致不符合要求的属性没有被 for…in 循环所排除。</p>
+<h4 id="deleteProperty"><a href="#deleteProperty" class="headerlink" title="deleteProperty"></a>deleteProperty</h4><p>deleteProperty(target, propKey)：拦截 delete proxy[propKey]的操作，返回一个布尔值。</p>
+<h4 id="ownkeys"><a href="#ownkeys" class="headerlink" title="ownkeys"></a>ownkeys</h4><p>ownKeys(target)：拦截 Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)、for…in 循环，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而 Object.keys()的返回结果仅包括目标对象自身的可遍历属性。</p>
+<h4 id="getOwnPropertyDescriptor-target-propKey"><a href="#getOwnPropertyDescriptor-target-propKey" class="headerlink" title="getOwnPropertyDescriptor(target, propKey)"></a>getOwnPropertyDescriptor(target, propKey)</h4><p>拦截 Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象。</p>
+<h4 id="defineProperty-target-propKey-propDesc"><a href="#defineProperty-target-propKey-propDesc" class="headerlink" title="defineProperty(target, propKey, propDesc)"></a>defineProperty(target, propKey, propDesc)</h4><p>拦截 Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)，返回一个布尔值。</p>
+<h4 id="preventExtensions"><a href="#preventExtensions" class="headerlink" title="preventExtensions"></a>preventExtensions</h4><p>拦截 Object.preventExtensions(proxy)，返回一个布尔值。</p>
+<h4 id="getPrototypeOf-target"><a href="#getPrototypeOf-target" class="headerlink" title="getPrototypeOf(target)"></a>getPrototypeOf(target)</h4><p>拦截 Object.getPrototypeOf(proxy)，返回一个对象。</p>
+<h4 id="isExtensible-target"><a href="#isExtensible-target" class="headerlink" title="isExtensible(target)"></a>isExtensible(target)</h4><p>拦截 Object.isExtensible(proxy)，返回一个布尔值。</p>
+<h4 id="setPrototypeOf-target-proto"><a href="#setPrototypeOf-target-proto" class="headerlink" title="setPrototypeOf(target, proto)"></a>setPrototypeOf(target, proto)</h4><p>拦截 Object.setPrototypeOf(proxy, proto)，返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截。</p>
+<h4 id="construct-target-args"><a href="#construct-target-args" class="headerlink" title="construct(target, args)"></a>construct(target, args)</h4><p>拦截 Proxy 实例作为构造函数调用的操作，比如 new proxy(…args)。</p>
+<h3 id="this-问题"><a href="#this-问题" class="headerlink" title="this 问题"></a>this 问题</h3><p>当 proxy 对象调用目标对象的函数时，实际上 this 是指向 proxy 实例对象的。因此有时会造成无法代理目标对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> _name = <span class="keyword">new</span> <span class="built_in">WeakMap</span>();</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    _name.set(<span class="keyword">this</span>, name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span> name() &#123;</span><br><span class="line">    <span class="keyword">return</span> _name.get(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> Person(<span class="string">"xiaoming"</span>);</span><br><span class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(p1, &#123;&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(p1.name); <span class="comment">//xiaoming</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy._name); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>有些原生对象的内部属性，只有通过正确的 this 才能拿到，所以 Proxy 也无法代理这些原生对象的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> handler = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler);</span><br><span class="line"></span><br><span class="line">proxy.getDate();</span><br></pre></td></tr></table></figure>
+<p>解决办法是可以返回一个 this 与目标对象强绑定的函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">const</span> handler = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, &#123;</span><br><span class="line">  <span class="keyword">get</span>(target, property) &#123;</span><br><span class="line">    <span class="keyword">if</span> (property === <span class="string">"getDate"</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> target.getDate.bind(target);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, property);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(proxy.getDate());</span><br></pre></td></tr></table></figure>
+<h3 id="web-服务器"><a href="#web-服务器" class="headerlink" title="web 服务器"></a>web 服务器</h3><p>服务器有一个接口对象，不同的数据需要写一个适配方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> server=createService();</span><br><span class="line">server.student().then(<span class="function">(<span class="params">json</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> students=<span class="built_in">JSON</span>.parse(json)</span><br><span class="line">&#125;)</span><br><span class="line">server.class().then(<span class="function">(<span class="params">json</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="class"><span class="keyword">class</span></span>=<span class="built_in">JSON</span>.parse(json)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>利用 proxy 拦截属性，可以只使用一个接口</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> server = createService();</span><br><span class="line"><span class="keyword">let</span> proxyServer = <span class="keyword">new</span> <span class="built_in">Proxy</span>(server, &#123;</span><br><span class="line">  <span class="keyword">get</span>(target, propKey) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> httpGet(baseUrl + <span class="string">"/"</span> + propKey);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">proxyServer.student();</span><br><span class="line">proxyServer.class();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/10/08/set-and-map/" rel="next" title="set-and-map">
+                <i class="fa fa-chevron-left"></i> set-and-map
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Pzzz</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#proxy-是什么？"><span class="nav-number">1.</span> <span class="nav-text">proxy 是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法"><span class="nav-number">2.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proxy-拦截方法"><span class="nav-number">3.</span> <span class="nav-text">proxy 拦截方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#get"><span class="nav-number">3.1.</span> <span class="nav-text">get()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set"><span class="nav-number">3.2.</span> <span class="nav-text">set()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apply"><span class="nav-number">4.</span> <span class="nav-text">Apply</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#has"><span class="nav-number">4.1.</span> <span class="nav-text">has</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deleteProperty"><span class="nav-number">4.2.</span> <span class="nav-text">deleteProperty</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ownkeys"><span class="nav-number">4.3.</span> <span class="nav-text">ownkeys</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getOwnPropertyDescriptor-target-propKey"><span class="nav-number">4.4.</span> <span class="nav-text">getOwnPropertyDescriptor(target, propKey)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#defineProperty-target-propKey-propDesc"><span class="nav-number">4.5.</span> <span class="nav-text">defineProperty(target, propKey, propDesc)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#preventExtensions"><span class="nav-number">4.6.</span> <span class="nav-text">preventExtensions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getPrototypeOf-target"><span class="nav-number">4.7.</span> <span class="nav-text">getPrototypeOf(target)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isExtensible-target"><span class="nav-number">4.8.</span> <span class="nav-text">isExtensible(target)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setPrototypeOf-target-proto"><span class="nav-number">4.9.</span> <span class="nav-text">setPrototypeOf(target, proto)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#construct-target-args"><span class="nav-number">4.10.</span> <span class="nav-text">construct(target, args)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this-问题"><span class="nav-number">5.</span> <span class="nav-text">this 问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-服务器"><span class="nav-number">6.</span> <span class="nav-text">web 服务器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pzzz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
