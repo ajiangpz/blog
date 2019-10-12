@@ -229,6 +229,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/04/let-and-const/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/10/04/let-and-const/" itemprop="url">let-and-const</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-04T11:25:59+08:00">
+                2019-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>let</code>不存在变量提升，同时<code>let</code>还会绑定所在的代码块，即大括号包含的区域。在这个代码块内如果在<code>let</code>声明之前使用变量，就会报<code>ReferenceError</code>错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">//undefined</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">  <span class="comment">//var存在变量提升</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span>;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">//ReferenceError: a is not defined</span></span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//let使变量a绑定了块级作用域，出现了暂时性死区，由于let不存在变量提升，因此出现了ReferenceError。</span></span><br></pre></td></tr></table></figure>
+<p><code>let</code> 不可以重复声明变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">let</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//报错</span></span><br></pre></td></tr></table></figure>
+<p><code>let</code>块级作用域和函数声明<br>在 ES6 中可以在块级作用域中声明函数，声明行为类似于<code>let</code>。但是在实际 ES6 浏览器中，函数声明有自己的方式。<br>允许在块级作用域声明函数，并且函数会提升到该块级作用域顶部，同时会提升到全局作用域或者函数作用域顶部<br>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">//let f=undefined;</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"aaa"</span>);</span><br><span class="line">    &#125; <span class="comment">//函数声明提升到包含函数顶部=&gt;let f=undefined;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(foo); <span class="comment">//undefined</span></span><br><span class="line">&#125;)();</span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">//ReferenceError: foo is not defined</span></span><br></pre></td></tr></table></figure>
+<p>由于不同环境下造成的差异较大，因此在块级作用域中应该避免声明函数，或者应该使用函数表达式。</p>
+<p><code>const</code>声明变量的行为与<code>let</code>基本一致，<code>const</code>表示声明一个常量，不同多次赋值，因此一定要在声明的时候同时初始化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo;<span class="comment">//Missing initializer in const declaration</span></span><br><span class="line">foo = <span class="string">'bar'</span>;</span><br></pre></td></tr></table></figure>
+<p>当<code>const</code>声明的常量是一个对象时，实际上不变性指的只是对象的地址值保持不变。因此堆中的对象的属性值发生改变时，<code>const</code>是不会报错的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;</span><br><span class="line">  a: <span class="string">"bar"</span></span><br><span class="line">&#125;;</span><br><span class="line">foo.a = <span class="string">"baz"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">//&#123; a: 'baz' &#125;</span></span><br></pre></td></tr></table></figure>
+<p>但是当常量的地址值改变了，此时常量的值就真正改变了，就会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;</span><br><span class="line">  a: <span class="string">"bar"</span></span><br><span class="line">&#125;;</span><br><span class="line">foo.a = <span class="string">"baz"</span>;</span><br><span class="line">foo = &#123;</span><br><span class="line">  <span class="comment">//指向了新的对象</span></span><br><span class="line">  b: <span class="string">"bar"</span></span><br><span class="line">&#125;; <span class="comment">//Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+<p>要包持对象的不变性，可以对对象进行封装或者冻结。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.preventExtensions(obj); <span class="comment">//禁止扩展属性</span></span><br><span class="line"><span class="built_in">Object</span>.seal(obj); <span class="comment">//禁止扩展属性，禁止配置和删除已有属性</span></span><br><span class="line"><span class="built_in">Object</span>.freeze(obj); <span class="comment">//除了以上，所有属性的writable为false</span></span><br></pre></td></tr></table></figure>
+<p>ES6 中一共有六种声明变量的方法：<code>var</code>，<code>function</code>，<code>let</code>，<code>const</code>，<code>class</code>，<code>import</code></p>
+<p>顶层对象的属性<br><code>var</code>，<code>function</code>声明的全局变量依旧是顶级对象的属性，<code>let</code>，<code>const</code>，<code>class</code>命令声明的全局变量不属于顶级对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">"foo"</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">"bar"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.a); <span class="comment">//foo</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.b); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">"foo"</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">"bar"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(global.a); <span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(global.b); <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+<p>如何获取各种实现（浏览器，node，webworker）里的顶级对象？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法一</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">"undefined"</span></span><br><span class="line">  ? <span class="built_in">window</span></span><br><span class="line">  : <span class="keyword">typeof</span> process === <span class="string">"object"</span> &amp;&amp;</span><br><span class="line">    <span class="keyword">typeof</span> <span class="built_in">require</span> === <span class="string">"function"</span> &amp;&amp;</span><br><span class="line">    <span class="keyword">typeof</span> global === <span class="string">"object"</span></span><br><span class="line">  ? global</span><br><span class="line">  : <span class="keyword">this</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法二</span></span><br><span class="line"><span class="keyword">var</span> getGlobal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> self !== <span class="string">"undefined"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> self;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">"undefinde"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> global !== <span class="string">"undefined"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> global;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"unable to locate global object"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/09/30/Js-question/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2057,144 +2200,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/06/07/层叠上下文/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2019/06/07/层叠上下文/" itemprop="url">层叠上下文</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-07T23:08:22+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h1><h3 id="层叠上下文的概念"><a href="#层叠上下文的概念" class="headerlink" title="层叠上下文的概念"></a>层叠上下文的概念</h3><ul>
-<li>抽象的概念，在层叠上下文中，元素会按照一定的规则和顺序进行排列覆盖。不同的层叠上下文元素的子元素之间不会相互影响，他们的层叠等级由父元素决定。  <h3 id="层叠上下文的产生"><a href="#层叠上下文的产生" class="headerlink" title="层叠上下文的产生"></a>层叠上下文的产生</h3></li>
-<li>根元素</li>
-<li>定位元素且z-index为数值</li>
-<li>css3，如transform,子元素的z-index不为auto的flex布局  <h3 id="层叠上下文的特点"><a href="#层叠上下文的特点" class="headerlink" title="层叠上下文的特点"></a>层叠上下文的特点</h3></li>
-<li>后来居上,同一层叠水平的元素，根据元素在dom中的先后顺序进行排列。</li>
-<li>根据z-index或层叠顺序排列</li>
-</ul>
-<h1 id="层叠顺序"><a href="#层叠顺序" class="headerlink" title="层叠顺序"></a>层叠顺序</h1><h3 id="层叠顺序表"><a href="#层叠顺序表" class="headerlink" title="层叠顺序表"></a>层叠顺序表</h3><ul>
-<li>background/border</li>
-<li>负z-index</li>
-<li>block块状元素</li>
-<li>float浮动盒子</li>
-<li>inline/inline-block盒子</li>
-<li>z-index为0或者auto，不依赖z-index的层叠上下文</li>
-<li>正z-index</li>
-<li><a href="https://ajiangpz.github.io/css/%E5%B1%82%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87/z-index.html" target="_blank" rel="noopener">层叠顺序演示</a><h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h3></li>
-<li>元素一旦定位，其z-index自动生效默认值为auto，等价于0<br>与不依赖z-index的层叠上下文（如css3）层叠等级相同，遵循后来居上的原则。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2245,7 +2250,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
