@@ -229,6 +229,661 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/06/函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/10/06/函数/" itemprop="url">函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-06T11:49:50+08:00">
+                2019-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="参数默认值"><a href="#参数默认值" class="headerlink" title="参数默认值"></a>参数默认值</h3><p>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">name = <span class="string">"xiaoming"</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`hello,<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line">sayHi();</span><br><span class="line">sayHi(<span class="string">"xiaohong"</span>);</span><br></pre></td></tr></table></figure>
+<p>参数变量是默认声明的，所以不能用 let 或 const 再次声明。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setLang</span>(<span class="params">lang = <span class="string">"en"</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> lang = <span class="string">"ch"</span>; <span class="comment">//但是可以用var再次声明</span></span><br><span class="line">  <span class="built_in">console</span>.log(lang); <span class="comment">//Identifier 'lang' has already been declared</span></span><br><span class="line">&#125;</span><br><span class="line">setLang();</span><br></pre></td></tr></table></figure>
+<p>使用参数默认值时，函数不能有同名参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">x, x, y</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, x, y);</span><br><span class="line">&#125;</span><br><span class="line">fn(<span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>); <span class="comment">//12,12,13</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x, x, y = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// SyntaxError: Duplicate parameter name not allowed in this context</span></span><br></pre></td></tr></table></figure>
+<p>参数默认值不是传值的，而是每次都重新计算默认值表达式的值。也就是说，参数默认值是惰性求值的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i++;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> getNumber = fn();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logNum</span>(<span class="params">num = getNumber(</span>)) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(num);</span><br><span class="line">&#125;</span><br><span class="line">logNum(); <span class="comment">//0</span></span><br><span class="line">logNum(); <span class="comment">//1</span></span><br><span class="line">logNum(); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<h4 id="与解构赋值默认值结合使用"><a href="#与解构赋值默认值结合使用" class="headerlink" title="与解构赋值默认值结合使用"></a>与解构赋值默认值结合使用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123; x, y = <span class="number">2</span> &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line">foo(&#123;&#125;); <span class="comment">//undefined 2</span></span><br><span class="line">foo(&#123;</span><br><span class="line">  x: <span class="number">1</span>,</span><br><span class="line">  y: <span class="number">3</span></span><br><span class="line">&#125;); <span class="comment">//1 3</span></span><br><span class="line">foo(&#123;</span><br><span class="line">  x: <span class="number">1</span></span><br><span class="line">&#125;); <span class="comment">//1,2</span></span><br><span class="line">foo(); <span class="comment">//Cannot destructure property `x` of 'undefined' or 'null'</span></span><br></pre></td></tr></table></figure>
+<p>当没传入解构的参数时，undefined 时无法被解构的，因此会报错。<br>需要给需要的解构的函数参数提供一个默认值。即</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">&#123; x, y = <span class="number">2</span> &#125; = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line">foo(); <span class="comment">//undefined 2</span></span><br></pre></td></tr></table></figure>
+<p>这个函数参数具有双重默认值，当没有传入参数时，默认解构的对象是空对象。当有对象传入时，如果没有对象的属性名，那么 y 的默认值就是 2。</p>
+<h4 id="参数默认值的位置"><a href="#参数默认值的位置" class="headerlink" title="参数默认值的位置"></a>参数默认值的位置</h4><p>通常情况下，定义了默认值的参数，应该是函数的尾参数。如果非尾部的参数设置默认值，实际上这个参数是没法省略的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例一</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x = <span class="number">1</span>, y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f() <span class="comment">// [1, undefined]</span></span><br><span class="line">f(<span class="number">2</span>) <span class="comment">// [2, undefined])</span></span><br><span class="line">f(, <span class="number">1</span>) <span class="comment">// 报错</span></span><br><span class="line">f(<span class="literal">undefined</span>, <span class="number">1</span>) <span class="comment">// [1, 1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 例二</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x, y = <span class="number">5</span>, z</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [x, y, z];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f() <span class="comment">// [undefined, 5, undefined]</span></span><br><span class="line">f(<span class="number">1</span>) <span class="comment">// [1, 5, undefined]</span></span><br><span class="line">f(<span class="number">1</span>, ,<span class="number">2</span>) <span class="comment">// 报错</span></span><br><span class="line">f(<span class="number">1</span>, <span class="literal">undefined</span>, <span class="number">2</span>) <span class="comment">// [1, 5, 2]</span></span><br></pre></td></tr></table></figure>
+<h4 id="函数的-length-属性"><a href="#函数的-length-属性" class="headerlink" title="函数的 length 属性"></a>函数的 length 属性</h4><p>指定了默认值以后，函数的 length 属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，length 属性将失真。length 属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;&#125;</span><br><span class="line">  .length(</span><br><span class="line">    <span class="comment">// 1</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">a = <span class="number">5</span></span>) </span>&#123;&#125;</span><br><span class="line">  )</span><br><span class="line">  .length(</span><br><span class="line">    <span class="comment">// 0</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c = <span class="number">5</span></span>) </span>&#123;&#125;</span><br><span class="line">  ).length); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>如果设置了默认值的参数不是尾参数，那么 length 属性也不再计入后面的参数了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a = <span class="number">0</span>, b, c</span>) </span>&#123;&#125;.length(</span><br><span class="line">  <span class="comment">// 0</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">a, b = <span class="number">1</span>, c</span>) </span>&#123;&#125;</span><br><span class="line">).length); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x, y = x</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//形成单独的作用域</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(y);</span><br><span class="line">&#125;</span><br><span class="line">f(); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>y=x 会在函数参数作用域中寻找 x 变量，找不到才会到全局作用域找。<br>如果全局不存在 x 变量，就会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">y = x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(); <span class="comment">// ReferenceError: x is not defined</span></span><br></pre></td></tr></table></figure>
+<p>由于暂时性死区的原因，以下代码也会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x = x</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// ReferenceError: x is not defined</span></span><br></pre></td></tr></table></figure>
+<p>如果函数参数的默认参数是一个参数，该函数的作用域也会形成一个单独的作用域，规则跟上述一样。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = <span class="string">"outer"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">func = (</span>) =&gt; <span class="title">foo</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> foo = <span class="string">"inner"</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(func());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar(); <span class="comment">// outer</span></span><br></pre></td></tr></table></figure>
+<p>当函数参数具有默认值时，不管函数参数是什么，他们都会在一个作用域中。如下例，变量 y 默认值是一个函数，这个函数与第一个参数 x 在同一个作用域中，默认值函数中的 x 实际上是第一个参数 x，因此 y 中改变不会影响外部的 x，也不会影响内部的 x。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  x,</span></span></span><br><span class="line"><span class="function"><span class="params">  y = function(</span>) </span>&#123;</span><br><span class="line">    x = <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">) &#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">3</span>;</span><br><span class="line">  y();</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// 3</span></span><br><span class="line">x; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h4 id="默认值的应用"><a href="#默认值的应用" class="headerlink" title="默认值的应用"></a>默认值的应用</h4><p>在参数是必须的时候，可以将参数的默认值设置为一个报错的函数，如果省略了该参数就抛出一个错误。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  name = (function(</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"name must provided!"</span>);</span><br><span class="line">  &#125;)()</span><br><span class="line">) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"hi,"</span> + name);</span><br><span class="line">&#125;</span><br><span class="line">sayHi(<span class="string">"peter"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="rest-参数"><a href="#rest-参数" class="headerlink" title="rest 参数"></a>rest 参数</h3><p>用于获取函数的多余参数，这样就不需要使用 arguments 对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。<br>利用 rest 参数求和</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">...value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> v <span class="keyword">of</span> value) &#123;</span><br><span class="line">    sum += v;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>));</span><br></pre></td></tr></table></figure>
+<p>相比 arguments 参数这种类数组对象，rest 参数是一个真正的数组，不需要转化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sort(<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">...numbers</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> numbers.sort();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sort(<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="name-属性"><a href="#name-属性" class="headerlink" title="name 属性"></a>name 属性</h3><p>ES6 的函数可以的 name 属性可以返回函数的名称。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// console.log(this.name)</span></span><br><span class="line">  <span class="built_in">console</span>.log(fn.name);</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+<p>Function 构造函数返回的函数实例，name 属性的值为 anonymous。bind 返回的函数，name 属性值会加上 bound 前缀。</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>箭头函数没有参数或者有多个参数时，需要用圆括号代替参数或者将多个参数包围起来，如果只有一个参数可以省略圆括号。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">v</span> =&gt;</span> v;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> v;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="params">()</span> =&gt;</span> <span class="number">5</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">5</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function">(<span class="params">num1, num2</span>) =&gt;</span> num1 + num2;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="function"><span class="keyword">function</span>(<span class="params">num1, num2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>如果箭头函数的代码块多于一句，则需要用大括号将其括起来，并使用 return 语句返回。<br>箭头函数与变量解构结合使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> full = <span class="function">(<span class="params">&#123; first, last &#125;</span>) =&gt;</span> first + <span class="string">" "</span> + last;</span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">  full(&#123;</span><br><span class="line">    first: <span class="string">"jiang"</span>,</span><br><span class="line">    last: <span class="string">"pengzhen"</span></span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>使用箭头函数的注意</p>
+<ol>
+<li>箭头函数的 <code>this</code> 对象就是定义时所在的对象。</li>
+<li>不可以当构造函数使用，即不可以使用 <code>new</code> 命令。</li>
+<li>不能使用 <code>arguments</code> 对象，可以用 <code>rest</code> 参数代替。</li>
+<li>不可以使用 <code>yield</code> 命名，不能用作 <code>generator</code> 函数。</li>
+</ol>
+<p>箭头函数中没有 this，arguments，super，这些对象都是从词法作用域中获取的。因此用 call，bind，apply 等方法是无法改变箭头函数中的 this 指向的。<br>稳定的 this 指向，使箭头函数非常适合用来封装回调函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> handler = &#123;</span><br><span class="line">  id: <span class="string">"123456"</span>,</span><br><span class="line"></span><br><span class="line">  init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(</span><br><span class="line">      <span class="string">"click"</span>,</span><br><span class="line">      event =&gt; <span class="keyword">this</span>.doSomething(event.type),</span><br><span class="line">      <span class="literal">false</span></span><br><span class="line">    );</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  doSomething: <span class="function"><span class="keyword">function</span>(<span class="params">type</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Handling "</span> + type + <span class="string">" for "</span> + <span class="keyword">this</span>.id);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>当点击一个按钮时，普通函数回调函数的 this 一般会指向 document 对象，这样就容易出现 this 对象上没有相应的方法，箭头函数解决了这个问题。</p>
+<p>箭头函数不适合的场景</p>
+<ol>
+<li>在对象中定义方法。<br>在对象中定义方法，由于对象先没有单独的作用域，因此箭头函数中的 this 会指向全局作用域，同时也不方便对象方法的复用。</li>
+<li><p>需要动态 this 的场景使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"press"</span>);</span><br><span class="line">button.addEventListener(<span class="string">"click"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">this</span>.classList.toggle(<span class="string">"on"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>嵌套的箭头函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> insert = <span class="function"><span class="params">value</span> =&gt;</span> (&#123;</span><br><span class="line">  into: <span class="function"><span class="params">array</span> =&gt;</span> (&#123;</span><br><span class="line">    after: <span class="function"><span class="params">afterValue</span> =&gt;</span> &#123;</span><br><span class="line">      array.splice(array.indexOf(afterValue) + <span class="number">1</span>, <span class="number">0</span>, value);</span><br><span class="line">      <span class="keyword">return</span> array;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">insert(<span class="number">2</span>)</span><br><span class="line">  .into([<span class="number">1</span>, <span class="number">3</span>])</span><br><span class="line">  .after(<span class="number">1</span>); <span class="comment">//[1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/06/symbol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/10/06/symbol/" itemprop="url">symbol</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-06T10:59:29+08:00">
+                2019-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Symbol-的定义"><a href="#Symbol-的定义" class="headerlink" title="Symbol 的定义"></a>Symbol 的定义</h3><p>Symbol 是 JavaScript 第六种基本类型，代表一个独一无二的值。</p>
+<h3 id="Symbol-的创建"><a href="#Symbol-的创建" class="headerlink" title="Symbol 的创建"></a>Symbol 的创建</h3><p>由于 Symbol 是基本类型，因此不能用 new Symbol()来创建，否则会报错。<br>创建一个无标记的 Symbol</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="built_in">Symbol</span>();</span><br></pre></td></tr></table></figure>
+<p>创建一个有标记的 Symbol，主要目的方便区分不同的 Symbol，否则打印出来都是 Symbol();</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="built_in">Symbol</span>(<span class="string">"foo"</span>);</span><br><span class="line"><span class="keyword">var</span> bar = <span class="built_in">Symbol</span>(<span class="string">"bar"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(foo, bar);</span><br><span class="line"><span class="comment">//Symbol(foo) Symbol(bar)</span></span><br></pre></td></tr></table></figure>
+<p>通过 Symbol.for(key)，可以创建一个类似于单例模式的 Symbol，以后每一次调用 Symbol.for(key)都是返回同一个对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="built_in">Symbol</span>.for(<span class="string">"foo"</span>);</span><br><span class="line"><span class="keyword">var</span> bar = <span class="built_in">Symbol</span>.for(<span class="string">"foo"</span>);</span><br><span class="line"><span class="keyword">var</span> fee = <span class="built_in">Symbol</span>(<span class="string">"foo"</span>);</span><br><span class="line"><span class="keyword">var</span> bee = <span class="built_in">Symbol</span>(<span class="string">"foo"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(foo === bar); <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(fee === bee); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，Symbol.for 为 Symbol 值登记的名字，是全局环境的，可以在不同的 iframe 或 service worker 中取到同一个值。<br>通过调用 Symbol.keyfor(symbol 值)，可以得到该 Symbol 值创建时对应的 key。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="built_in">Symbol</span>.for(<span class="string">"foo"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>.keyFor(<span class="string">"foo"</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="Symbol-作为属性值"><a href="#Symbol-作为属性值" class="headerlink" title="Symbol 作为属性值"></a>Symbol 作为属性值</h3><p>在对象的内部，使用 Symbol 值定义属性时，Symbol 值必须放在方括号之中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mySymbol = <span class="built_in">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一种写法</span></span><br><span class="line"><span class="keyword">let</span> a = &#123;&#125;;</span><br><span class="line">a[mySymbol] = <span class="string">"Hello!"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种写法</span></span><br><span class="line"><span class="keyword">let</span> a = &#123;</span><br><span class="line">  [mySymbol]: <span class="string">"Hello!"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第三种写法</span></span><br><span class="line"><span class="keyword">let</span> a = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(a, mySymbol, &#123; <span class="attr">value</span>: <span class="string">"Hello!"</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上写法都得到同样结果</span></span><br><span class="line">a[mySymbol]; <span class="comment">// "Hello!"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Symbol-属性值的遍历"><a href="#Symbol-属性值的遍历" class="headerlink" title="Symbol 属性值的遍历"></a>Symbol 属性值的遍历</h3><p>Symbol 作为属性名，该属性不会出现在 <code>for...in</code>、<code>for...of</code>循环中，也不会被<code>Object.keys()</code>、<code>Object.getOwnPropertyNames()</code>、<code>JSON.stringify()</code>返回。<br>但是，它也不是私有属性，有一个 <code>Object.getOwnPropertySymbols</code> 方法，可以获取指定对象的所有 <code>Symbol</code> 属性名。<br><code>Object.getOwnPropertySymbols</code> 方法返回一个数组，成员是当前对象的所有用作属性名的 <code>Symbol</code> 值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> a = <span class="built_in">Symbol</span>(<span class="string">"a"</span>);</span><br><span class="line"><span class="keyword">let</span> b = <span class="built_in">Symbol</span>(<span class="string">"b"</span>);</span><br><span class="line"></span><br><span class="line">obj[a] = <span class="string">"Hello"</span>;</span><br><span class="line">obj[b] = <span class="string">"World"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> objectSymbols = <span class="built_in">Object</span>.getOwnPropertySymbols(obj);</span><br><span class="line"></span><br><span class="line">objectSymbols;</span><br><span class="line"><span class="comment">// [Symbol(a), Symbol(b)]</span></span><br></pre></td></tr></table></figure>
+<h3 id="内置的-Symbol-值"><a href="#内置的-Symbol-值" class="headerlink" title="内置的 Symbol 值"></a>内置的 Symbol 值</h3><h4 id="Symbol-hasInstance"><a href="#Symbol-hasInstance" class="headerlink" title="Symbol.hasInstance"></a>Symbol.hasInstance</h4><p>当其他对象使用 instanceof 运算符，判断是否为该对象的实例时，会调用这个方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">  [<span class="built_in">Symbol</span>.hasInstance](foo) &#123;</span><br><span class="line">    <span class="keyword">return</span> foo <span class="keyword">instanceof</span> <span class="built_in">Array</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] <span class="keyword">instanceof</span> <span class="keyword">new</span> MyClass(); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h4 id="Symbol-isConcatSpreadable"><a href="#Symbol-isConcatSpreadable" class="headerlink" title="Symbol.isConcatSpreadable"></a>Symbol.isConcatSpreadable</h4><p>对象的 <code>Symbol.isConcatSpreadable</code> 属性等于一个布尔值，表示该对象用于 <code>Array.prototype.concat()</code>时，是否可以展开。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr2 = [<span class="string">"c"</span>, <span class="string">"d"</span>];</span><br><span class="line">arr2[<span class="built_in">Symbol</span>.isConcatSpreadable] = <span class="literal">false</span>;</span><br><span class="line">[<span class="string">"a"</span>, <span class="string">"b"</span>].concat(arr2, <span class="string">"e"</span>); <span class="comment">// ['a', 'b', ['c','d'], 'e']</span></span><br></pre></td></tr></table></figure>
+<p>类似数组的对象正好相反，默认不展开。它的 <code>Symbol.isConcatSpreadable</code> 属性设为 true，才可以展开。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">length</span>: <span class="number">2</span>, <span class="number">0</span>: <span class="string">"c"</span>, <span class="number">1</span>: <span class="string">"d"</span> &#125;;</span><br><span class="line">[<span class="string">"a"</span>, <span class="string">"b"</span>].concat(obj, <span class="string">"e"</span>); <span class="comment">// ['a', 'b', obj, 'e']</span></span><br><span class="line"></span><br><span class="line">obj[<span class="built_in">Symbol</span>.isConcatSpreadable] = <span class="literal">true</span>;</span><br><span class="line">[<span class="string">"a"</span>, <span class="string">"b"</span>].concat(obj, <span class="string">"e"</span>); <span class="comment">// ['a', 'b', 'c', 'd', 'e']</span></span><br></pre></td></tr></table></figure>
+<p><code>Symbol.isConcatSpreadable</code>属性也可以定义在类里面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A1</span> <span class="keyword">extends</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(args) &#123;</span><br><span class="line">    <span class="keyword">super</span>(args);</span><br><span class="line">    <span class="keyword">this</span>[<span class="built_in">Symbol</span>.isConcatSpreadable] = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A2</span> <span class="keyword">extends</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(args) &#123;</span><br><span class="line">    <span class="keyword">super</span>(args);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span> [Symbol.isConcatSpreadable]() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> a1 = <span class="keyword">new</span> A1();</span><br><span class="line">a1[<span class="number">0</span>] = <span class="number">3</span>;</span><br><span class="line">a1[<span class="number">1</span>] = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">let</span> a2 = <span class="keyword">new</span> A2();</span><br><span class="line">a2[<span class="number">0</span>] = <span class="number">5</span>;</span><br><span class="line">a2[<span class="number">1</span>] = <span class="number">6</span>;</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>].concat(a1).concat(a2);</span><br><span class="line"><span class="comment">// [1, 2, 3, 4, [5, 6]]</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中，类 A1 是可展开的，类 A2 是不可展开的，所以使用 <code>concat</code> 时有不一样的结果。</p>
+<p>注意，<code>Symbol.isConcatSpreadable</code> 的位置差异，A1 是定义在实例上，A2 是定义在类本身，效果相同。</p>
+<h3 id="Symbol-的应用"><a href="#Symbol-的应用" class="headerlink" title="Symbol 的应用"></a>Symbol 的应用</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/05/字符串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/10/05/字符串/" itemprop="url">字符串</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-05T10:20:39+08:00">
+                2019-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="字符串的-Unicode-表示法"><a href="#字符串的-Unicode-表示法" class="headerlink" title="字符串的 Unicode 表示法"></a>字符串的 Unicode 表示法</h3><p>在 ES6 之前，用 unicode 表示字符只能从’\u0000’到’\uffff’，因此表示一个双字节的字符需要</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'\uD842\uDFB7'</span>。<span class="comment">//"𠮷"</span></span><br></pre></td></tr></table></figure>
+<p>而在 ES6 中只需将 Unicode 编码放在大括号中，就可以解析了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"\u&#123;20BB7&#125;"</span>; <span class="comment">//"𠮷"</span></span><br></pre></td></tr></table></figure>
+<p>表示字符的六种方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"z"</span>;</span><br><span class="line"><span class="string">"\z"</span>;</span><br><span class="line"><span class="string">"\172"</span>; <span class="comment">//八进制</span></span><br><span class="line"><span class="string">"\x7a"</span>;</span><br><span class="line"><span class="string">"\u007a"</span>;</span><br><span class="line"><span class="string">"\u&#123;7a&#125;"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="字符串遍历器接口"><a href="#字符串遍历器接口" class="headerlink" title="字符串遍历器接口"></a>字符串遍历器接口</h3><p>字符串的遍历器接口使其可以使用 for…of…遍历每个字符，同时还可以识别 Unicode 编码大于’\uffff’的码点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> text = <span class="built_in">String</span>.fromCodePoint(<span class="string">"0x10bb5"</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> text) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">//𠮷</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h3><p>模板字符串会保留换行和空格，可以用<code>trim</code>函数消除头尾的空格和换行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;ul&gt;</span></span><br><span class="line"><span class="string">  &lt;li&gt;aaa&lt;/li&gt;</span></span><br><span class="line"><span class="string">  &lt;li&gt;bbb&lt;/li&gt;</span></span><br><span class="line"><span class="string">&lt;/ul&gt;</span></span><br><span class="line"><span class="string">`</span>.trim();</span><br></pre></td></tr></table></figure>
+<p>模板字符串中可以放入任意的 JavaScript 表达式，对象属性，函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"hello"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> x = <span class="number">2</span>,</span><br><span class="line">  y = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">let</span> str = <span class="string">`<span class="subst">$&#123;fn()&#125;</span>,x+y=<span class="subst">$&#123;x + y&#125;</span>`</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str); <span class="comment">//hello,x+y=5</span></span><br></pre></td></tr></table></figure>
+<p>模板字符串的嵌套</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tmpl = <span class="function"><span class="params">addrs</span> =&gt;</span> <span class="string">`</span></span><br><span class="line"><span class="string">  &lt;table&gt;</span></span><br><span class="line"><span class="string">  <span class="subst">$&#123;addrs</span></span></span><br><span class="line"><span class="string"><span class="subst">    .map(</span></span></span><br><span class="line"><span class="string"><span class="subst">      addr =&gt; <span class="string">`</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">    &lt;tr&gt;&lt;td&gt;<span class="subst">$&#123;addr.first&#125;</span>&lt;/td&gt;&lt;/tr&gt;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">    &lt;tr&gt;&lt;td&gt;<span class="subst">$&#123;addr.last&#125;</span>&lt;/td&gt;&lt;/tr&gt;</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="string">  `</span></span></span></span><br><span class="line"><span class="string"><span class="subst">    )</span></span></span><br><span class="line"><span class="string"><span class="subst">    .join(<span class="string">""</span>)&#125;</span></span></span><br><span class="line"><span class="string">  &lt;/table&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"><span class="keyword">const</span> data = [</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">"&lt;Jane&gt;"</span>,</span><br><span class="line">    last: <span class="string">"Bond"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    first: <span class="string">"Lars"</span>,</span><br><span class="line">    last: <span class="string">"&lt;Croft&gt;"</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="built_in">console</span>.log(tmpl(data));</span><br><span class="line"><span class="comment">// &lt;table&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//   &lt;tr&gt;&lt;td&gt;&lt;Jane&gt;&lt;/td&gt;&lt;/tr&gt;</span></span><br><span class="line"><span class="comment">//   &lt;tr&gt;&lt;td&gt;Bond&lt;/td&gt;&lt;/tr&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//   &lt;tr&gt;&lt;td&gt;Lars&lt;/td&gt;&lt;/tr&gt;</span></span><br><span class="line"><span class="comment">//   &lt;tr&gt;&lt;td&gt;&lt;Croft&gt;&lt;/td&gt;&lt;/tr&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;/table&gt;</span></span><br></pre></td></tr></table></figure>
+<p>字符串模板编译<br>思路是利用正则表达式将模板中的变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> template = <span class="string">`</span></span><br><span class="line"><span class="string">&lt;ul&gt;</span></span><br><span class="line"><span class="string">  &lt;% for(let i=0; i &lt; data.supplies.length; i++) &#123; %&gt;</span></span><br><span class="line"><span class="string">    &lt;li&gt;&lt;%= data.supplies[i] %&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">  &lt;% &#125; %&gt;</span></span><br><span class="line"><span class="string">&lt;/ul&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compile</span>(<span class="params">template</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> evalExpr = <span class="regexp">/&lt;%=(.+?)%&gt;/g</span>;</span><br><span class="line">  <span class="keyword">const</span> expr = <span class="regexp">/&lt;%([\s\S]+?)%&gt;/g</span>;</span><br><span class="line"></span><br><span class="line">  template = template</span><br><span class="line">    .replace(evalExpr, <span class="string">"`); \n  echo( $1 ); \n  echo(`"</span>)</span><br><span class="line">    .replace(expr, <span class="string">"`); \n $1 \n  echo(`"</span>);</span><br><span class="line"></span><br><span class="line">  template = <span class="string">"echo(`"</span> + template + <span class="string">"`);"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> script = <span class="string">`(function parse(data)&#123;</span></span><br><span class="line"><span class="string">    let output = "";</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    function echo(html)&#123;</span></span><br><span class="line"><span class="string">      output += html;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    <span class="subst">$&#123;template&#125;</span></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    return output;</span></span><br><span class="line"><span class="string">  &#125;)`</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> script;</span><br><span class="line">&#125; <span class="comment">//返回一个解析函数</span></span><br><span class="line"><span class="keyword">var</span> parse = <span class="built_in">eval</span>(compile(template)); <span class="comment">//返回解析函数</span></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">  parse(&#123;</span><br><span class="line">    supplies: [<span class="string">"broom"</span>, <span class="string">"mop"</span>, <span class="string">"cleaner"</span>]</span><br><span class="line">  &#125;)</span><br><span class="line">); <span class="comment">//解析函数的参数就是数据，最后生成：</span></span><br><span class="line"><span class="comment">// &lt;ul&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     &lt;li&gt;broom&lt;/li&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     &lt;li&gt;mop&lt;/li&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     &lt;li&gt;cleaner&lt;/li&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;/ul&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="标签模板"><a href="#标签模板" class="headerlink" title="标签模板"></a>标签模板</h3><p>模板字符串它可以紧跟在一个函数名后面，该函数将被调用来处理这个模板字符串。这被称为“标签模板”功能（tagged template）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alert<span class="string">`123`</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">alert(<span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+<p>标签模板其实不是模板，而是函数调用的一种特殊形式。“标签”指的就是函数，紧跟在后面的模板字符串就是它的参数。</p>
+<p>当模板字符串中有变量时，会将模板字符串先处理为多个参数，再调用函数。<br>第一个参数是一个数组，该数组的成员是模板字符串中那些没有变量替换的部分，其他参数，都是模板字符串各个变量被替换后的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">tag<span class="string">`Hello <span class="subst">$&#123;a + b&#125;</span> world <span class="subst">$&#123;a * b&#125;</span>`</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">tag([<span class="string">"Hello "</span>, <span class="string">" world "</span>, <span class="string">""</span>], <span class="number">15</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<p>利用标签模板计算生成税前税后价格</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> total = <span class="number">30</span>;</span><br><span class="line"><span class="keyword">let</span> msg = passthru<span class="string">`The total is <span class="subst">$&#123;total&#125;</span> (<span class="subst">$&#123;total * <span class="number">1.05</span>&#125;</span> with tax)`</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">passthru</span>(<span class="params">literals, ...values</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> output = <span class="string">""</span>;</span><br><span class="line">  <span class="keyword">let</span> index;</span><br><span class="line">  <span class="keyword">for</span> (index = <span class="number">0</span>; index &lt; values.length; index++) &#123;</span><br><span class="line">    output += literals[index] + values[index];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  output += literals[index];</span><br><span class="line">  <span class="keyword">return</span> output;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(msg);</span><br><span class="line"><span class="comment">//The total is 30 (31.5 with tax)</span></span><br></pre></td></tr></table></figure>
+<p>“标签模板”的一个重要应用，就是过滤 HTML 字符串，防止用户输入恶意内容。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> message = SaferHTML<span class="string">`&lt;p&gt;<span class="subst">$&#123;sender&#125;</span> has sent you a message.&lt;/p&gt;`</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SaferHTML</span>(<span class="params">templateData</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> s = templateData[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> arg = <span class="built_in">String</span>(<span class="built_in">arguments</span>[i]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Escape special characters in the substitution.</span></span><br><span class="line">    s += arg</span><br><span class="line">      .replace(<span class="regexp">/&amp;/g</span>, <span class="string">"&amp;amp;"</span>)</span><br><span class="line">      .replace(<span class="regexp">/&lt;/g</span>, <span class="string">"&amp;lt;"</span>)</span><br><span class="line">      .replace(<span class="regexp">/&gt;/g</span>, <span class="string">"&amp;gt;"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Don't escape special characters in the template.</span></span><br><span class="line">    s += templateData[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sender = <span class="string">'&lt;script&gt;alert("abc")&lt;/script&gt;'</span>; <span class="comment">// 恶意代码</span></span><br><span class="line"><span class="keyword">let</span> message = SaferHTML<span class="string">`&lt;p&gt;<span class="subst">$&#123;sender&#125;</span> has sent you a message.&lt;/p&gt;`</span>;</span><br></pre></td></tr></table></figure>
+<p>标签模板的另一个应用，就是多语言转换（国际化处理）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i18n<span class="string">`Welcome to <span class="subst">$&#123;siteName&#125;</span>, you are visitor number <span class="subst">$&#123;visitorNumber&#125;</span>!`</span>;</span><br></pre></td></tr></table></figure>
+<p>通过标签函数，我们可以在字符串前自定义模板解析函数，通过解析语句和获取变量实现模板解析。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> libraryHtml = hashTemplate<span class="string">`</span></span><br><span class="line"><span class="string">  &lt;ul&gt;</span></span><br><span class="line"><span class="string">    #for book in <span class="subst">$&#123;myBooks&#125;</span></span></span><br><span class="line"><span class="string">      &lt;li&gt;&lt;i&gt;#&#123;book.title&#125;&lt;/i&gt; by #&#123;book.author&#125;&lt;/li&gt;</span></span><br><span class="line"><span class="string">    #end</span></span><br><span class="line"><span class="string">  &lt;/ul&gt;</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure>
+<p>字符串的新增方法<br><a href="http://es6.ruanyifeng.com/#docs/string-methods" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/string-methods</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/04/解构赋值/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/10/04/解构赋值/" itemprop="url">解构赋值</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-04T15:54:43+08:00">
+                2019-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="数组的解构赋值"><a href="#数组的解构赋值" class="headerlink" title="数组的解构赋值"></a>数组的解构赋值</h3><p>完全解构赋值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, b, c] = [<span class="number">12</span>, <span class="number">34</span>, <span class="number">54</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c); <span class="comment">//12 34 54</span></span><br></pre></td></tr></table></figure>
+<p>不完全解构赋值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [a, b, c] = [<span class="number">12</span>];</span><br></pre></td></tr></table></figure>
+<p>嵌套解构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, [b], ...c] = [<span class="number">2</span>, [<span class="number">1</span>, <span class="number">2</span>], <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c); <span class="comment">//2 1 [ 1, 2, 3 ]</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>…c 表示剩余的参数，只能放到数组的最后</p>
+</blockquote>
+<p>解构赋值时，右边的数据结构必须具备 iterator 接口，即可迭代。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"1234"</span>); <span class="comment">//字符串是可迭代的</span></span><br><span class="line"><span class="keyword">var</span> [a, b, c, d] = str;</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c, d); <span class="comment">//1234</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>number,undefined,null,nan,boolean,{}，都是不可迭代的。</p>
+</blockquote>
+<p>解构赋值时可以设置默认值，默认值可以引用解构赋值的其他变量，但该变量必须已经声明。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[a, b = <span class="number">1</span>] = [<span class="number">2</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a, b);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[a = <span class="number">2</span>, b = a] = [];</span><br><span class="line"><span class="built_in">console</span>.log(a, b);</span><br></pre></td></tr></table></figure>
+<h3 id="对象的解构赋值"><a href="#对象的解构赋值" class="headerlink" title="对象的解构赋值"></a>对象的解构赋值</h3><p>对象的模式匹配不需要按顺序匹配，而是按属性名匹配，如果匹配不到则为 undefined。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; bar, foo &#125; = &#123;</span><br><span class="line">  foo: <span class="string">"aaa"</span>,</span><br><span class="line">  bar: <span class="string">"bbb"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(foo, bar);</span><br></pre></td></tr></table></figure>
+<p>默认情况下，变量名都是和属性名一致的，如上述例子等价于</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">bar</span>: bar, <span class="attr">foo</span>: foo &#125; = &#123; <span class="attr">foo</span>: <span class="string">"aaa"</span>, <span class="attr">bar</span>: <span class="string">"bbb"</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(foo, bar);</span><br></pre></td></tr></table></figure>
+<p>如果变量名和属性名不一致，那么应该这么书写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">bar</span>: a, <span class="attr">foo</span>: b &#125; = &#123; <span class="attr">foo</span>: <span class="string">"aaa"</span>, <span class="attr">bar</span>: <span class="string">"bbb"</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a, b);</span><br><span class="line"><span class="comment">//其中bar，foo都是模式匹配中的模式，而a，b才是真正的变量</span></span><br></pre></td></tr></table></figure>
+<p>对象的嵌套解构赋值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;</span><br><span class="line">  foo: &#123; bar &#125;</span><br><span class="line">&#125; = &#123;</span><br><span class="line">  foo: &#123;</span><br><span class="line">    bar: <span class="string">"aaaaa"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(bar); <span class="comment">//aaaaa</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;</span><br><span class="line">  foo: &#123; bar &#125;</span><br><span class="line">&#125; = &#123;</span><br><span class="line">  baz: &#123;</span><br><span class="line">    bar: <span class="string">"aaaaa"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(bar); <span class="comment">//Cannot destructure property `bar` of 'undefined' or 'null'.</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>foo 模式匹配不到返回 undefined，undefined 不能被解构</p>
+</blockquote>
+<p>对象默认值生效的条件是等号右边的对象对应的属性值严格等于 undefined。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; a = <span class="string">"a"</span>, b = <span class="string">"b"</span> &#125; = &#123;</span><br><span class="line">  a: <span class="literal">undefined</span>,</span><br><span class="line">  b: <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a, b); <span class="comment">//a,null</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>已经用 let 声明的变量，在解构赋值时，应该加上圆括号。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x;</span><br><span class="line">(&#123; x &#125; = &#123;</span><br><span class="line">  x: <span class="number">1</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>数组也是对象，可以用下标表示属性名进行对象的解构赋值。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">let</span> &#123; <span class="number">0</span>: first, [arr.length - <span class="number">1</span>]: last &#125; = arr;</span><br><span class="line"><span class="built_in">console</span>.log(first, last);</span><br></pre></td></tr></table></figure>
+<h3 id="其他数据类型的解构赋值"><a href="#其他数据类型的解构赋值" class="headerlink" title="其他数据类型的解构赋值"></a>其他数据类型的解构赋值</h3><p>字符串在解构赋值时会转化为一个类似数组的对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, b, c, d, e] = <span class="string">"12345"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c, d, e); <span class="comment">//1 2 3 4 5</span></span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">length</span>: len &#125; = <span class="string">"12345"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(len); <span class="comment">//5</span></span><br></pre></td></tr></table></figure>
+<p>布尔值和数值类型在解构赋值时会先转化为对应的包装对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; toFixed &#125; = <span class="number">2</span>; <span class="comment">//转化为Number对象</span></span><br><span class="line"><span class="built_in">console</span>.log(toFixed);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">toString</span>: tos &#125; = <span class="string">"str"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(tos === <span class="built_in">String</span>.prototype.toString); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>undefined 和 null 不可以转化为对象，因此不可以解构赋值。</p>
+<h3 id="函数参数的解构赋值"><a href="#函数参数的解构赋值" class="headerlink" title="函数参数的解构赋值"></a>函数参数的解构赋值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">[x, y]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(add([<span class="number">1</span>, <span class="number">2</span>]));</span><br><span class="line"><span class="comment">//[x,y]=[1,2]</span></span><br></pre></td></tr></table></figure>
+<p>虽然表面看上去函数的参数是数组，但是传入参数那一刻，数组参数就被解构成变量 x 和 y。<br>为函数参数的变量即 x,y 设置默认值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">&#123; x = <span class="number">0</span>, y = <span class="number">0</span> &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line">move(&#123;</span><br><span class="line">  x: <span class="number">1</span></span><br><span class="line">&#125;); <span class="comment">//1 0</span></span><br></pre></td></tr></table></figure>
+<p>为函数参数本身设置默认值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  &#123; x, y &#125; = &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    x: <span class="number">0</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    y: <span class="number">0</span></span></span></span><br><span class="line"><span class="function"><span class="params">  &#125;</span></span></span><br><span class="line"><span class="function"><span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line">move(&#123;</span><br><span class="line">  x: <span class="number">1</span>,</span><br><span class="line">  y: <span class="number">2</span></span><br><span class="line">&#125;); <span class="comment">//1 2</span></span><br><span class="line">move(&#123;</span><br><span class="line">  x: <span class="number">1</span></span><br><span class="line">&#125;); <span class="comment">// 1 undefined</span></span><br><span class="line">move(); <span class="comment">//0 0</span></span><br></pre></td></tr></table></figure>
+<h3 id="解构赋值的用途"><a href="#解构赋值的用途" class="headerlink" title="解构赋值的用途"></a>解构赋值的用途</h3><p>交换变量的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> y = <span class="number">2</span>;</span><br><span class="line">[x, y] = [y, x];</span><br><span class="line"><span class="built_in">console</span>.log(x, y); <span class="comment">//2,1</span></span><br></pre></td></tr></table></figure>
+<p>解构函数返回的对象或者数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">example</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>];</span><br><span class="line">&#125;</span><br><span class="line">[a, b, c] = example();</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">example1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    foo: <span class="number">1</span>,</span><br><span class="line">    bar: <span class="number">2</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> &#123; foo, bar &#125; = example1();</span><br><span class="line"><span class="built_in">console</span>.log(foo, bar);</span><br></pre></td></tr></table></figure>
+<p>函数参数的定义</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">[x, y, z]</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//参数是有序的</span></span><br><span class="line">  <span class="built_in">console</span>.log(x, y, z);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params">&#123; foo, bar, baz &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//参数是无序的</span></span><br><span class="line">  <span class="built_in">console</span>.log(foo, bar, baz);</span><br><span class="line">&#125;</span><br><span class="line">f([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line">f2(&#123;</span><br><span class="line">  foo: <span class="string">"foo"</span>,</span><br><span class="line">  bar: <span class="string">"bar"</span>,</span><br><span class="line">  baz: <span class="string">"baz"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>提取 json 数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> jsonData = &#123;</span><br><span class="line">  id: <span class="number">42</span>,</span><br><span class="line">  status: <span class="string">"ok"</span>,</span><br><span class="line">  data: [<span class="number">867</span>, <span class="number">5309</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; id, status, <span class="attr">data</span>: number &#125; = jsonData;</span><br><span class="line"><span class="built_in">console</span>.log(id, status, number);</span><br></pre></td></tr></table></figure>
+<p>函数参数的默认值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajax = <span class="function"><span class="keyword">function</span>(<span class="params"></span></span></span><br><span class="line"><span class="function"><span class="params">  url,</span></span></span><br><span class="line"><span class="function"><span class="params">  &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">    async = true,</span></span></span><br><span class="line"><span class="function"><span class="params">    beforeSend = function(</span>) </span>&#123;&#125;,</span><br><span class="line">    cache = <span class="literal">true</span>,</span><br><span class="line">    complete = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    crossDomain = <span class="literal">false</span>,</span><br><span class="line">    global = <span class="literal">true</span></span><br><span class="line">    <span class="comment">// ... more config</span></span><br><span class="line">  &#125; = &#123;&#125;</span><br><span class="line">) &#123;</span><br><span class="line">  <span class="comment">// ... do stuff</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>遍历 Map 结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">map.set(<span class="string">"first"</span>, <span class="string">"hello"</span>);</span><br><span class="line">map.set(<span class="string">"second"</span>, <span class="string">"world"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [key, value] <span class="keyword">of</span> map) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(key + <span class="string">" is "</span> + value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// first is hello</span></span><br><span class="line"><span class="comment">// second is world</span></span><br></pre></td></tr></table></figure>
+<p>输入模块的指定方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; SourceMapConsumer, SourceNode &#125; = <span class="built_in">require</span>(<span class="string">"source-map"</span>);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/04/let-and-const/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1240,966 +1895,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/08/04/web安全/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2019/08/04/web安全/" itemprop="url">webeb安全</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-04T22:03:59+08:00">
-                2019-08-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="web-前端安全"><a href="#web-前端安全" class="headerlink" title="web 前端安全"></a>web 前端安全</h1><h2 id="XSS-攻击"><a href="#XSS-攻击" class="headerlink" title="XSS 攻击"></a>XSS 攻击</h2><p>XSS 攻击通常是指黑客通过“HTML 注入”篡改了页面，插入了恶意的脚本，从而在用户浏览网页时，控制用户浏览器的一种攻击。</p>
-<h3 id="XSS-分类"><a href="#XSS-分类" class="headerlink" title="XSS 分类"></a>XSS 分类</h3><h4 id="反射型-XSS"><a href="#反射型-XSS" class="headerlink" title="反射型 XSS"></a>反射型 XSS</h4><p>反射型 XSS 又称为非持久型 XSS，只是简单地将用户的输入数据“反射”给浏览器。</p>
-<ul>
-<li><p>攻击过程</p>
-<p>诱骗用户点击提交后，客户端会将带有恶意代码的请求发送到服务端，服务器将恶意代码渲染到页面上，发送给客户端。客户端渲染页面时执行其中的恶意代码，xss 攻击成功。</p>
-</li>
-<li><p>特点</p>
-<ul>
-<li>即时性，不会存储在服务端。</li>
-<li>攻击者需要诱骗用户点击。</li>
-<li>需要服务端参与。</li>
-</ul>
-</li>
-<li><p>示例代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//html代码</span><br><span class="line">&lt;form id=&quot;form1&quot; action=&quot;http://localhost:3000/user&quot; method=&quot;GET&quot;&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;span&gt;用户名&lt;/span&gt;&lt;input type=&quot;text&quot; placeholder=&quot;用户名&quot; name=&quot;user&quot; /&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//在页面中输入&lt;script&gt;alert(/xss/)&lt;/script&gt;，则请求的url变为</span><br><span class="line">http://localhost:3000/user?user=&lt;script&gt;alert(/xss/)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//获取get请求参数中的user字段</span><br><span class="line">var user=url.query.user;</span><br><span class="line">//将user字段注入HTML标签给浏览器渲染</span><br><span class="line">ctx.response.body=</span><br><span class="line">`</span><br><span class="line">&lt;h1&gt;你好，$&#123;user&#125;&lt;/h1&gt;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="存储型-XSS"><a href="#存储型-XSS" class="headerlink" title="存储型 XSS"></a>存储型 XSS</h4><p>存储型 XSS 会把用户输入的数据“存储”在服务器端。</p>
-<ul>
-<li><p>攻击过程</p>
-<p>攻击者将恶意代码存储在服务端，客户端获取到服务端带有恶意代码的资源时，就会被植入并执行恶意代码。</p>
-</li>
-<li><p>特点</p>
-<ul>
-<li>持久性，植入在数据库中。</li>
-<li>危害面广，甚至可以让用户机器变成 DDoS 攻击的肉鸡。</li>
-</ul>
-</li>
-<li><p>示例</p>
-<p>黑客写下一篇带有恶意 JavaScript 代码的博客文章，文章发表后，所有访问该文章的用户都会在他们对的浏览器中执行这段恶意的 JavaScript 代码。黑客把恶意脚本保存到服务器端，因而叫做存储型 XSS。</p>
-</li>
-</ul>
-<h4 id="DOM-Based-XSS"><a href="#DOM-Based-XSS" class="headerlink" title="DOM Based XSS"></a>DOM Based XSS</h4><p>通过修改页面的 DOM 节点形成的 XSS。</p>
-<ul>
-<li><p>攻击过程</p>
-<p>攻击者中通过 dom 编程改变页面的 dom 节点，并将恶意代码植入这些节点中，可以是已存在节点的属性，内容，事件等，也可以是新增一个节点。不需要发送请求到服务端，通过浏览器渲染节点直接执行恶意代码。</p>
-</li>
-<li><p>特点</p>
-<ul>
-<li>效果上属于反射型 XSS。</li>
-<li>不需要服务器解析响应的直接参与</li>
-<li>依靠浏览器端的 DOM 解析</li>
-</ul>
-</li>
-<li><p>示例代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;t&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;input type=&quot;text&quot; id=&quot;text&quot; value=&quot;&quot;/&gt;</span><br><span class="line">&lt;input type=&quot;button&quot; id=&quot;s&quot; value=&quot;write&quot; onclick=&quot;test()&quot;/&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  function test()&#123;</span><br><span class="line">    var str=document.getElementById(&quot;text&quot;)</span><br><span class="line">    document.getElementById(&quot;t&quot;).innerHTML=&quot;&lt;a href=&apos;&quot;+str+&quot;&apos;&gt;testLink&lt;/a&gt;&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">//当输入的数据为 &apos;&gt;&lt;img src=# onerror=alert(/xss/) /&gt;&lt;&apos;</span><br><span class="line">//页面就会弹出xss的警告框</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="XSS-Payload"><a href="#XSS-Payload" class="headerlink" title="XSS Payload"></a>XSS Payload</h3><p>XSS 攻击成功后，攻击者对用户当前页面植入恶意脚本。用以完成各种功能的恶意脚本，成为 XSS Payload，以下是几种常见的恶意脚本功能：</p>
-<ul>
-<li>Cookie 劫持</li>
-<li>构造 GET 和 POST 请求</li>
-<li>XSS 钓鱼</li>
-<li>识别用户浏览器</li>
-<li>识别用户安装的软件</li>
-<li>获取用户的真实 IP 地址</li>
-</ul>
-<h3 id="XSS-防御"><a href="#XSS-防御" class="headerlink" title="XSS 防御"></a>XSS 防御</h3><ul>
-<li><p>HttpOnly</p>
-<p>在服务端给浏览器设置 cookie，如果 cookie 中存在关键信息，应该给 cookie 设置 httpOnly 属性，使攻击者无法通过 JavaScript 获取 cookie 信息,如以下代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctx.set(&apos;Set-Cookie&apos;,cookie.serialize(&apos;name&apos;,String(user),&#123; httpOnly:true, maxAge:60*60*24*7 &#125;))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>输入检查</p>
-<ul>
-<li><p>检查方式</p>
-<ul>
-<li><p>格式检查</p>
-<p>如用户名只能是数字、字母的组合，手机，身份证等输入格式进行规范，可以让一些基于特殊字符的 XSS 攻击生效。</p>
-</li>
-<li><p>特殊字符检查</p>
-<p>一般是检查用户输入的数据中是否包含一些特殊字符。如&lt;，&gt;，’，”等。如果存在，则将这些字符进行过滤或者编码。</p>
-</li>
-</ul>
-</li>
-<li><p>注意事项</p>
-<p>输入检查逻辑必须放在服务端实现，客户端的输入检查可以阻挡大部分用户的误操作，节约服务器资源，但是很容易被攻击者绕过。</p>
-</li>
-<li><p>缺陷</p>
-<ul>
-<li><p>在输入的地方对数据做了统一的改变，输出在 html 和 JavaScript 可能会存在差异。</p>
-</li>
-<li><p>可能会改变用户的语义，如 1+1&lt;3。</p>
-</li>
-<li><p>输入检查时没有结合渲染页面的 html 代码，对语境的理解并不完整，可能漏报。如 url 一般是合法的用户数据，但是如果这个 url 是恶意脚本所在的 url 地址，就可以实施 xss 攻击了。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>输出检查</p>
-<ul>
-<li><p>在 HTML 标签或者属性中输出</p>
-<ul>
-<li><p>示例代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;$&lt;script&gt;alert(/xss/)&lt;/script&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>防御方法</p>
-<p>XSS 在这种情况下一般是构造一个 script 标签，或者任何能产生脚本的方式，防御时应该对对变量进行 htmlencode。</p>
-</li>
-</ul>
-</li>
-<li><p>在 script 标签或者事件中输出</p>
-<ul>
-<li><p>示例代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;var x=$var&lt;/script&gt;</span><br><span class="line">&lt;script&gt;var x=&quot;&quot;;alert(/xss/);//&quot;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>防御方法</p>
-<p>防御时应该确保变量在引号中，攻击者需要先闭合引号才能实 施 XSS 攻击。同时应该使用 JavaScriptEncode 对变量编码。</p>
-</li>
-</ul>
-</li>
-<li><p>在 CSS 中输出</p>
-<ul>
-<li><p>示例代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;@import&apos;http://hack.xss.css&apos;&lt;/style&gt;</span><br><span class="line">&lt;div style=&quot;background:url(javascript:alert(&apos;XSS&apos;))&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>防御方法</p>
-<p>尽可能禁止用户可控制的变量在”style 标签”，“HTML 标签中的 sylte 属性”以及“CSS 文件”中输出。如果有需要，应该对变量进行 cssEncode。</p>
-</li>
-</ul>
-</li>
-<li><p>在地址中输出</p>
-<ul>
-<li><p>示例代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;http://www.evil.com/?test=$var&quot;&gt;test&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;http://www.evil.com/?test&quot; onclick=&quot;(alert(1))&quot;&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>防御方法</p>
-<p>如果变量是在 URL 的 path 或者 search 中输出，可以使用 URLEncode 进行编码。如果变量是整个 URL，URL 中的 protocal 和 Host 是不能进行 URLEncode 的，因为其中有//，会改变语义，用户数据也有可能是伪协议。一般来说，是检查变量是否以 http 开头，如果不是则手动添加，以保证不会出现伪协议类的 XSS 攻击</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>防御 DOM Based XSS</p>
-<ul>
-<li><p>示例代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  var x=&quot;$var&quot;;</span><br><span class="line">  document.write(&quot;&lt;a href=&apos;&quot;+x+&quot;&apos;&gt;test&lt;/a&gt;&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>防御方法</p>
-<p>如果按照前面的方法对变量进 javascriptEncode，浏览器执行 script 代码时，首先会将\$var 解码，然后再通过 document.write 写入 a 标签属性，造成 XSS 攻击。因而在 document.write 输出到 HTML 标签时，应该再次 encode，如果是输出到 script 标签或者事件，则进行 JavaScriptEncode，如果是 html 标签，则进行 HtmlEncode。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="CSRF-攻击"><a href="#CSRF-攻击" class="headerlink" title="CSRF 攻击"></a>CSRF 攻击</h2><p>跨站点请求伪造是指攻击者诱使用户访问恶意脚本所在页面，以用户的身份在该页面执行相关的操作，如向服务器发送请求。</p>
-<ul>
-<li><p>特点</p>
-<ul>
-<li>获取用户 cookie</li>
-<li>伪造 GET 或者 POST 请求</li>
-</ul>
-</li>
-<li><p>防御方法</p>
-<ul>
-<li><p>验证码</p>
-<p>验证码是对抗 CSRF 攻击最简洁有效的防御方法，但是网站不能给所有操作都加上验证码，验证码只能作为辅助手段，而不是最主要的解决方案。</p>
-</li>
-<li><p>Referer Check</p>
-<p>检测用户请求是否来自合法的源，但是该方法的缺陷在于，服务器并非什么是否都能取到 Referer，客户端为了保护用户隐私，有可能会限制 Referer 的发送。可以用 Referer 来监控 CSRF 攻击的发生，但不是主要手段。</p>
-</li>
-<li><p>Token</p>
-<p>CSRF 能攻击成功的主要原因是攻击者可以猜测到请求的重要参数，只有预测出了所有的参数和参数值攻击者才能攻击成功。新增一个 token 参数，这个 token 参数必须由足够安全的随机数生成算法生成。在实际应用中，token 由服务器生成，放在用户的 cookie 或者用户的 session 中。在提交请求时服务器只需验证表单中的 token 与用户 session（或者 cookies）中的 token 是否一致，就可以判断请求是否合法。使用 Token 应该注意以下几点：</p>
-<ul>
-<li>如果用户已经提交了表单，应该重新生成一个新的 token</li>
-<li>可以考虑生成多个 token 以解决多页面共存的场景</li>
-<li>使用 token 应该注意 token 的保密性，把 token 放在表单的隐藏域中，敏感操作使用 POST 请求，可以避免 token 泄漏。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="点击劫持"><a href="#点击劫持" class="headerlink" title="点击劫持"></a>点击劫持</h2><p>点击劫持是一种视觉上的欺骗手段。</p>
-<ul>
-<li><p>攻击过程</p>
-<p>攻击者使用一个透明的、不可见的 iframe，覆盖在一个页面上，然后诱使诱使用户在该页面进行操作，此时用户在不知情的情况下点击透明的 iframe 页面，通过调整 iframe 页面的位置，可以诱使用户恰好点击在 iframe 页面上的一些功能性按钮上。</p>
-</li>
-<li><p>特点</p>
-<ul>
-<li>需要诱使用户与页面产生交互行为</li>
-<li>使用隐藏 frame 覆盖原网页</li>
-</ul>
-</li>
-<li><p>防御方法</p>
-<ul>
-<li><p>frame busting</p>
-<p>通过 JavaScript 代码，禁止 iframe 的嵌套<br>缺陷是 iframe 中的 sandbox 属性，security 属性，都可以限制 iframe 页面中 JavaScript 脚本的执行。</p>
-</li>
-<li><p>X-Frame-Options</p>
-<p>使用 HTTP 头部字段 X-Frame-Options 字段设置值为 DENY 可以拒绝当前页面加载任何 frame 页面，设置 SAMEORIGIN 可以加载同源的 frame 页面，设置 ALLOW-FROM 可以定义允许 frame 加载的地址。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="HTML5-安全问题"><a href="#HTML5-安全问题" class="headerlink" title="HTML5 安全问题"></a>HTML5 安全问题</h2><h3 id="HTML5-新标签"><a href="#HTML5-新标签" class="headerlink" title="HTML5 新标签"></a>HTML5 新标签</h3><ul>
-<li><p>新标签的 XSS</p>
-<p>HTML5 新增了一些标签和属性，这很可能带来新的 XSS 攻击，如 video,autio 等标签。</p>
-</li>
-<li><p>iframe 的 sandbox</p>
-<p>iframe 时常会出现挂马，XSS，点击劫持等安全问题，在 HTML5 中增添了 sandbox 属性，使用该属性后，iframe 将被视为一个独立的源，其中的脚本将被禁止执行，表单禁止提交，插件禁止加载，指向其他浏览器的对象也会被禁止。大大地增强了使用 iframe 的安全性。</p>
-</li>
-<li><p>a 标签的 noreferer</p>
-<p>通过使用该属性，浏览器在请求该标签指定的地址将不再发送 referer，保护了用户了隐私和敏感信息。</p>
-</li>
-</ul>
-<h3 id="其他安全问题"><a href="#其他安全问题" class="headerlink" title="其他安全问题"></a>其他安全问题</h3><ul>
-<li><p>Cross-Origin-Resourse-Sharing（跨域资源共享）</p>
-<p>通过设置响应 HTTP 头部的 Accese-Control-Allow-Origin，服务器通过识别浏览器自动带上的 Origin Header，可以判断浏览器的请求是否来自合法的源，可以用来防范 CSRF 攻击。</p>
-</li>
-<li><p>postMessage（跨窗口传递信息）</p>
-<p>postMessage 不受浏览器同源策略的限制，可以使一个 window（窗口，弹窗，iframe）向其他窗口传递文本信息，使用时应该注意以下两个问题：</p>
-<ul>
-<li>在接收窗口验证 URL，以防止来自非法页面的消息。</li>
-<li>在接收窗口不应该信息任何接收到的信息，需要对信息做安全检查。</li>
-</ul>
-</li>
-<li><p>web Storage</p>
-<p>web Storage 是 HTML5 中新增的相比 cookie 更加方便和强大的本地存储功能。分为 sessionStorage 和 localStorage，就像一个非关系型的数据库。web Storage 可能会带来以下安全问题：</p>
-<ul>
-<li>攻击者有可能将恶意代码保存在 web Storage 中，从而实现跨页面攻击。</li>
-<li>当 web Storage 中保存敏感信息时，也可能会成为攻击的目标，而 XSS 攻击可以完成这一过程。</li>
-</ul>
-</li>
-</ul>
-<h2 id="SQL-注入"><a href="#SQL-注入" class="headerlink" title="SQL 注入"></a>SQL 注入</h2><p>XSS 是针对 HTML 的注入攻击，而 SQL 注入则是针对数据库的注入攻击。</p>
-<ul>
-<li><p>攻击过程</p>
-<p>攻击者将 SQL 命令插入到 Web 表单或输入域名或页面请求的字符串，导致服务器执行恶意的 SQL 命令。</p>
-</li>
-<li><p>特点</p>
-<ul>
-<li>针对数据库的注入攻击</li>
-</ul>
-</li>
-<li><p>防御方法</p>
-<ul>
-<li><p>使用预编译语句</p>
-<p>在第一次执行 SQL 前数据库会进行分析、编译和优化，同时执行计划同样会被缓存起来，它允许数据库做参数化查询。在使用参数化查询的情况下，数据库不会将参数的内容视为 SQL 执行的一部分，而是作为一个字段的属性值来处理，这样就算参数中包含破环性语句（or ‘1=1’）也不会被执行。</p>
-</li>
-<li><p>使用存储过程</p>
-<p>使用安全的存储过程的效果预编译语句类似，区别在于需要先将 SQL 语句定义在数据库中，存储过程中也可以存在注入问题，因此应该避免在存储过程中使用动态的 SQL 语句。</p>
-</li>
-<li><p>检查数据类型</p>
-<p>检查输入数据的数据类型，在很大程度上可以对抗 SQL 注入。或者对输入进行数据格式检查也可以防范 SQL 注入。</p>
-</li>
-<li><p>使用安全函数</p>
-<p>使用足够安全的编码函数，对用户的输入数据进行编码，可以帮助对抗 SQL 注入。</p>
-</li>
-<li><p>最小权限原则</p>
-<p>避免 web 应用直接使用 root 这种高权限账户直接连接数据库，web 应用使用的数据库账户，不应该有创建自定义函数、操作本地文件的权限。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="文件上传问题"><a href="#文件上传问题" class="headerlink" title="文件上传问题"></a>文件上传问题</h2><p>文件上传是指用户上传了一个可执行的脚本文件，并通过此脚本文件获得执行服务器端命令的能力。</p>
-<ul>
-<li><p>攻击条件</p>
-<ul>
-<li>上传的文件能够被 web 容器执行，因而目录需要是 web 容器需要覆盖到的路径</li>
-<li>用户能够从 web 上访问这个文件，如果用户无法访问或者无法使得 web 容器解释这个脚本，那么也不能称之为漏洞。</li>
-<li>用户上传的文件内容不能因为压缩，格式化，检查等被改变，否则也有可能攻击不成功。</li>
-</ul>
-</li>
-<li><p>攻击过程</p>
-<p>用户上传 web 脚本文件，服务端的 web 容器解释并执行了上传的脚本，导致代码执行，或者上传木马，病毒诱使用户或者管理员下载。</p>
-</li>
-<li><p>防御方法</p>
-<ul>
-<li><p>文件上传的目录设置为不可执行</p>
-<p>文件上传目录应该是独立的存储，一方面方便缓存加速，降低性能损耗。另一方面也杜绝了脚本执行的可能。</p>
-</li>
-<li><p>判断文件类型</p>
-<p>使用白名单的方式进行文件类型的检查，对于图片可以进行压缩已破环其中的可能存在的恶意代码。</p>
-</li>
-<li><p>使用随机数改写文件名和文件路径</p>
-<p>文件上传要执行代码，需要用户能够访问到这个文件。如果使用随机数改写文件名和路径，攻击者在寻找文件上将会增加极大的成本。与此同时，某些文件会因为文件名的改变而无法执行。</p>
-</li>
-<li><p>单独设置文件服务器的域名</p>
-<p>利用同源策略，可以使得包含 JavaScript 的 xss 利用这种问题得到解决。</p>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/07/23/内存泄漏/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2019/07/23/内存泄漏/" itemprop="url">内存泄漏</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-23T00:02:31+08:00">
-                2019-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h1><ul>
-<li><p>什么是内存泄漏<br>JavaScript具有垃圾回收机制，当程序中出现了无法回收的内存，则说明产生了内存泄漏</p>
-</li>
-<li><p>为什么为产生内存泄漏  </p>
-</li>
-</ul>
-<ol>
-<li>意外的全局变量<br>未声明的全局变量缓存大量的数据，会导致这些数据只有在窗口关闭或者重新刷新页面才能释放，这样就造成了内存泄漏。</li>
-<li>console.log<br>console.log打印的对象是不会被垃圾回收器回收的，在生产环境中不要console.log任何大对象。</li>
-<li>闭包<br>闭包是将函数内部和外部连接起来的桥梁，在相同作用域内创建的多个内部函数对象是共享同一个变量对象，只要有一个内部函数被外部的对象引用，则这个内部函数的作用域中就包含了所有内部函数引用的变量。使用闭包时，如果作用域内存在其他内部函数的变量对象，那么就造成了内存泄漏。</li>
-<li>dom泄漏<br>当出现大量操作dom元素的情况时，常常需要用一个变量缓存dom元素，但是这样就使得dom元素有了引用，当删除dom元素时，浏览器就无法回收该dom元素，因为存在变量引用dom元素。</li>
-<li>没有及时清除定时器</li>
-<li>使用匿名函数绑定事件，这样每一次需要重新绑定事件时，会使元素绑定多个事件</li>
-</ol>
-<ul>
-<li>如何解决内存泄漏</li>
-</ul>
-<ol>
-<li>使用严格模式，出现意外的全局变量时会报错</li>
-<li>生产环境删除所有console.log代码</li>
-<li>当不需要要及时将引用对象或者dom元素的变量设置为null，以便浏览器会回收</li>
-<li>绑定事件时使用命名函数</li>
-<li>及时清除定时器<br>t</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/07/02/http协议/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2019/07/02/http协议/" itemprop="url">http协议</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-02T19:27:57+08:00">
-                2019-07-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="http头部"><a href="#http头部" class="headerlink" title="http头部"></a>http头部</h1><ul>
-<li><p>通用头部</p>
-<ul>
-<li>cache-control<ul>
-<li>no-cache <ul>
-<li>请求端包含该字段表明客户端不会接收缓存过的资源，缓存服务器必须把客户端的请求发送给源服务器(p87)</li>
-<li>响应端包含该指令表明缓存服务器不能对资源进行缓存，源服务器不再对缓存服务器中提出的资源有效性进行确认，且禁止其对响应进行缓存操作</li>
-</ul>
-</li>
-<li>no-store<ul>
-<li>缓存不能再本地存储响应或者请求的任一部分</li>
-</ul>
-</li>
-<li>s-maxage=xxxx(单位:秒)<ul>
-<li>只适用于供多个用户使用的公共缓存服务器（代理）,使用s-maxage后，maxage,expires无效</li>
-</ul>
-</li>
-<li>max-age=xxxx(单位:秒)<ul>
-<li>客户端请求中包含该指令，如果判定缓存的时间比指定时间短，则接收缓存的资源，否则，缓存服务器需要将请求发送给源服务器</li>
-</ul>
-</li>
-<li>min-fresh=xxxx(单位:秒)<ul>
-<li>返回缓存服务器中还未过指定时间的缓存资源</li>
-</ul>
-</li>
-<li>max-stale=xxxx(单位：秒)<ul>
-<li>在指定的时间内都可以接收缓存资源，即使缓存资源已经过期</li>
-</ul>
-</li>
-<li>only-if-cached <ul>
-<li>客户端只在缓存服务器本地缓存目标资源的情况下才会要求其返回，如过缓存中没有该资源，返回504状态码</li>
-</ul>
-</li>
-<li>must-revalidate<ul>
-<li>代理必须向服务器再次验证该资源的有效性，如果代理无法连通服务器再次获取有效资源，缓存必须向客户端返回504状态码</li>
-</ul>
-</li>
-<li>proxy-revalidate<ul>
-<li>所有的缓存服务器在接收到客户端带有该指令的请求返回响应之前，再次验证缓存的有效性。</li>
-</ul>
-</li>
-<li>no-transform<ul>
-<li>无论是在请求还是在响应中，缓存都不能改变实体主体的媒体类型</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>connection<ul>
-<li>close</li>
-<li>Keep-Alive 持久化连接</li>
-<li>不在转发给代理的首部字段</li>
-</ul>
-</li>
-<li>Date<ul>
-<li>Date: Tue, 03 Jul 2012 04:40:59 GMT</li>
-</ul>
-</li>
-<li>transfer-encoding<br>规定了传输报文主体时采用的编码方式，HTTP/1.1 的传输编码方式仅对分块传输编码有效。<ul>
-<li>chunked 分块传输</li>
-</ul>
-</li>
-<li>upgrade<ul>
-<li>首部字段 Upgrade 用于检测 HTTP 协议及其他协议是否可使用更高的版本进行通信，其参数值可以用来指定一个完全不同的通信协议。</li>
-</ul>
-</li>
-<li>Via<ul>
-<li>使用首部字段 Via 是为了追踪客户端与服务器之间的请求和响应报文的传输路径。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>请求首部字段</p>
-<ul>
-<li>accept : 通知服务器客户端可以处理的媒体类型及媒体相对优先级<ul>
-<li>文本文件 text/html,text/plain,text/css</li>
-<li>图片文件 image/jpeg,image/gif,image/png</li>
-<li>视频文件 video/mpeg,video/quicktime</li>
-<li>二进制文件 application/octet-stream</li>
-</ul>
-</li>
-<li>accept-charset ：客户端支持的字符集及字符集的相对优先顺序</li>
-<li>accept-encoding ：客户端支持的内容编码及内容编码的优先级顺序。<ul>
-<li>gzip：由文件压缩程序gzip生成的编码格式</li>
-<li>compress：由UNIX文件压缩程序compress生成的编码格式</li>
-<li>deflate：组合使用zlib格式及由deflate算法生成的编码格式</li>
-<li>identity：不执行压缩或不会变化的默认编码格式</li>
-</ul>
-</li>
-<li>accept-language:zh-cn,zh;q=0.7</li>
-<li>authorization：告知服务器用户代理的认证信息</li>
-<li>expect： 告知服务器，期望出现的某种特定行为，目前只规定了100,continue</li>
-<li>from： 告知服务器使用用户代理的用户的电子邮箱</li>
-<li>Host：首部字段 Host 会告知服务器，请求的资源所处的互联网主机名和端口号。Host 首部字段在 HTTP/1.1 规范内是唯一一个必须被包含在请求内的首部字段。</li>
-<li>If-Match:”123456” ：告知服务器匹配资源所用的实体标记（ETag）值</li>
-<li>If-Modified-Since：If-Modified-Since 字段指定的日期时间后，资源发生了更新，服务器会接受请求，否则返回304</li>
-<li>If-None-Match：字段值与Etag值不一致，可处理该请求，可用于获取最新的资源。</li>
-<li>If-Range：告知服务器若指定的 If-Range 字段值（ETag 值或者时间）和请求资源的 ETag 值或时间相一致时，则作为范围请求处理。反之，则返回全体资源。</li>
-<li>If-Unmodified-Since：如果在指定的时间之后服务器的资源未发生更新，则处理请求，否则，以状态码412作为响应返回。</li>
-<li>Max-forwards：指定转发的最多次数，每转发一次，该值减1。为0时服务器直接返回响应。</li>
-<li>Range：bytes=5001-10000，告知服务器资源的范围，服务器接收到该字段的请求会返回206响应，无法处理范围请求时，返回200 OK</li>
-<li>Referer：告知服务器请求的原始资源的 URI</li>
-<li>User-Agent：User-Agent 会将创建请求的浏览器和用户代理名称等信息传达给服务器。</li>
-</ul>
-</li>
-<li>响应首部字段<ul>
-<li>Age：服务器创建响应到现在的市场，如果是缓存服务器，则返回缓存服务器再次验证资源的有效性到现在的时间</li>
-<li>Accept-Ranges<ul>
-<li>none：不能处理范围请求</li>
-<li>bytes：可以处理范围请求</li>
-</ul>
-</li>
-<li>ETag：将资源以字符串形式做唯一性标识的方式，服务器会为每一份资源分配对应的ETag，有强ETag和弱ETag之分</li>
-<li>Location：配合3xx;edirection的响应，提供重定向的URI</li>
-<li>Server：告知客户端当前服务器上安装的Http服务器应用程序的信息</li>
-<li>Vary：源服务器控制缓存服务器只返回和该字段的值一致的缓存，否则，须先从源服务器获取资源后才能作为响应返回。</li>
-</ul>
-</li>
-<li>实体首部字段<ul>
-<li>Allow：告知客户端服务器支持的Http方法，服务器接收到不支持的Http方法时，返回405及支持的Http方法</li>
-<li>Content-Encoding：告知客户端实体的内容编码方式，即压缩方式<ul>
-<li>gzip</li>
-<li>compress</li>
-<li>deflate</li>
-<li>identify</li>
-</ul>
-</li>
-<li>Content-Language：告知客户端实体主体使用的自然语言（中文或者英文）</li>
-<li>Content-Length：表明了实体主体部分的大小</li>
-<li>Content-Location：Content-Location 表示的是报文主体返回资源对应的 URI。</li>
-<li>Content-Range: bytes 5001-10000/10000，表示当前发送部分和整个实体大小</li>
-<li>Content-Type: text/html; charset=UTF-8，实体主体内对象的媒体类型。</li>
-<li>Expires：将资源失效的日期告诉的客户端。当超过指定时间后，缓存在请求发送过来时会向服务器请求资源，否则，返回缓存。</li>
-<li>Last-Modified：资源最终修改的时间。</li>
-</ul>
-</li>
-<li>为Cookie服务的首部字段<ul>
-<li>Set-Cookie<ul>
-<li>NAME=VALUE</li>
-<li>expires=DATE，省略时浏览器会话结束cookie失效。一旦Cookie被发送至客户端，服务器不存在显示删除Cookie的方法。可以通过覆盖以过期的Cookie，实现实质的删除操作</li>
-<li>path=PATH，限制Cookie的发送范围的文件目录</li>
-<li>domain=域名，以domain指定的域名结尾的域名都可以发送Cookie，不指定默认为创建Cookie的服务器的域名</li>
-<li>Secure，只在Https发送Cookie</li>
-<li>HttpOnly，不允许JavaScript操作Cookie</li>
-</ul>
-</li>
-<li>Cookie：status=enable<h1 id="HTTPS-HTTP-Secure"><a href="#HTTPS-HTTP-Secure" class="headerlink" title="HTTPS(HTTP Secure)"></a>HTTPS(HTTP Secure)</h1></li>
-</ul>
-</li>
-<li>SSL(Secure Socket Layer) 安全套接层</li>
-<li>TLS(Transport Layer Security) 安全层传输协议</li>
-<li>Http协议的缺点<ul>
-<li>明文可能被窃听（加密）</li>
-<li>通信双方可能被伪装（认证）</li>
-<li>中间人攻击，明文内容被篡改（完整性保护）</li>
-</ul>
-</li>
-<li>Https=HTTP+加密+认证+完整性<ul>
-<li>加密：Https采用非对称加密和对称加密混合加密机制。因为公开密钥加密处理比共享密钥处理复杂，如果都使用公开密钥加密通信，效率会很低。使用公开密钥加密方式安全地交换稍后共享密钥加密要使用的密钥，确保交换的密钥是安全的前提下，采用共享密钥加密方式进行通信。</li>
-<li>认证：由服务器向第三方认证机构申请数字证书，客户端请求时，服务器发送带有公钥的证书到客户端，客户端认证成功后，使用公钥进行公开密钥加密方式传输，服务器使用私钥对报文解密</li>
-<li>完整性：应用层发送数据时会附加一种叫做 MAC（MessageAuthentication Code）的报文摘要。MAC 能够查知报文是否遭到篡<br>改，从而保护报文的完整性。<h1 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h1><h1 id="HTTP用户身份认证"><a href="#HTTP用户身份认证" class="headerlink" title="HTTP用户身份认证"></a>HTTP用户身份认证</h1></li>
-</ul>
-</li>
-<li>BASIC认证</li>
-<li>DIGETS认证</li>
-<li>SSL认证</li>
-<li>表单认证  <ul>
-<li>cookie和session<br>用户通过ID和密码登录后，服务器通过ID和密码生成sessionID，通过设置cookie的方式将sessionID返回给用户，为了防止跨站攻击，一般设置为httpOnly。一般也会设置过期时间。用户再次访问服务器时，会带上sessionID，服务器根据sessionID判断用户的身份和状态。</li>
-<li>用户信息保存<br>通常，一种安全的保存方法是，先利用给密码加盐的方式增加额外信息，再使用散列（hash）函数计算出散列值后保存。<h1 id="web攻击技术"><a href="#web攻击技术" class="headerlink" title="web攻击技术"></a>web攻击技术</h1></li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/06/24/rem实现自适应布局/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2019/06/24/rem实现自适应布局/" itemprop="url">rem实现自适应布局</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T00:56:37+08:00">
-                2019-06-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="rem是什么"><a href="#rem是什么" class="headerlink" title="rem是什么"></a>rem是什么</h1><p>1rem=根元素fontsize的值,因此设置rem的值时，可以考虑两种情况，一种是将根元素的fontsize设置成整数，比如100px，50px，一般不推荐设置的值小于12px,因为chrome浏览器会将有最小字体的限制。另一种方案是将rem设置成设计稿的整数倍，比如1rem=64px,总之，设置rem应尽量让数值取整。</p>
-<h1 id="如何通过js设置rem的值"><a href="#如何通过js设置rem的值" class="headerlink" title="如何通过js设置rem的值"></a>如何通过js设置rem的值</h1><ul>
-<li>获取body的宽度 1920，1366，1080，760等</li>
-<li></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2250,7 +1945,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
