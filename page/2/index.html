@@ -229,6 +229,199 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/06/数组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/10/06/数组/" itemprop="url">数组</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-06T16:47:12+08:00">
+                2019-10-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h3><p>扩展运算符（spread）是三个点（…）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。主要用于函数调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y + z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(sum(...arr));</span><br></pre></td></tr></table></figure>
+<p>扩展运算符后可以放表达式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> arr = [...(x &gt; <span class="number">0</span> ? [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] : [<span class="number">-1</span>, <span class="number">-2</span>, <span class="number">-3</span>])];</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="comment">//[1, 2, 3];</span></span><br></pre></td></tr></table></figure>
+<p>扩展运算符可以代替 apply，传递数组参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max(...[<span class="number">12</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">34</span>]);</span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line">arr.push(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]);</span><br></pre></td></tr></table></figure>
+<p>复制数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = [...a1];</span><br></pre></td></tr></table></figure>
+<p>合并数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [</span><br><span class="line">  &#123;</span><br><span class="line">    foo: <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="keyword">const</span> a2 = [</span><br><span class="line">  &#123;</span><br><span class="line">    bar: <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="keyword">const</span> a3 = a1.concat(a2);</span><br><span class="line"><span class="keyword">const</span> a4 = [...a1, ...a2];</span><br><span class="line">a3[<span class="number">0</span>] === a4[<span class="number">0</span>]; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>上述用扩展运算符和 concat 方法合并了 a1，a2 两个数组，但是 a1 和 a2 数组中是对象，因此拷贝的知识指向这些对象的指针，所以他们的值是相等的。</p>
+<p>与解构赋值结合</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[a, ...rest] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="built_in">console</span>.log(rest);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [first, ...rest] = [];</span><br><span class="line">first; <span class="comment">// undefined</span></span><br><span class="line">rest; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<p>如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [...butLast, last] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first, ...middle, last] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>将字符串转为为真正的数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="string">"hello"</span>];</span><br></pre></td></tr></table></figure>
+<p>那就是能够正确识别四个字节的 Unicode 字符<br><code>\uD83D\uDE80</code>表示 🚀</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="string">"x\uD83D\uDE80y"</span>].length; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>只要内部具有 Iterator 接口的对象，…都可以解析转为为数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nodeList = <span class="built_in">document</span>.querySelectorAll(<span class="string">"div"</span>);</span><br><span class="line"><span class="keyword">let</span> array = [...nodeList];</span><br></pre></td></tr></table></figure>
+<p>因为 nodeList 具有 Iterator 接口，所以可以将其扩展为数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayLike = &#123;</span><br><span class="line">  <span class="string">"0"</span>: <span class="string">"a"</span>,</span><br><span class="line">  <span class="string">"1"</span>: <span class="string">"b"</span>,</span><br><span class="line">  <span class="string">"2"</span>: <span class="string">"c"</span>,</span><br><span class="line">  length: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// TypeError: Cannot spread non-iterable object.</span></span><br><span class="line"><span class="keyword">let</span> arr = [...arrayLike];</span><br></pre></td></tr></table></figure>
+<p>类似数组对象无法扩展，因为其没有 iterator 接口。</p>
+<p>Map 结构，Set 结构，Generator 函数都可以被扩展。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> go = <span class="function"><span class="keyword">function</span>*(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[...go()]; <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h3><p>Array.from 可以将类似数组的对象转化为数组，类似数组的对象本质上是一个具有 length 属性的对象，如函数参数 arguments 和节点对象 nodelists 都是类似数组的对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(args, x =&gt; x * x);</span><br><span class="line">&#125;</span><br><span class="line">fn(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>Array.from 的第二个参数类似于数组 map 函数，对数组的每一个元素进行处理后返回。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>, x =&gt; x * x);</span><br><span class="line">  <span class="built_in">console</span>.log(args);</span><br><span class="line">&#125;</span><br><span class="line">fn(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>); <span class="comment">//[ 1, 4, 9, 16, 25 ]</span></span><br></pre></td></tr></table></figure>
+<p>只要有 length 属性的对象就可以被转化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrayObj = &#123;</span><br><span class="line">  <span class="string">"0"</span>: <span class="string">"foo"</span>,</span><br><span class="line">  <span class="string">"1"</span>: <span class="string">"bar"</span>,</span><br><span class="line">  <span class="string">"2"</span>: <span class="string">"baz"</span>,</span><br><span class="line">  length: <span class="string">"4"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> arr = <span class="built_in">Array</span>.from(arrayObj);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[ 'foo', 'bar', 'baz', undefined ]</span></span><br></pre></td></tr></table></figure>
+<p>具有 iterator 接口的对象也可以转化为数组<br>如 nodelists，set 结构，map 结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">52</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(obj.toString()); <span class="comment">//[object Set]</span></span><br><span class="line"><span class="keyword">let</span> arr = <span class="built_in">Array</span>.from(obj, x =&gt; x * <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[2, 8, 10, 104]</span></span><br></pre></td></tr></table></figure>
+<p>返回输入数据的类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">typesof</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> types = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>, x =&gt; <span class="keyword">typeof</span> x);</span><br><span class="line">  <span class="built_in">console</span>.log(types);</span><br><span class="line">&#125;</span><br><span class="line">typesof(<span class="literal">undefined</span>, <span class="literal">null</span>, <span class="number">12</span>, <span class="string">"112"</span>, <span class="built_in">Symbol</span>(), &#123;&#125;, <span class="literal">false</span>);</span><br><span class="line"><span class="comment">//[ 'undefined','object','number','string','symbol','object','boolean']</span></span><br></pre></td></tr></table></figure>
+<p>字符串转化为数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将字符串转化为数组</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="built_in">Array</span>.from(<span class="string">'🚀🚀😀'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str.length);</span><br><span class="line">str = <span class="string">'☀🌙💗'</span></span><br><span class="line"><span class="built_in">console</span>.log(str.length)</span><br></pre></td></tr></table></figure>
+<h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h3><p>弥补 Array()创建数组时的不足，即传入的参数不同会有不同的行为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>(); <span class="comment">//[]</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">3</span>); <span class="comment">//[,,]</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">//[1,2,3]</span></span><br></pre></td></tr></table></figure>
+<p>Array.of()传入的参数都会被成为数组成员</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.of()); <span class="comment">//[]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.of(<span class="number">3</span>)); <span class="comment">//[3]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)); <span class="comment">//[1,2,3]</span></span><br></pre></td></tr></table></figure>
+<p>Array.of 方法可以用下面的代码模拟实现。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArrayOf</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [].slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="copyWithin"><a href="#copyWithin" class="headerlink" title="copyWithin()"></a>copyWithin()</h3><p>copyWithin(target,start,end)，将指定位置即 target 的值替换为 start 到 end 之间的值，不包括 end。<br>target（必需）：从该位置开始替换数据。如果为负值，表示倒数。<br>start（可选）：从该位置开始读取数据，默认为 0。如果为负值，表示从末尾开始计算。<br>end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示从末尾开始计算。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].copyWithin(<span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line"><span class="comment">// [4, 5, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+<h3 id="find-和-findIndex"><a href="#find-和-findIndex" class="headerlink" title="find()和 findIndex()"></a>find()和 findIndex()</h3><p>数组实例的 find 方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为 true 的成员，然后返回该成员。如果没有符合条件的成员，则返回 undefined。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">-5</span>, <span class="number">10</span>].find(<span class="function"><span class="params">n</span> =&gt;</span> n &lt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// -5</span></span><br></pre></td></tr></table></figure>
+<p>find 方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组。<br>两个方法都可以接受第二个参数，用来绑定回调函数的 this 对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> v &gt; <span class="keyword">this</span>.age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person = &#123; <span class="attr">name</span>: <span class="string">"John"</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;;</span><br><span class="line">[<span class="number">10</span>, <span class="number">12</span>, <span class="number">26</span>, <span class="number">15</span>].find(f, person); <span class="comment">// 26</span></span><br></pre></td></tr></table></figure>
+<p>另外，这两个方法都可以发现 NaN，弥补了数组的 indexOf 方法的不足。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="literal">NaN</span>]</span><br><span class="line">  .indexOf(<span class="literal">NaN</span>)</span><br><span class="line">  <span class="comment">// -1</span></span><br><span class="line"></span><br><span class="line">  [<span class="literal">NaN</span>].findIndex(<span class="function"><span class="params">y</span> =&gt;</span> <span class="built_in">Object</span>.is(<span class="literal">NaN</span>, y));</span><br><span class="line"><span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<h3 id="fill"><a href="#fill" class="headerlink" title="fill"></a>fill</h3><p>fill 方法使用给定值，填充一个数组。第二个和第三个参数，用于指定填充的起始位置和结束位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>].fill(<span class="number">7</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// ['a', 7, 'c']</span></span><br></pre></td></tr></table></figure>
+<h3 id="entries-，keys-和-values"><a href="#entries-，keys-和-values" class="headerlink" title="entries()，keys() 和 values()"></a>entries()，keys() 和 values()</h3><p>entries()，keys()和 values()——用于遍历数组。它们都返回一个遍历器对象。可以用 for…of…进行遍历，keys<br>()表示对键名的遍历，values()表示对键值的遍历，entries()表示对键值对的遍历。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> keys = arr.keys();</span><br><span class="line"><span class="keyword">var</span> entries = arr.entries();</span><br><span class="line"><span class="keyword">var</span> values = arr.values();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">of</span> keys) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(index);</span><br><span class="line">&#125; <span class="comment">//0 1 2 3 4</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> values) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125; <span class="comment">// 1 2 3 4 5</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [i, v] <span class="keyword">of</span> entries) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i, v);</span><br><span class="line">&#125; <span class="comment">//01 12 23 34 45</span></span><br></pre></td></tr></table></figure>
+<p>也可以调用迭代器对象自身的 next()方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> keys = arr.keys();</span><br><span class="line"><span class="built_in">console</span>.log(keys.next()); <span class="comment">//&#123;value:0,done:false&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="includes"><a href="#includes" class="headerlink" title="includes()"></a>includes()</h3><p>indexOf 方法有两个缺点，一是不够语义化，它的含义是找到参数值的第一个出现位置，所以要去比较是否不等于-1，表达起来不够直观。二是，它内部使用严格相等运算符（===）进行判断，这会导致对 NaN 的误判。<br>Array.prototype.includes 方法返回一个布尔值，表示某个数组是否包含给定的值。语义化且可以判断 NAN。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].includes(<span class="number">2</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Map 结构的 has 方法，是用来查找键名的，比如 Map.prototype.has(key)、WeakMap.prototype.has(key)、Reflect.has(target, propertyKey)。<br>Set 结构的 has 方法，是用来查找值的，比如 Set.prototype.has(value)、WeakSet.prototype.has(value)。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1, 2, 3, 45, 65, 34, 2, 3]);</span><br><span class="line">console.log(<span class="keyword">set</span>.has(1));</span><br><span class="line">let map = new Map([["a", "for"], ["b", "bar"]]);</span><br><span class="line">console.log(map.has("foo"));</span><br></pre></td></tr></table></figure>
+<h3 id="flat-，flatMap"><a href="#flat-，flatMap" class="headerlink" title="flat()，flatMap()"></a>flat()，flatMap()</h3><p>数组的成员有时还是数组，Array.prototype.flat()用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]].flat();</span><br><span class="line"><span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<p>flat()默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将 flat()方法的参数写成一个整数，表示想要拉平的层数，默认为 1。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, [<span class="number">4</span>, <span class="number">5</span>]]].flat(<span class="number">2</span>);</span><br><span class="line"><span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+<p>如果不管有多少层嵌套，都要转成一维数组，可以用 Infinity 关键字作为参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>]]].flat(<span class="literal">Infinity</span>);</span><br><span class="line"><span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<p>flatMap()方法对原数组的每个成员执行一个函数（相当于执行 Array.prototype.map()），然后对返回值组成的数组执行 flat()方法。该方法返回一个新数组，不改变原数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 相当于 [[2, 4], [3, 6], [4, 8]].flat()</span></span><br><span class="line">[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>].flatMap(<span class="function"><span class="params">x</span> =&gt;</span> [x, x * <span class="number">2</span>]);</span><br><span class="line"><span class="comment">// [2, 4, 3, 6, 4, 8]</span></span><br></pre></td></tr></table></figure>
+<h3 id="数组的空位"><a href="#数组的空位" class="headerlink" title="数组的空位"></a>数组的空位</h3><p>由于空位的处理规则非常不统一，所以建议避免出现空位。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/06/函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1703,198 +1896,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/09/21/this/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2019/09/21/this/" itemprop="url">this</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-21T23:24:21+08:00">
-                2019-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>this 是什么？</p>
-<p>在 JavaScript 的函数中,this 总是指向一些对象，这些对象可以是全局的对象 window，也可以是某一个用户自定义的对象，在严格模式下也可以是 undefined。this 并非指向函数声明时所在的环境，而在运行时基于函数的执行环境动态绑定的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="string">"aaaaa"</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  a: <span class="string">"bbbbb"</span>,</span><br><span class="line">  foo: foo</span><br><span class="line">&#125;;</span><br><span class="line">foo(); <span class="comment">//aaaaa</span></span><br><span class="line">obj.foo(); <span class="comment">//bbbbb</span></span><br></pre></td></tr></table></figure>
-<p>上述代码第一个 foo 函数执行环境为 window，第二个 foo 函数执行环境为 obj，因此 this 的指向是动态绑定的。</p>
-</li>
-<li><p>为什么要用 this？</p>
-<p>通过使用 this，当函数被不同的对象调用时，可以避免传入对象作为参数，而是直接通过改变 this 的指向即可。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">  name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> bar = &#123;</span><br><span class="line">  name: <span class="string">"bar"</span></span><br><span class="line">&#125;;</span><br><span class="line">sayName.call(foo); <span class="comment">//foo</span></span><br><span class="line">sayName.call(bar); <span class="comment">//bar</span></span><br></pre></td></tr></table></figure>
-<p>通过使用 this，可以使我们的代码更加优雅，提高代码的可复用性。</p>
-</li>
-<li><p>this 的绑定规则</p>
-<ul>
-<li><p>默认绑定<br>在非严格模式下，普通函数调用时 this 默认绑定的全局对象，在严格模式下，普通函数的 this 绑定的是 undefined。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"aaaaa"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); <span class="comment">//Cannot read property 'a' of undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>隐式绑定</p>
-<p>当函数调用位置有上下下文时，或者说是否被某一个对象调用时，this 会绑定到这个上下文对象中。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  a: <span class="string">"bbbbb"</span>,</span><br><span class="line">  foo: foo</span><br><span class="line">&#125;;</span><br><span class="line">obj.foo(); <span class="comment">//bbbbb</span></span><br></pre></td></tr></table></figure>
-<p>此处 obj 调用了 foo，因此 foo 中的 this 绑定到了 obj 对象上。</p>
-<ul>
-<li><p>链式调用</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  a: <span class="string">"obj1"</span>,</span><br><span class="line">  foo: foo</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  a: <span class="string">"obj2"</span>,</span><br><span class="line">  obj1: obj1</span><br><span class="line">&#125;;</span><br><span class="line">obj2.obj1.foo();</span><br></pre></td></tr></table></figure>
-<p>链式调用时，函数的 this 始终绑定到最后一层调用上，即 obj1。</p>
-</li>
-<li><p>消失的 this</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  a: <span class="string">"aaaaa"</span>,</span><br><span class="line">  foo: foo</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> a = <span class="string">"window"</span>;</span><br><span class="line"><span class="keyword">var</span> bar = obj.foo;</span><br><span class="line">bar(); <span class="comment">//window</span></span><br></pre></td></tr></table></figure>
-<p>bar 是 obj.foo 的应用，因为没有调用，所以 bar 其实就是 foo 函数的应用，作为普通函数调用时，默认绑定全局对象。在事件回调函数中，this 有时候会与 dom 元素绑定，如</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;button id=<span class="string">"btn"</span>&gt;clickme&lt;<span class="regexp">/button&gt;;</span></span><br><span class="line"><span class="regexp">var id = "window";</span></span><br><span class="line"><span class="regexp">var clickHandler = function() &#123;</span></span><br><span class="line"><span class="regexp">  console.log(this.id);</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp">document</span></span><br><span class="line"><span class="regexp">  .getElementById("btn")</span></span><br><span class="line"><span class="regexp">  .addEventListener("click", clickHandler, false); /</span><span class="regexp">/btn</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>显示绑定</p>
-<p>显示绑定即利用 apply,call 等方法将函数的 this 绑定到指定的对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> foo = &#123;</span><br><span class="line">  name: <span class="string">"foo"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> bar = &#123;</span><br><span class="line">  name: <span class="string">"bar"</span></span><br><span class="line">&#125;;</span><br><span class="line">sayName.call(foo); <span class="comment">//foo</span></span><br><span class="line">sayName.call(bar); <span class="comment">//bar</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>硬绑定</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.hardBind = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> fn = <span class="keyword">this</span>; <span class="comment">//获取原函数</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn.apply(obj);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> id = <span class="string">"window"</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  id: <span class="string">"anotherObj"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> clickHandler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.id);</span><br><span class="line">&#125;.hardBind(<span class="keyword">this</span>);</span><br><span class="line"><span class="built_in">document</span></span><br><span class="line">  .getElementById(<span class="string">"btn"</span>)</span><br><span class="line">  .addEventListener(<span class="string">"click"</span>, clickHandler.bind(obj), <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-<p>clickHandler 一个 this 始终与全局对象绑定的函数，clickHanler 再绑定其他对象也是没有用的。</p>
-<ul>
-<li>API 绑定</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">  id:<span class="string">'aaaaa'</span></span><br><span class="line">&#125;</span><br><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]forEach(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)<span class="comment">//aaaaa</span></span><br><span class="line">&#125;,obj)</span><br></pre></td></tr></table></figure>
-<p>在 foreach 的第二个参数可以传入一个绑定的对象，其实内部也是使用 call 和 apply 实现的。</p>
-</li>
-<li><p>new 绑定<br>通过 new 调用函数时，如果函数中没有返回对象，那么函数 this 绑定的就是 new 生成的实例。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">sth</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.a = sth;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params">sth</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.b = sth;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    b: <span class="string">"cccc"</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> foo(<span class="string">"aaaa"</span>);</span><br><span class="line"><span class="keyword">var</span> obj1 = <span class="keyword">new</span> bar(<span class="string">"bbbb"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(obj.a); <span class="comment">//aaaa</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1.b); <span class="comment">//cccc</span></span><br></pre></td></tr></table></figure>
-<p>注意当构造函数中返回了一个对象，此时 this 绑定的就不是返回的对象了。</p>
-</li>
-</ul>
-</li>
-<li><p>优先级</p>
-<ul>
-<li><p>比较隐式绑定和显示绑定的优先级</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  a: <span class="string">"aaaa"</span>,</span><br><span class="line">  foo: foo</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  a: <span class="string">"bbbb"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">  a: <span class="string">"cccc"</span></span><br><span class="line">&#125;;</span><br><span class="line">obj.foo(); <span class="comment">//aaaa</span></span><br><span class="line">obj.foo.call(obj1); <span class="comment">//bbbb</span></span><br><span class="line">obj.foo = obj.foo.bind(obj2);</span><br><span class="line">obj.foo(); <span class="comment">//cccc</span></span><br></pre></td></tr></table></figure>
-<p>由上述例子可以得出显示绑定的优先级高于隐式绑定。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">sth</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.a = sth;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> bar = foo.bind(obj);</span><br><span class="line">bar(<span class="string">"aaaa"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(obj.a); <span class="comment">//aaaa</span></span><br><span class="line"><span class="comment">//此时foo中的this已经绑定了obj</span></span><br><span class="line"><span class="keyword">var</span> baz = <span class="keyword">new</span> bar(<span class="string">"bbbb"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(obj.a); <span class="comment">//aaaa</span></span><br><span class="line"><span class="built_in">console</span>.log(baz.a); <span class="comment">//bbbb</span></span><br></pre></td></tr></table></figure>
-<p>从上述例子可以看出，new 的优先级高于显式绑定。</p>
-</li>
-</ul>
-</li>
-<li><p>箭头函数的 this<br>箭头函数是根据外层的作用域，如函数作用域和全局作用域来决定 this 的，因此不遵循上述的 4 中规则。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">a</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = foo();</span><br><span class="line"><span class="keyword">var</span> a = <span class="string">"window"</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  a: <span class="string">"obj"</span></span><br><span class="line">&#125;;</span><br><span class="line">bar(); <span class="comment">//window</span></span><br><span class="line"><span class="keyword">var</span> baz = foo.call(obj);</span><br><span class="line">baz(); <span class="comment">//obj</span></span><br></pre></td></tr></table></figure>
-<p>bar(箭头函数)的 this 指向的是 window,因为 foo 调用时其 this 就是全局变量，baz 的 this 指向 obj，同理。箭头函数的绑定无法被修改(就算是 new 也不行！)</p>
-</li>
-<li><p>如何使用 this</p>
-<ul>
-<li>只使用词法作用域，完全抛弃错误 this 风格的代码</li>
-<li>完全采用 this 风格的代码，必要时使用 bind，尽量避免使用 self=this 和箭头函数。</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1945,7 +1946,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

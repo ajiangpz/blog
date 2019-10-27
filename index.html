@@ -229,6 +229,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/19/module/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pzzz">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pzzz's FE Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2019/10/19/module/" itemprop="url">module</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-19T11:05:22+08:00">
+                2019-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="静态加载（编译时加载）"><a href="#静态加载（编译时加载）" class="headerlink" title="静态加载（编译时加载）"></a>静态加载（编译时加载）</h3><p>ES6</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>原生实现，可以不用在依赖 UMD 模块化。</li>
+<li>浏览器的 API 也可以作为一个模块，而不是全局变量。</li>
+<li>命名空间可以替换为模块</li>
+</ul>
+<h3 id="运行时加载"><a href="#运行时加载" class="headerlink" title="运行时加载"></a>运行时加载</h3><p>CommonJS</p>
+<h3 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h3><p>变量必须声明后再使用<br>函数的参数不能有同名属性，否则报错<br>不能使用 with 语句<br>不能对只读属性赋值，否则报错<br>不能使用前缀 0 表示八进制数，否则报错<br>不能删除不可删除的属性，否则报错<br>不能删除变量 delete prop，会报错，只能删除属性 delete global[prop]<br>eval 不会在它的外层作用域引入变量<br>eval 和 arguments 不能被重新赋值<br>arguments 不会自动反映函数参数的变化<br>不能使用 arguments.callee<br>不能使用 arguments.caller<br>禁止 this 指向全局对象<br>不能使用 fn.caller 和 fn.arguments 获取函数调用的堆栈<br>增加了保留字（比如 protected、static 和 interface）</p>
+<h3 id="export"><a href="#export" class="headerlink" title="export"></a>export</h3><p>export 输出的是访问模块内部属性方法的接口，模块内部的变量更新了外部模块也会实时更新。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">var</span> i=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">export</span> &#123;i,fn&#125;</span><br><span class="line"><span class="comment">//改变输出的名称</span></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">  i <span class="keyword">as</span> rename_i,</span><br><span class="line">  fn <span class="keyword">as</span> rename_fn</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>export 直接输出变量或者函数会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> i;</span><br><span class="line"><span class="keyword">export</span> fn;</span><br></pre></td></tr></table></figure>
+<p>export 命令可以出现在模块的任何位置，只要处于模块顶层就可以。如果处于块级作用域内，就会报错。</p>
+<h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><p>import 引入的变量是只读的，如果变量是对象，可以改变其属性，不推荐。</p>
+<p>import 语句大括号里的变量名必须与 export 的变量名保持一致，可以使用 as 关键字对象引入的变量重命名。</p>
+<p>import 是单例模式，多次 import 同一个模块只会执行一次。</p>
+<p>import 是静态执行，不可以使用变量和表达式。</p>
+<h3 id="整体加载"><a href="#整体加载" class="headerlink" title="整体加载"></a>整体加载</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> name <span class="keyword">from</span> <span class="string">"module"</span>;</span><br></pre></td></tr></table></figure>
+<p>整体加载的模块对象是静态分析对象，不可以在运行时修改。</p>
+<h3 id="export-default"><a href="#export-default" class="headerlink" title="export default"></a>export default</h3><p>export default 命令用于指定模块的默认输出。显然，一个模块只能有一个默认输出，因此 export default 命令只能使用一次。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//module</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="comment">//输出匿名函数</span></span><br><span class="line"><span class="keyword">import</span> customName <span class="keyword">from</span> <span class="string">"module"</span>; <span class="comment">//自定义引入的名称，不需要括号</span></span><br><span class="line"><span class="comment">//输出有名称的函数，效果和匿名函数一样</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>既有默认输出也输出其他方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ···</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">each</span>(<span class="params">obj, iterator, context</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ···</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; each <span class="keyword">as</span> forEach &#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="模块加载方法"><a href="#模块加载方法" class="headerlink" title="模块加载方法"></a>模块加载方法</h3><h4 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h4><ol>
+<li>script 标签同步加载，阻塞浏览器渲染，可以使用 defer 或者 async 实现异步加载<br>defer 会在 dom 解析完成和其他同步脚本执行完成后，才会执行，defer 按照 script 标签在页面中的出现顺序加载。而 async 一旦下载完成就会阻塞浏览器渲染，执行完脚本后继续渲染，多个 async 脚本不能保证按在页面中出现的顺序加载。</li>
+<li>加载规则<br>script 标签引入模块</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">""</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>上述代码行为与 defer 标签一样</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">""</span> <span class="keyword">async</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>上述代码行为与 async 函数一样<br>在 script 中使用 import</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span>&gt;<span class="keyword">import</span> utils <span class="keyword">from</span> <span class="string">'./'</span>&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="commonJs-与-ES6"><a href="#commonJs-与-ES6" class="headerlink" title="commonJs 与 ES6"></a>commonJs 与 ES6</h4><p>两个重要的区别<br>commonJs 是引入模块时是动态地按值拷贝，ES6 是静态分析时创建引用。<br>commonJs 模块会缓存值的结果，而 ES6 不会缓存。因为 cmj 是按值拷贝，类似于函数的传参，当值是引用类型时，改变该值时父模块的中引入的值也会跟着改变，而如果时原始类型，那么改变子模块的值父模块是没有反应的。而 ES6 中，不管是什么类型的值，只要改变了父模块的值也会跟着改变。</p>
+<h3 id="node-加载"><a href="#node-加载" class="headerlink" title="node 加载"></a>node 加载</h3><p>node 的 ES6 模块需要采用.mjs 后缀文件名，require 命令不能加载.mjs 文件，.mjs 文件也不能使用 require 命令。<br>node 只能加载本地的 ES6 模块<br>如果文件不包含路径，则需要到 node_modules 下读取。<br>如果文件省略了后缀名，node 会依次尝试’./foo.mjs’,’./foo.js’,’./foo.json’,’./foo.node’，如果不存在<br>加载./foo/package.json 的 main 字段指定的脚本。如果依旧没有，加载./foo/index.mjs 等四个文件，如果没有则报错。</p>
+<h4 id="内部变量"><a href="#内部变量" class="headerlink" title="内部变量"></a>内部变量</h4><p>以下变量在 ES6 中都不存在</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">arguments</span>;</span><br><span class="line"><span class="built_in">require</span>;</span><br><span class="line"><span class="built_in">module</span>;</span><br><span class="line">exports;</span><br><span class="line">__filename;</span><br><span class="line">__dirname;</span><br></pre></td></tr></table></figure>
+<p>如果要在 ES6 模块中使用这些变量，可以使用在 ES6 模块中使用 import 导入 CommonJS 模块，因为在 cmj 模块中有这些变量且可以导出。</p>
+<h4 id="ES6-模块导入-cmj-模块"><a href="#ES6-模块导入-cmj-模块" class="headerlink" title="ES6 模块导入 cmj 模块"></a>ES6 模块导入 cmj 模块</h4><p>在 nodejs 中，commonJS 的 module.exports 相当于 ES6 模块的 export default，因此可以向 import ES6 模块一样导入 commonJS 模块，导入的对象相当于{default:module.exports}</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//cmj.js</span></span><br><span class="line"><span class="keyword">export</span>.modules=&#123;</span><br><span class="line">    foo: <span class="string">'hello'</span>,</span><br><span class="line">  bar: <span class="string">'world'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//es</span></span><br><span class="line"><span class="keyword">import</span> bar <span class="keyword">from</span> <span class="string">'cmj.js'</span></span><br><span class="line"><span class="comment">//bar=&#123;  foo: 'hello',</span></span><br><span class="line"> <span class="comment">// bar: 'world'&#125;</span></span><br><span class="line"><span class="keyword">import</span> &#123;<span class="keyword">default</span> <span class="keyword">as</span> foo&#125; <span class="keyword">from</span> <span class="string">'cmj.js'</span></span><br><span class="line"><span class="comment">//foo=&#123;</span></span><br><span class="line">    <span class="comment">//foo: 'hello',</span></span><br><span class="line">  <span class="comment">//bar: 'world'</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> baz <span class="keyword">from</span> <span class="string">'cmj.js'</span></span><br><span class="line"><span class="comment">//baz=&#123;</span></span><br><span class="line"><span class="comment">//   get default() &#123;return module.exports;&#125;,</span></span><br><span class="line"><span class="comment">//   get foo() &#123;return this.default.foo&#125;.bind(baz),</span></span><br><span class="line"><span class="comment">//   get bar() &#123;return this.default.bar&#125;.bind(baz)</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br></pre></td></tr></table></figure>
+<p>由于 ES6 模块是编译时确定输出接口，CommonJS 模块是运行时确定输出接口，所以采用 import 命令加载 CommonJS 模块时，不允许采用下面的写法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; readFile &#125; <span class="keyword">from</span> <span class="string">"fs"</span>;</span><br></pre></td></tr></table></figure>
+<p>上面的写法不正确，因为 fs 是 CommonJS 格式，只有在运行时才能确定 readFile 接口，而 import 命令要求编译时就确定这个接口。解决方法就是改为整体输入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正确的写法二</span></span><br><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">"express"</span>;</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br></pre></td></tr></table></figure>
+<h4 id="CommonJS-模块加载-ES6-模块"><a href="#CommonJS-模块加载-ES6-模块" class="headerlink" title="CommonJS 模块加载 ES6 模块"></a>CommonJS 模块加载 ES6 模块</h4><p>在 commonjs 中使用 import 命令导入 es6 模块，es6 模块的所有输出接口变成 cmj 模块的输入对象属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//es</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  foo:<span class="string">'foo'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//cmj</span></span><br><span class="line"><span class="keyword">const</span> es_module=<span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">'./es.js)</span></span><br><span class="line"><span class="string">es_module.default</span></span><br></pre></td></tr></table></figure>
+<h3 id="循环加载"><a href="#循环加载" class="headerlink" title="循环加载"></a>循环加载</h3><p>CommonJS 模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。<br>commonJS 循环加载，加入 a 模块中引入了 b 模块，那么会先执行 b 模块，此时 b 模块中引入了 a 模块，a 模块不会执行，b 模块会只会引入 a 模块中已经执行的部分。等 b 模块执行完后，a 模块继续执行剩下的部分。<br>在 ES6 模块中，a 模块引入 b 模块，b 模块会先执行，b 模块中引入了 a 模块的接口，此时会默认这个接口是已经定义了的，继续执行 b 模块，如果使用了该接口且该接口在 a 模块的执行中还没定义，那么就会报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//module a</span></span><br><span class="line"><span class="keyword">import</span> &#123; bar &#125; <span class="keyword">from</span> <span class="string">"b"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> foo = <span class="string">"foo"</span>;</span><br><span class="line"><span class="comment">//module b</span></span><br><span class="line"><span class="keyword">import</span> &#123; foo &#125; <span class="keyword">from</span> <span class="string">"a"</span>; <span class="comment">//foo是module a的应用</span></span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">//此时报错，foo在module a中还没有定义</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> bar = <span class="string">"bar"</span>;</span><br></pre></td></tr></table></figure>
+<p>可以使用函数提升解决这个问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//module a</span></span><br><span class="line"><span class="keyword">import</span> &#123; bar &#125; <span class="keyword">from</span> <span class="string">"b"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"bar"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; bar &#125;;</span><br><span class="line"><span class="comment">//module b</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/15/class/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1610,199 +1778,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/ajiangpz/blog/blog/2019/10/06/数组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pzzz">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/blog/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pzzz's FE Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/blog/2019/10/06/数组/" itemprop="url">数组</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-06T16:47:12+08:00">
-                2019-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h3><p>扩展运算符（spread）是三个点（…）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。主要用于函数调用</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y, z</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + y + z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(sum(...arr));</span><br></pre></td></tr></table></figure>
-<p>扩展运算符后可以放表达式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">const</span> arr = [...(x &gt; <span class="number">0</span> ? [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] : [<span class="number">-1</span>, <span class="number">-2</span>, <span class="number">-3</span>])];</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="comment">//[1, 2, 3];</span></span><br></pre></td></tr></table></figure>
-<p>扩展运算符可以代替 apply，传递数组参数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max(...[<span class="number">12</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">34</span>]);</span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line">arr.push(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]);</span><br></pre></td></tr></table></figure>
-<p>复制数组</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = [...a1];</span><br></pre></td></tr></table></figure>
-<p>合并数组</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [</span><br><span class="line">  &#123;</span><br><span class="line">    foo: <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="keyword">const</span> a2 = [</span><br><span class="line">  &#123;</span><br><span class="line">    bar: <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="keyword">const</span> a3 = a1.concat(a2);</span><br><span class="line"><span class="keyword">const</span> a4 = [...a1, ...a2];</span><br><span class="line">a3[<span class="number">0</span>] === a4[<span class="number">0</span>]; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-<p>上述用扩展运算符和 concat 方法合并了 a1，a2 两个数组，但是 a1 和 a2 数组中是对象，因此拷贝的知识指向这些对象的指针，所以他们的值是相等的。</p>
-<p>与解构赋值结合</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[a, ...rest] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="built_in">console</span>.log(rest);</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [first, ...rest] = [];</span><br><span class="line">first; <span class="comment">// undefined</span></span><br><span class="line">rest; <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
-<p>如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [...butLast, last] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first, ...middle, last] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
-<p>将字符串转为为真正的数组</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="string">"hello"</span>];</span><br></pre></td></tr></table></figure>
-<p>那就是能够正确识别四个字节的 Unicode 字符<br><code>\uD83D\uDE80</code>表示 🚀</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...<span class="string">"x\uD83D\uDE80y"</span>].length; <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-<p>只要内部具有 Iterator 接口的对象，…都可以解析转为为数组。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nodeList = <span class="built_in">document</span>.querySelectorAll(<span class="string">"div"</span>);</span><br><span class="line"><span class="keyword">let</span> array = [...nodeList];</span><br></pre></td></tr></table></figure>
-<p>因为 nodeList 具有 Iterator 接口，所以可以将其扩展为数组。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayLike = &#123;</span><br><span class="line">  <span class="string">"0"</span>: <span class="string">"a"</span>,</span><br><span class="line">  <span class="string">"1"</span>: <span class="string">"b"</span>,</span><br><span class="line">  <span class="string">"2"</span>: <span class="string">"c"</span>,</span><br><span class="line">  length: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// TypeError: Cannot spread non-iterable object.</span></span><br><span class="line"><span class="keyword">let</span> arr = [...arrayLike];</span><br></pre></td></tr></table></figure>
-<p>类似数组对象无法扩展，因为其没有 iterator 接口。</p>
-<p>Map 结构，Set 结构，Generator 函数都可以被扩展。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> go = <span class="function"><span class="keyword">function</span>*(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">[...go()]; <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
-<h3 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h3><p>Array.from 可以将类似数组的对象转化为数组，类似数组的对象本质上是一个具有 length 属性的对象，如函数参数 arguments 和节点对象 nodelists 都是类似数组的对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(args, x =&gt; x * x);</span><br><span class="line">&#125;</span><br><span class="line">fn(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
-<p>Array.from 的第二个参数类似于数组 map 函数，对数组的每一个元素进行处理后返回。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>, x =&gt; x * x);</span><br><span class="line">  <span class="built_in">console</span>.log(args);</span><br><span class="line">&#125;</span><br><span class="line">fn(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>); <span class="comment">//[ 1, 4, 9, 16, 25 ]</span></span><br></pre></td></tr></table></figure>
-<p>只要有 length 属性的对象就可以被转化</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrayObj = &#123;</span><br><span class="line">  <span class="string">"0"</span>: <span class="string">"foo"</span>,</span><br><span class="line">  <span class="string">"1"</span>: <span class="string">"bar"</span>,</span><br><span class="line">  <span class="string">"2"</span>: <span class="string">"baz"</span>,</span><br><span class="line">  length: <span class="string">"4"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> arr = <span class="built_in">Array</span>.from(arrayObj);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[ 'foo', 'bar', 'baz', undefined ]</span></span><br></pre></td></tr></table></figure>
-<p>具有 iterator 接口的对象也可以转化为数组<br>如 nodelists，set 结构，map 结构</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">52</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(obj.toString()); <span class="comment">//[object Set]</span></span><br><span class="line"><span class="keyword">let</span> arr = <span class="built_in">Array</span>.from(obj, x =&gt; x * <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr); <span class="comment">//[2, 8, 10, 104]</span></span><br></pre></td></tr></table></figure>
-<p>返回输入数据的类型</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">typesof</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> types = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>, x =&gt; <span class="keyword">typeof</span> x);</span><br><span class="line">  <span class="built_in">console</span>.log(types);</span><br><span class="line">&#125;</span><br><span class="line">typesof(<span class="literal">undefined</span>, <span class="literal">null</span>, <span class="number">12</span>, <span class="string">"112"</span>, <span class="built_in">Symbol</span>(), &#123;&#125;, <span class="literal">false</span>);</span><br><span class="line"><span class="comment">//[ 'undefined','object','number','string','symbol','object','boolean']</span></span><br></pre></td></tr></table></figure>
-<p>字符串转化为数组</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将字符串转化为数组</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="built_in">Array</span>.from(<span class="string">'🚀🚀😀'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(str.length);</span><br><span class="line">str = <span class="string">'☀🌙💗'</span></span><br><span class="line"><span class="built_in">console</span>.log(str.length)</span><br></pre></td></tr></table></figure>
-<h3 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h3><p>弥补 Array()创建数组时的不足，即传入的参数不同会有不同的行为</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>(); <span class="comment">//[]</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">3</span>); <span class="comment">//[,,]</span></span><br><span class="line"><span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">//[1,2,3]</span></span><br></pre></td></tr></table></figure>
-<p>Array.of()传入的参数都会被成为数组成员</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.of()); <span class="comment">//[]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.of(<span class="number">3</span>)); <span class="comment">//[3]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)); <span class="comment">//[1,2,3]</span></span><br></pre></td></tr></table></figure>
-<p>Array.of 方法可以用下面的代码模拟实现。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ArrayOf</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [].slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="copyWithin"><a href="#copyWithin" class="headerlink" title="copyWithin()"></a>copyWithin()</h3><p>copyWithin(target,start,end)，将指定位置即 target 的值替换为 start 到 end 之间的值，不包括 end。<br>target（必需）：从该位置开始替换数据。如果为负值，表示倒数。<br>start（可选）：从该位置开始读取数据，默认为 0。如果为负值，表示从末尾开始计算。<br>end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示从末尾开始计算。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].copyWithin(<span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line"><span class="comment">// [4, 5, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
-<h3 id="find-和-findIndex"><a href="#find-和-findIndex" class="headerlink" title="find()和 findIndex()"></a>find()和 findIndex()</h3><p>数组实例的 find 方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为 true 的成员，然后返回该成员。如果没有符合条件的成员，则返回 undefined。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">-5</span>, <span class="number">10</span>].find(<span class="function"><span class="params">n</span> =&gt;</span> n &lt; <span class="number">0</span>);</span><br><span class="line"><span class="comment">// -5</span></span><br></pre></td></tr></table></figure>
-<p>find 方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组。<br>两个方法都可以接受第二个参数，用来绑定回调函数的 this 对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> v &gt; <span class="keyword">this</span>.age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person = &#123; <span class="attr">name</span>: <span class="string">"John"</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;;</span><br><span class="line">[<span class="number">10</span>, <span class="number">12</span>, <span class="number">26</span>, <span class="number">15</span>].find(f, person); <span class="comment">// 26</span></span><br></pre></td></tr></table></figure>
-<p>另外，这两个方法都可以发现 NaN，弥补了数组的 indexOf 方法的不足。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="literal">NaN</span>]</span><br><span class="line">  .indexOf(<span class="literal">NaN</span>)</span><br><span class="line">  <span class="comment">// -1</span></span><br><span class="line"></span><br><span class="line">  [<span class="literal">NaN</span>].findIndex(<span class="function"><span class="params">y</span> =&gt;</span> <span class="built_in">Object</span>.is(<span class="literal">NaN</span>, y));</span><br><span class="line"><span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-<h3 id="fill"><a href="#fill" class="headerlink" title="fill"></a>fill</h3><p>fill 方法使用给定值，填充一个数组。第二个和第三个参数，用于指定填充的起始位置和结束位置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>].fill(<span class="number">7</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">// ['a', 7, 'c']</span></span><br></pre></td></tr></table></figure>
-<h3 id="entries-，keys-和-values"><a href="#entries-，keys-和-values" class="headerlink" title="entries()，keys() 和 values()"></a>entries()，keys() 和 values()</h3><p>entries()，keys()和 values()——用于遍历数组。它们都返回一个遍历器对象。可以用 for…of…进行遍历，keys<br>()表示对键名的遍历，values()表示对键值的遍历，entries()表示对键值对的遍历。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> keys = arr.keys();</span><br><span class="line"><span class="keyword">var</span> entries = arr.entries();</span><br><span class="line"><span class="keyword">var</span> values = arr.values();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">of</span> keys) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(index);</span><br><span class="line">&#125; <span class="comment">//0 1 2 3 4</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> values) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125; <span class="comment">// 1 2 3 4 5</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [i, v] <span class="keyword">of</span> entries) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i, v);</span><br><span class="line">&#125; <span class="comment">//01 12 23 34 45</span></span><br></pre></td></tr></table></figure>
-<p>也可以调用迭代器对象自身的 next()方法。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">var</span> keys = arr.keys();</span><br><span class="line"><span class="built_in">console</span>.log(keys.next()); <span class="comment">//&#123;value:0,done:false&#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="includes"><a href="#includes" class="headerlink" title="includes()"></a>includes()</h3><p>indexOf 方法有两个缺点，一是不够语义化，它的含义是找到参数值的第一个出现位置，所以要去比较是否不等于-1，表达起来不够直观。二是，它内部使用严格相等运算符（===）进行判断，这会导致对 NaN 的误判。<br>Array.prototype.includes 方法返回一个布尔值，表示某个数组是否包含给定的值。语义化且可以判断 NAN。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].includes(<span class="number">2</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Map 结构的 has 方法，是用来查找键名的，比如 Map.prototype.has(key)、WeakMap.prototype.has(key)、Reflect.has(target, propertyKey)。<br>Set 结构的 has 方法，是用来查找值的，比如 Set.prototype.has(value)、WeakSet.prototype.has(value)。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set([1, 2, 3, 45, 65, 34, 2, 3]);</span><br><span class="line">console.log(<span class="keyword">set</span>.has(1));</span><br><span class="line">let map = new Map([["a", "for"], ["b", "bar"]]);</span><br><span class="line">console.log(map.has("foo"));</span><br></pre></td></tr></table></figure>
-<h3 id="flat-，flatMap"><a href="#flat-，flatMap" class="headerlink" title="flat()，flatMap()"></a>flat()，flatMap()</h3><p>数组的成员有时还是数组，Array.prototype.flat()用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]].flat();</span><br><span class="line"><span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
-<p>flat()默认只会“拉平”一层，如果想要“拉平”多层的嵌套数组，可以将 flat()方法的参数写成一个整数，表示想要拉平的层数，默认为 1。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, [<span class="number">4</span>, <span class="number">5</span>]]].flat(<span class="number">2</span>);</span><br><span class="line"><span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
-<p>如果不管有多少层嵌套，都要转成一维数组，可以用 Infinity 关键字作为参数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>]]].flat(<span class="literal">Infinity</span>);</span><br><span class="line"><span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
-<p>flatMap()方法对原数组的每个成员执行一个函数（相当于执行 Array.prototype.map()），然后对返回值组成的数组执行 flat()方法。该方法返回一个新数组，不改变原数组。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 相当于 [[2, 4], [3, 6], [4, 8]].flat()</span></span><br><span class="line">[<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>].flatMap(<span class="function"><span class="params">x</span> =&gt;</span> [x, x * <span class="number">2</span>]);</span><br><span class="line"><span class="comment">// [2, 4, 3, 6, 4, 8]</span></span><br></pre></td></tr></table></figure>
-<h3 id="数组的空位"><a href="#数组的空位" class="headerlink" title="数组的空位"></a>数组的空位</h3><p>由于空位的处理规则非常不统一，所以建议避免出现空位。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1853,7 +1828,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
