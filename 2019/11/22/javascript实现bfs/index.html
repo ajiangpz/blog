@@ -79,19 +79,20 @@
 
 
 
-<meta name="description" content="广度优先算法 BFS 图的遍历算法的思想是必须追踪第一个访问的节点，并追踪有哪些节点还没有被完全探索。  每个顶点应该有三种状态，未被访问的（unvisit），已被发现的（visited），已被探索的（explored）即所有邻接点都被发现了。 遍历步骤从顶点v开始的广度优先算法1) 创建一个队列Q2) 将v标注为已发现的，并将v入队列3) 如果队列非空则    (a) 将u出队列Q    (b)">
+<meta name="description" content="实现图类1234567891011121314151617181920212223242526const vertexs = []; //私有属性 存储顶点const ajList = new Map(); //私有属性 存储字典const Queue = require(&quot;./queqe.js&quot;);//私有方法 初始化状态const initialStatus = function() &amp;#12">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript实现bfs">
+<meta property="og:title" content="数据结构之图">
 <meta property="og:url" content="https://github.com/ajiangpz/blog/2019/11/22/javascript实现bfs/index.html">
 <meta property="og:site_name" content="Pzzz&#39;s FE Blog">
-<meta property="og:description" content="广度优先算法 BFS 图的遍历算法的思想是必须追踪第一个访问的节点，并追踪有哪些节点还没有被完全探索。  每个顶点应该有三种状态，未被访问的（unvisit），已被发现的（visited），已被探索的（explored）即所有邻接点都被发现了。 遍历步骤从顶点v开始的广度优先算法1) 创建一个队列Q2) 将v标注为已发现的，并将v入队列3) 如果队列非空则    (a) 将u出队列Q    (b)">
+<meta property="og:description" content="实现图类1234567891011121314151617181920212223242526const vertexs = []; //私有属性 存储顶点const ajList = new Map(); //私有属性 存储字典const Queue = require(&quot;./queqe.js&quot;);//私有方法 初始化状态const initialStatus = function() &amp;#12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/ajiangpz/blog/2019/11/public/images/map.png">
-<meta property="og:updated_time" content="2019-11-23T08:57:43.630Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/39295642/69910979-871cb980-144f-11ea-991a-7719e06dba65.PNG">
+<meta property="og:image" content="https://user-images.githubusercontent.com/39295642/69910955-0c539e80-144f-11ea-86aa-d3dae39e2e6c.PNG">
+<meta property="og:updated_time" content="2019-12-01T08:48:19.789Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript实现bfs">
-<meta name="twitter:description" content="广度优先算法 BFS 图的遍历算法的思想是必须追踪第一个访问的节点，并追踪有哪些节点还没有被完全探索。  每个顶点应该有三种状态，未被访问的（unvisit），已被发现的（visited），已被探索的（explored）即所有邻接点都被发现了。 遍历步骤从顶点v开始的广度优先算法1) 创建一个队列Q2) 将v标注为已发现的，并将v入队列3) 如果队列非空则    (a) 将u出队列Q    (b)">
-<meta name="twitter:image" content="https://github.com/ajiangpz/blog/2019/11/public/images/map.png">
+<meta name="twitter:title" content="数据结构之图">
+<meta name="twitter:description" content="实现图类1234567891011121314151617181920212223242526const vertexs = []; //私有属性 存储顶点const ajList = new Map(); //私有属性 存储字典const Queue = require(&quot;./queqe.js&quot;);//私有方法 初始化状态const initialStatus = function() &amp;#12">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/39295642/69910979-871cb980-144f-11ea-991a-7719e06dba65.PNG">
 
 
 
@@ -127,7 +128,7 @@
 
 
 
-  <title>javascript实现bfs | Pzzz's FE Blog</title>
+  <title>数据结构之图 | Pzzz's FE Blog</title>
   
 
 
@@ -192,6 +193,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/blog/archives/" rel="section">
             
@@ -251,7 +262,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">javascript实现bfs</h1>
+          <h1 class="post-title" itemprop="name headline">数据结构之图</h1>
         
 
         <div class="post-meta">
@@ -273,6 +284,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -301,15 +334,31 @@
       
 
       
-        <h1 id="广度优先算法"><a href="#广度优先算法" class="headerlink" title="广度优先算法"></a>广度优先算法</h1><p><img src="../../public/images/map.png" alt></p>
-<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><blockquote>
+        <h3 id="实现图类"><a href="#实现图类" class="headerlink" title="实现图类"></a>实现图类</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vertexs = []; <span class="comment">//私有属性 存储顶点</span></span><br><span class="line"><span class="keyword">const</span> ajList = <span class="keyword">new</span> <span class="built_in">Map</span>(); <span class="comment">//私有属性 存储字典</span></span><br><span class="line"><span class="keyword">const</span> Queue = <span class="built_in">require</span>(<span class="string">"./queqe.js"</span>);</span><br><span class="line"><span class="comment">//私有方法 初始化状态</span></span><br><span class="line"><span class="keyword">const</span> initialStatus = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> status = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> vertex <span class="keyword">of</span> vertexs) &#123;</span><br><span class="line">    status.set(vertex, <span class="string">"unvisit"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> status;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">  <span class="comment">//添加顶点</span></span><br><span class="line">  addVertex(v) &#123;</span><br><span class="line">    vertexs.push(v);</span><br><span class="line">    ajList.set(v, []);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//添加顶点关系</span></span><br><span class="line">  addEdge(v, w) &#123;</span><br><span class="line">    ajList.get(v).push(w);</span><br><span class="line">    <span class="comment">//无向图</span></span><br><span class="line">    ajList.get(w).push(v);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = Graph;</span><br></pre></td></tr></table></figure>
+<h3 id="初始化实例"><a href="#初始化实例" class="headerlink" title="初始化实例"></a>初始化实例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Graph=<span class="built_in">require</span>(<span class="string">'./graph.js'</span>)</span><br><span class="line"><span class="keyword">const</span> myVertexs = [<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>, <span class="string">"D"</span>, <span class="string">"E"</span>, <span class="string">"F"</span>, <span class="string">"G"</span>, <span class="string">"H"</span>, <span class="string">"I"</span>];</span><br><span class="line"><span class="keyword">const</span> graph = <span class="keyword">new</span> Graph();</span><br><span class="line"><span class="comment">//添加顶点</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> vertex <span class="keyword">of</span> myVertexs) &#123;</span><br><span class="line">  graph.addVertex(vertex);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//添加邻接关系</span></span><br><span class="line">graph.addEdge(<span class="string">"A"</span>, <span class="string">"B"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"A"</span>, <span class="string">"C"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"A"</span>, <span class="string">"D"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"B"</span>, <span class="string">"E"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"B"</span>, <span class="string">"C"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"B"</span>, <span class="string">"F"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"C"</span>, <span class="string">"D"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"C"</span>, <span class="string">"G"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"D"</span>, <span class="string">"G"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"D"</span>, <span class="string">"H"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"E"</span>, <span class="string">"I"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="广度优先算法"><a href="#广度优先算法" class="headerlink" title="广度优先算法"></a>广度优先算法</h3><p><img src="https://user-images.githubusercontent.com/39295642/69910979-871cb980-144f-11ea-991a-7719e06dba65.PNG" alt="bfs"></p>
+<blockquote>
 <p>图的遍历算法的思想是必须追踪第一个访问的节点，并追踪有哪些节点还没有被完全探索。</p>
 </blockquote>
 <p>每个顶点应该有三种状态，未被访问的（unvisit），已被发现的（visited），已被探索的（explored）即所有邻接点都被发现了。</p>
-<h3 id="遍历步骤"><a href="#遍历步骤" class="headerlink" title="遍历步骤"></a>遍历步骤</h3><p>从顶点v开始的广度优先算法<br>1) 创建一个队列Q<br>2) 将v标注为已发现的，并将v入队列<br>3) 如果队列非空则<br>    (a) 将u出队列Q<br>    (b) 将u标记为已发现（visited）<br>    (c) 将u所有未被访问过的邻点（unvisit）入队列<br>    (d) 将u标记为已被探索的（黑色）</p>
-<h3 id="实现队列类"><a href="#实现队列类" class="headerlink" title="实现队列类"></a>实现队列类</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> items=[]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span></span>&#123;</span><br><span class="line">  enqueue(v)&#123;</span><br><span class="line">    items.push(v)</span><br><span class="line">  &#125;</span><br><span class="line">  dequeue()&#123;</span><br><span class="line">    <span class="keyword">return</span> items.shift()</span><br><span class="line">  &#125;</span><br><span class="line">  isEmpty()&#123;</span><br><span class="line">    <span class="keyword">return</span> !items.length</span><br><span class="line">  &#125;</span><br><span class="line">  size()&#123;</span><br><span class="line">    <span class="keyword">return</span> items.length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports=Queue</span><br></pre></td></tr></table></figure>
-<h3 id="实现图类"><a href="#实现图类" class="headerlink" title="实现图类"></a>实现图类</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vertexs = []; <span class="comment">//私有属性 存储顶点</span></span><br><span class="line"><span class="keyword">const</span> ajList = <span class="keyword">new</span> <span class="built_in">Map</span>(); <span class="comment">//私有属性 存储字典</span></span><br><span class="line"><span class="keyword">const</span> Queue = <span class="built_in">require</span>(<span class="string">"./queqe.js"</span>);</span><br><span class="line"><span class="comment">//私有方法 初始化状态</span></span><br><span class="line"><span class="keyword">const</span> initialStatus = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> status = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> vertex <span class="keyword">of</span> vertexs) &#123;</span><br><span class="line">    status.set(vertex, <span class="string">"unvisit"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> status;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">  <span class="comment">//添加顶点</span></span><br><span class="line">  addVertex(v) &#123;</span><br><span class="line">    vertexs.push(v);</span><br><span class="line">    ajList.set(v, []);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//添加顶点关系</span></span><br><span class="line">  addEdge(v, w) &#123;</span><br><span class="line">    ajList.get(v).push(w);</span><br><span class="line">    <span class="comment">//无向图</span></span><br><span class="line">    ajList.get(w).push(v);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//bfs</span></span><br><span class="line">  bfs(v, callback) &#123;</span><br><span class="line">    <span class="comment">//初始化状态</span></span><br><span class="line">    <span class="keyword">let</span> status = initialStatus();</span><br><span class="line">    <span class="comment">//创建队列</span></span><br><span class="line">    <span class="keyword">let</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line">    <span class="comment">//将顶点入队列</span></span><br><span class="line">    queue.enqueue(v);</span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">      <span class="keyword">let</span> u = queue.dequeue(),</span><br><span class="line">        neighbors = ajList.get(u);</span><br><span class="line">      <span class="comment">//设置状态为已发现</span></span><br><span class="line">      status.set(u,<span class="string">"visited"</span>);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> neighbor <span class="keyword">of</span> neighbors) &#123;</span><br><span class="line">        <span class="keyword">if</span> (status.get(neighbor) === <span class="string">"unvisit"</span>) &#123;</span><br><span class="line">          status.set(neighbor, <span class="string">"visited"</span>);</span><br><span class="line">          queue.enqueue(neighbor);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      status.set(u,<span class="string">"explored"</span>)</span><br><span class="line">      <span class="keyword">if</span> (callback) &#123;</span><br><span class="line">        callback(u);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = Graph;</span><br></pre></td></tr></table></figure>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Graph=<span class="built_in">require</span>(<span class="string">'./graph.js'</span>)</span><br><span class="line"><span class="keyword">const</span> myVertexs = [<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>, <span class="string">"D"</span>, <span class="string">"E"</span>, <span class="string">"F"</span>, <span class="string">"G"</span>, <span class="string">"H"</span>, <span class="string">"I"</span>];</span><br><span class="line"><span class="keyword">const</span> graph = <span class="keyword">new</span> Graph();</span><br><span class="line"><span class="comment">//添加顶点</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> vertex <span class="keyword">of</span> myVertexs) &#123;</span><br><span class="line">  graph.addVertex(vertex);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//添加邻接关系</span></span><br><span class="line">graph.addEdge(<span class="string">"A"</span>, <span class="string">"B"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"A"</span>, <span class="string">"C"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"A"</span>, <span class="string">"D"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"B"</span>, <span class="string">"E"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"B"</span>, <span class="string">"C"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"B"</span>, <span class="string">"F"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"C"</span>, <span class="string">"D"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"C"</span>, <span class="string">"G"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"D"</span>, <span class="string">"G"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"D"</span>, <span class="string">"H"</span>);</span><br><span class="line">graph.addEdge(<span class="string">"E"</span>, <span class="string">"I"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//广度优先搜索</span></span><br><span class="line">graph.bfs(<span class="string">'A'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(v)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="遍历步骤"><a href="#遍历步骤" class="headerlink" title="遍历步骤"></a>遍历步骤</h4><p>从顶点v开始的广度优先算法<br>1) 创建一个队列Q<br>2) 将v标注为已发现的，并将v入队列<br>3) 如果队列非空则<br>    (a) 将u出队列Q<br>    (b) 将u标记为已发现（visited）<br>    (c) 将u所有未被访问过的邻点（unvisit）入队列<br>    (d) 将u标记为已被探索的（黑色）</p>
+<h4 id="实现队列类"><a href="#实现队列类" class="headerlink" title="实现队列类"></a>实现队列类</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> items=[]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span></span>&#123;</span><br><span class="line">  enqueue(v)&#123;</span><br><span class="line">    items.push(v)</span><br><span class="line">  &#125;</span><br><span class="line">  dequeue()&#123;</span><br><span class="line">    <span class="keyword">return</span> items.shift()</span><br><span class="line">  &#125;</span><br><span class="line">  isEmpty()&#123;</span><br><span class="line">    <span class="keyword">return</span> !items.length</span><br><span class="line">  &#125;</span><br><span class="line">  size()&#123;</span><br><span class="line">    <span class="keyword">return</span> items.length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports=Queue</span><br></pre></td></tr></table></figure>
+<h4 id="实现广度优先搜索"><a href="#实现广度优先搜索" class="headerlink" title="实现广度优先搜索"></a>实现广度优先搜索</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">bfs(v, callback) &#123;</span><br><span class="line">  <span class="comment">//初始化状态</span></span><br><span class="line">  <span class="keyword">let</span> status = initialStatus();</span><br><span class="line">  <span class="comment">//创建队列</span></span><br><span class="line">  <span class="keyword">let</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line">  <span class="comment">//将顶点入队列</span></span><br><span class="line">  queue.enqueue(v);</span><br><span class="line">  <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">    <span class="keyword">let</span> u = queue.dequeue(),</span><br><span class="line">      neighbors = ajList.get(u);</span><br><span class="line">    <span class="comment">//设置状态为已发现</span></span><br><span class="line">    status.set(u,<span class="string">"visited"</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> neighbor <span class="keyword">of</span> neighbors) &#123;</span><br><span class="line">      <span class="keyword">if</span> (status.get(neighbor) === <span class="string">"unvisit"</span>) &#123;</span><br><span class="line">        status.set(neighbor, <span class="string">"visited"</span>);</span><br><span class="line">        queue.enqueue(neighbor);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    status.set(u,<span class="string">"explored"</span>)</span><br><span class="line">    <span class="keyword">if</span> (callback) &#123;</span><br><span class="line">      callback(u);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="深度优先算法"><a href="#深度优先算法" class="headerlink" title="深度优先算法"></a>深度优先算法</h3><p><img src="https://user-images.githubusercontent.com/39295642/69910955-0c539e80-144f-11ea-86aa-d3dae39e2e6c.PNG" alt="dfs"></p>
+<h4 id="遍历步骤-1"><a href="#遍历步骤-1" class="headerlink" title="遍历步骤"></a>遍历步骤</h4><p>访问顶点<code>v</code>需要经过以下步骤</p>
+<ol>
+<li>访问顶点 <code>v</code>，标记状态为 <code>visited</code></li>
+<li>对于所有<code>v</code>的未访问的邻点<code>w</code><ul>
+<li>访问邻点<code>w</code></li>
+</ul>
+</li>
+<li>将<code>v</code>的状态标注为<code>exploded</code><blockquote>
+<p>深度优先搜索的访问步骤时递归的，使用栈来存储递归调用</p>
+</blockquote>
+<h4 id="实现深度优先搜索"><a href="#实现深度优先搜索" class="headerlink" title="实现深度优先搜索"></a>实现深度优先搜索</h4>实现递归调用函数<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dfsVisit=<span class="function"><span class="keyword">function</span>(<span class="params">u,status,callback</span>)</span>&#123;</span><br><span class="line">  status.set(u,<span class="string">'visited'</span>);</span><br><span class="line">  <span class="keyword">if</span>(callback)&#123;</span><br><span class="line">    callback(u)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> neighbors=ajList.get(u);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> neighbor <span class="keyword">of</span> neighbors)&#123;</span><br><span class="line">    <span class="keyword">if</span>(status.get(neighbor)===<span class="string">'unvisit'</span>)&#123;</span><br><span class="line">      dfsVisit(neighbor,status,callback)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  status.set(u,<span class="string">'explored'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>调用递归函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">dfs(callback)&#123;</span><br><span class="line">  <span class="comment">//初始化节点状态</span></span><br><span class="line">  <span class="keyword">let</span> status=initialStatus();</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> vertex <span class="keyword">of</span> vertexs)&#123;</span><br><span class="line">    <span class="keyword">if</span>(status.get(vertex)===<span class="string">'unvisit'</span>)&#123;</span><br><span class="line">      <span class="comment">//递归访问顶点</span></span><br><span class="line">      dfsVisit(vertex,status,callback)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -423,14 +472,32 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>
@@ -460,7 +527,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#广度优先算法"><span class="nav-number">1.</span> <span class="nav-text">广度优先算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BFS"><span class="nav-number">1.0.1.</span> <span class="nav-text">BFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历步骤"><span class="nav-number">1.0.2.</span> <span class="nav-text">遍历步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现队列类"><span class="nav-number">1.0.3.</span> <span class="nav-text">实现队列类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现图类"><span class="nav-number">1.0.4.</span> <span class="nav-text">实现图类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.0.5.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现图类"><span class="nav-number">1.</span> <span class="nav-text">实现图类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化实例"><span class="nav-number">2.</span> <span class="nav-text">初始化实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#广度优先算法"><span class="nav-number">3.</span> <span class="nav-text">广度优先算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历步骤"><span class="nav-number">3.1.</span> <span class="nav-text">遍历步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现队列类"><span class="nav-number">3.2.</span> <span class="nav-text">实现队列类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现广度优先搜索"><span class="nav-number">3.3.</span> <span class="nav-text">实现广度优先搜索</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度优先算法"><span class="nav-number">4.</span> <span class="nav-text">深度优先算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历步骤-1"><span class="nav-number">4.1.</span> <span class="nav-text">遍历步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现深度优先搜索"><span class="nav-number">4.2.</span> <span class="nav-text">实现深度优先搜索</span></a></li></ol></li></ol></div>
             
 
           </div>

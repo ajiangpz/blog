@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Pzzz&#39;s FE Blog">
 <meta property="og:description" content="权重计算选择器权重 行内样式 1000 id 选择器 100 class 选择器，属性选择器，伪类选择器 10 元素选择器，伪元素选择器 1 通配符选择器(*) 0  权重计算1234#a .b div[title]100 + 10 + 1 + 10 = 121body #a .b img:hover1 + 100 + 10 + 1 + 10=122 选择器类型通用选择器 id 选择器 class">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-07T12:06:31.511Z">
+<meta property="og:updated_time" content="2019-12-01T08:49:40.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS选择器">
 <meta name="twitter:description" content="权重计算选择器权重 行内样式 1000 id 选择器 100 class 选择器，属性选择器，伪类选择器 10 元素选择器，伪元素选择器 1 通配符选择器(*) 0  权重计算1234#a .b div[title]100 + 10 + 1 + 10 = 121body #a .b img:hover1 + 100 + 10 + 1 + 10=122 选择器类型通用选择器 id 选择器 class">
@@ -190,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/blog/archives/" rel="section">
             
@@ -272,6 +282,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -348,7 +380,8 @@
 <li>div p，选取 div 后代中的 p 元素</li>
 <li>div+p，选取 div 后面相邻的 p 元素，没有相邻无法选中</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//css</span><br><span class="line">.p&gt;h3+p&#123;</span><br><span class="line">    background: lightcoral;</span><br><span class="line">&#125;</span><br><span class="line">//html</span><br><span class="line">&lt;div class=&quot;p&quot;&gt;</span><br><span class="line">    &lt;h3&gt;aa&lt;/h3&gt;</span><br><span class="line">    &lt;h4&gt;bbb&lt;/h4&gt;</span><br><span class="line">    &lt;p&gt;111111111&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;222222222&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;333333333&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">//上述无法选中p元素，因为h3与p没有相邻</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//css</span><br><span class="line"><span class="selector-class">.p</span>&gt;<span class="selector-tag">h3</span>+<span class="selector-tag">p</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: lightcoral;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>//html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"p"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>aa<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>bbb<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>111111111<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>222222222<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>333333333<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">//上述无法选中p元素，因为h3与p没有相邻</span><br></pre></td></tr></table></figure></p>
 <h3 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h3><ul>
 <li>:link</li>
 <li>:visit</li>
@@ -491,14 +524,32 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>

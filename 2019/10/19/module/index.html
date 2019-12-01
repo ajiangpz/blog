@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Pzzz&#39;s FE Blog">
 <meta property="og:description" content="静态加载（编译时加载）ES6 优点 原生实现，可以不用在依赖 UMD 模块化。 浏览器的 API 也可以作为一个模块，而不是全局变量。 命名空间可以替换为模块  运行时加载CommonJS 严格模式变量必须声明后再使用函数的参数不能有同名属性，否则报错不能使用 with 语句不能对只读属性赋值，否则报错不能使用前缀 0 表示八进制数，否则报错不能删除不可删除的属性，否则报错不能删除变量 delet">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-26T07:54:18.744Z">
+<meta property="og:updated_time" content="2019-12-01T08:47:08.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="module">
 <meta name="twitter:description" content="静态加载（编译时加载）ES6 优点 原生实现，可以不用在依赖 UMD 模块化。 浏览器的 API 也可以作为一个模块，而不是全局变量。 命名空间可以替换为模块  运行时加载CommonJS 严格模式变量必须声明后再使用函数的参数不能有同名属性，否则报错不能使用 with 语句不能对只读属性赋值，否则报错不能使用前缀 0 表示八进制数，否则报错不能删除不可删除的属性，否则报错不能删除变量 delet">
@@ -190,6 +190,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/blog/archives/" rel="section">
             
@@ -272,6 +282,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -326,9 +358,9 @@
 <li>script 标签同步加载，阻塞浏览器渲染，可以使用 defer 或者 async 实现异步加载<br>defer 会在 dom 解析完成和其他同步脚本执行完成后，才会执行，defer 按照 script 标签在页面中的出现顺序加载。而 async 一旦下载完成就会阻塞浏览器渲染，执行完脚本后继续渲染，多个 async 脚本不能保证按在页面中出现的顺序加载。</li>
 <li>加载规则<br>script 标签引入模块</li>
 </ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">""</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">""</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>上述代码行为与 defer 标签一样</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">""</span> <span class="keyword">async</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">""</span> <span class="keyword">async</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p>上述代码行为与 async 函数一样<br>在 script 中使用 import</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"module"</span>&gt;<span class="keyword">import</span> utils <span class="keyword">from</span> <span class="string">'./'</span>&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <h4 id="commonJs-与-ES6"><a href="#commonJs-与-ES6" class="headerlink" title="commonJs 与 ES6"></a>commonJs 与 ES6</h4><p>两个重要的区别<br>commonJs 是引入模块时是动态地按值拷贝，ES6 是静态分析时创建引用。<br>commonJs 模块会缓存值的结果，而 ES6 不会缓存。因为 cmj 是按值拷贝，类似于函数的传参，当值是引用类型时，改变该值时父模块的中引入的值也会跟着改变，而如果时原始类型，那么改变子模块的值父模块是没有反应的。而 ES6 中，不管是什么类型的值，只要改变了父模块的值也会跟着改变。</p>
@@ -461,14 +493,32 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>
